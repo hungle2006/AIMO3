@@ -1,0 +1,63 @@
+primary_index:
+- id: math_train
+  repo: jeggers/competition_math
+  split: train
+  policy: INDEX_ALL
+  store: problem
+  quality_prior: 1.0
+  expected_count: 7500
+  notes: Never index MATH test when evaluating it.
+- id: numina_olympiad
+  repo: AI-MO/NuminaMath-CoT
+  split: train
+  policy: FILTER_SOURCE
+  allowed_source_values:
+  - olympiads
+  - amc_aime
+  store: problem
+  quality_prior:
+    olympiads: 0.95
+    amc_aime: 0.9
+  expected_count_from_dataset_card: 154653
+  notes: Pin dataset snapshot and retain source/license provenance.
+formal_optional:
+- id: lean_workbook_base
+  repo: internlm/Lean-Workbook
+  policy: BASE_ONLY_IF_IDENTIFIABLE_AND_VERIFIED
+  exclude_id_contains:
+  - lean_workbook_plus_
+  required_status: proved
+  store: formal
+  quality_prior: 0.85
+  notes: Do not silently fall back to Plus. Skip when base/plus separation cannot
+    be established.
+retrieval_training_optional:
+- id: naturalproofs
+  repo: wellecks/naturalproofs
+  policy: REFERENCE_RETRIEVAL_TRAINING
+  notes: Useful for theorem-reference retrieval and gate/reranker research.
+- id: leandojo
+  repo: lean-dojo/LeanDojo
+  policy: FORMAL_PHASE_2
+  notes: Premise retrieval for future formal subsystem; not primary solver context.
+off_by_default:
+- id: openmathinstruct2
+  repo: nvidia/OpenMathInstruct-2
+  reason: 14M synthetic pairs derived from MATH/GSM8K training data can swamp a compact
+    olympiad RAG. Prefer SFT or <=50k validated optional sample.
+- id: lean_workbook_plus
+  repo: internlm/Lean-Workbook
+  reason: Published paper reports human-evaluation errors especially for number theory
+    prime and max/min problems.
+- id: numina_other_sources
+  repo: AI-MO/NuminaMath-CoT
+  reason: Keep primary index competition-focused and reduce synthetic/easy/provenance-heavy
+    data.
+benchmark_only:
+- MATH test
+- OlympiadBench
+- Omni-MATH
+- miniF2F test
+- PutnamBench
+- FIMO
+- formal-IMO

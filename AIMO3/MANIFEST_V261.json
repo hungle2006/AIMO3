@@ -1,0 +1,14 @@
+{
+  "version": "2.6.1",
+  "name": "Olympiad_AIMO3_Adaptive_Reasoner_T4x2_v2_6_1_VERIFICATION_AUDIT",
+  "cpu_tests": "ALL PASS",
+  "gpu_validation_required": true,
+  "key_fixes": [
+    "answer-bound exact verification",
+    "critic failed-tool hard guard",
+    "strict Qwen thinking close delimiter",
+    "in-generation token/time cap",
+    "safe AST math parser",
+    "post-hoc benchmark false-positive detection"
+  ]
+}

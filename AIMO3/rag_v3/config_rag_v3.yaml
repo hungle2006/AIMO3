@@ -1,0 +1,49 @@
+version: '3.0'
+paths:
+  runtime_rag_root: /kaggle/input/datasets/leminhhung0101/olympiad-rag-corpus-v3
+  runtime_model_root: /kaggle/input/datasets/leminhhung0101/olympiad-offline-models
+  build_root: /kaggle/working/olympiad_rag_v3_build
+retriever:
+  embedding_model: BAAI/bge-small-en-v1.5
+  embedding_dim: 384
+  embedding_dtype: float16
+  dense_metric: cosine
+  bm25: true
+  query_max_tokens: 512
+  weights_initial:
+    dense: 0.45
+    bm25: 0.3
+    domain: 0.15
+    symbol_pattern: 0.1
+  top_k:
+    theorem: 8
+    problem: 16
+    formal: 6
+  final_context:
+    max_theorems: 1
+    max_analogies: 1
+    max_formal: 1
+    max_tokens: 1800
+gate:
+  statuses:
+  - ACCEPT
+  - WEAK
+  - CONFLICT
+  - NO_CONTEXT
+  max_query_rewrites: 1
+  calibrate_on_validation: true
+  features:
+  - hybrid_top1
+  - top1_top2_margin
+  - domain_match
+  - symbol_pattern_match
+  - dense_bm25_agreement
+  - source_quality_prior
+  - contradiction_flag
+formal_routing:
+  enabled: true
+  default: false
+  trigger_on:
+  - critic_requests_formal_support
+  - theorem_condition_uncertainty
+  - proof_problem_high_difficulty

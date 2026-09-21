@@ -1,0 +1,331 @@
+{
+  "project": "Olympiad_AIMO3_Adaptive_Reasoner_T4x2_v2_6_FULL_REWRITE",
+  "version": "2.6",
+  "architecture": "adaptive solve-first; conditional RAG; escalation-only thinking critic",
+  "files": [
+    {
+      "path": "ARCHITECTURE_FINAL.md",
+      "bytes": 1400,
+      "sha256": "d7091c1025a387484cb80b77a27dd07a9c07c8f3d888b97a940b0163ba448377"
+    },
+    {
+      "path": "ARCHITECTURE_V26.md",
+      "bytes": 1400,
+      "sha256": "d7091c1025a387484cb80b77a27dd07a9c07c8f3d888b97a940b0163ba448377"
+    },
+    {
+      "path": "Kaggle_v26_Run.ipynb",
+      "bytes": 2718,
+      "sha256": "66978d5fa6400593fad8c3f4a30579f34aa1657f1533dc423c636448dd797842"
+    },
+    {
+      "path": "README_FINAL.md",
+      "bytes": 3694,
+      "sha256": "5692b9ed7535af6f7794606ae451fc320ce5c7244566dcf3b89e9ed1af515d29"
+    },
+    {
+      "path": "README_V26.md",
+      "bytes": 3694,
+      "sha256": "5692b9ed7535af6f7794606ae451fc320ce5c7244566dcf3b89e9ed1af515d29"
+    },
+    {
+      "path": "config.yaml",
+      "bytes": 2745,
+      "sha256": "cea1d030358ec8ac5b96fba226a9f7e58d57293164a5f50e159eab429a71a52c"
+    },
+    {
+      "path": "config_final.yaml",
+      "bytes": 2745,
+      "sha256": "cea1d030358ec8ac5b96fba226a9f7e58d57293164a5f50e159eab429a71a52c"
+    },
+    {
+      "path": "config_t4x2.yaml",
+      "bytes": 2745,
+      "sha256": "cea1d030358ec8ac5b96fba226a9f7e58d57293164a5f50e159eab429a71a52c"
+    },
+    {
+      "path": "config_v2_6.yaml",
+      "bytes": 2745,
+      "sha256": "cea1d030358ec8ac5b96fba226a9f7e58d57293164a5f50e159eab429a71a52c"
+    },
+    {
+      "path": "core/__init__.py",
+      "bytes": 43,
+      "sha256": "a2cf8e98805a758321b756d6a439d7c8bab858ae6ef0ff67a4aca89c64c78e54"
+    },
+    {
+      "path": "core/answer_contract.py",
+      "bytes": 1683,
+      "sha256": "f044afc66cbbbfd8384a27afe14f7f35e8ba2d4c2a95bbb97a3036b7ccdf10c6"
+    },
+    {
+      "path": "core/budget.py",
+      "bytes": 1937,
+      "sha256": "44bd1e8fb9199b087701ea7f549011177239f575462472dec898c9d8a1cae78a"
+    },
+    {
+      "path": "core/config.py",
+      "bytes": 1710,
+      "sha256": "da59ddea2ccace17789537fafe3dae4ad5fbdfb430d0896d0e4896bce0ef054b"
+    },
+    {
+      "path": "core/controller.py",
+      "bytes": 3106,
+      "sha256": "68ff8d5bef11b46229e2b5e2ddabf52987935a0e8c1e0db474a7d9e28e54e211"
+    },
+    {
+      "path": "core/input_adapter.py",
+      "bytes": 3220,
+      "sha256": "514c861eda973a6e9d01c7d339b3c0039e80aeefc75570fbda293494c25d37da"
+    },
+    {
+      "path": "core/model_manager.py",
+      "bytes": 11554,
+      "sha256": "c9453df7624c11c1fb3d0a3e866295b99413aba3b3eb6c91dc8113096895220d"
+    },
+    {
+      "path": "core/parsing.py",
+      "bytes": 9916,
+      "sha256": "c0cbda47396279d8af2a98a7e70e21a590dfe884fa2cd18e85455dc235fee030"
+    },
+    {
+      "path": "core/pdf_reader.py",
+      "bytes": 15685,
+      "sha256": "fa94afbe4b6da4769941885e6816ad5ca4ee6f7647678f58ac7a08ed2b0acbd4"
+    },
+    {
+      "path": "core/pipeline.py",
+      "bytes": 18138,
+      "sha256": "fa6f9eae3dd67e4d56c9f35c4a54b0a464ad90dbbe4c095911e65e900f7bc6dd"
+    },
+    {
+      "path": "core/prompts.py",
+      "bytes": 6237,
+      "sha256": "5eccd7227e0fde51a1d5429d98b8f46e808f553b5fa56521313824fb2bd71aef"
+    },
+    {
+      "path": "core/rag_runtime.py",
+      "bytes": 1538,
+      "sha256": "d8e18bd58d4b951f6cb21ac4708664347d4756cc96f471ea14353f2b60eb6f68"
+    },
+    {
+      "path": "core/reporting.py",
+      "bytes": 1959,
+      "sha256": "c3e005856e38e61bc220f9cebcabf20f82981011f308b02bbad0cfa35f574576"
+    },
+    {
+      "path": "core/tools.py",
+      "bytes": 6584,
+      "sha256": "1276ee18b078315f752db1b01bbcbb167718ce4aa41b5ac8c3209b051f37ceb2"
+    },
+    {
+      "path": "core/verification.py",
+      "bytes": 3705,
+      "sha256": "672f80527663288137fcf1873915f57ebb7560df8ddee7037658cd96508472bd"
+    },
+    {
+      "path": "data/benchmark_manifest.json",
+      "bytes": 481,
+      "sha256": "5cdda07da6216b8fd0e7105d2f4e6abcd0a0e2a7250246b3cd892bbda37a4e63"
+    },
+    {
+      "path": "data/knowledge_chunks.jsonl",
+      "bytes": 37696,
+      "sha256": "f9b03c40ab16a4fab1874512b2a090556c39feaa4728565ff59ace3a370f59b3"
+    },
+    {
+      "path": "data/source_catalog_v2.csv",
+      "bytes": 6866,
+      "sha256": "bbb5d42b0885450a984d95ba7f77cc987f9eec93f2cf35534e4e68b96831a7d6"
+    },
+    {
+      "path": "data/source_catalog_v2.json",
+      "bytes": 10380,
+      "sha256": "95a96d5d23e37bd7ce50be909aa6ccb2d2c35751e42b9c3eecf19c89f78cf588"
+    },
+    {
+      "path": "data/source_manifest.json",
+      "bytes": 2055,
+      "sha256": "e5712b40850fd60e9b74db7e3da2119a9fe97d0a0019afe4c5a5781977e51cec"
+    },
+    {
+      "path": "data/strategy_patterns.jsonl",
+      "bytes": 2779,
+      "sha256": "44c4a23f451fc10e350c4ee861c65f2dfe9ab8fa75602197223d31e119aa5f74"
+    },
+    {
+      "path": "data/theorems.jsonl",
+      "bytes": 22175,
+      "sha256": "246d3b56e822094a01278441cab8aaee0066f5786b9296dc1c06b248d40cfdd4"
+    },
+    {
+      "path": "examples/problems.jsonl",
+      "bytes": 187,
+      "sha256": "45f7efbea159c4e336d8d351483ff206b947908f32e3adc2e73830b5a91eacac"
+    },
+    {
+      "path": "index/README_V26.txt",
+      "bytes": 198,
+      "sha256": "1869e3222b3f6672d6d7798dd29bfc87bfdb1c29b61244a8128ac66954b0fe1c"
+    },
+    {
+      "path": "rag/analyzer.py",
+      "bytes": 5168,
+      "sha256": "724b6c89e05608e50b397e2d2088a62ee7b74186af2a7d28b5930e714c374eca"
+    },
+    {
+      "path": "rag/context.py",
+      "bytes": 1147,
+      "sha256": "1587ef46c84146d1e9a00f76775a2ec7868988d9071c397f1e1f0044098437ff"
+    },
+    {
+      "path": "rag/gate.py",
+      "bytes": 2163,
+      "sha256": "82d27ef571e83b8e97e6b8cb2ad9a16376e246fa97ced7525c35686293f30397"
+    },
+    {
+      "path": "rag/retriever.py",
+      "bytes": 2706,
+      "sha256": "368f3d39d6a853e4fd55c03e6b673fed48912bbecbae36d592d6c6eeba0992e3"
+    },
+    {
+      "path": "rag/system.py",
+      "bytes": 1772,
+      "sha256": "d60a59b5b2a22700dd1fc7353d8d8910d1613b19a4c79b4b1dfd89e676563d1b"
+    },
+    {
+      "path": "rag_v3/CUSTOM_RAG_RESEARCH_PLAN.md",
+      "bytes": 9095,
+      "sha256": "9dd27c1d5f286018c11cc52983a47b333dc43f27c493ae94cc2c5e03389b29d5"
+    },
+    {
+      "path": "rag_v3/KAGGLE_BUILD_STEPS.md",
+      "bytes": 2224,
+      "sha256": "b42ed83bee9c2cf0d7dacf4854d02ac2b08fb9797370d76e8e42e9f6f3fbb7dd"
+    },
+    {
+      "path": "rag_v3/config_rag_v3.yaml",
+      "bytes": 1093,
+      "sha256": "069cdd90e602dc687a01e268099e52aa9a8d4767f99c04d79d144c78ce903d51"
+    },
+    {
+      "path": "rag_v3/config_source_policy.yaml",
+      "bytes": 1883,
+      "sha256": "42470a4032f3d3cd59ff80c36b10b831e2dea008e6e4cd86d81e2aa274332e15"
+    },
+    {
+      "path": "rag_v3/schemas_document_schema.json",
+      "bytes": 1623,
+      "sha256": "8e7e2e69434ca8aecb4f3b4dbf9b93f67b3f28850300f83c732973e349551092"
+    },
+    {
+      "path": "requirements-kaggle.txt",
+      "bytes": 183,
+      "sha256": "f01a8811d12d34c3d9a475548010f9956af75932f7cb4fdc9c0d6c9ed1a1ef88"
+    },
+    {
+      "path": "run_batch.py",
+      "bytes": 1677,
+      "sha256": "55dae8a7db6d73921887415fddfdfcfce7f6901a45b1dfad7d0a92925a9f0883"
+    },
+    {
+      "path": "run_full_pipeline.py",
+      "bytes": 1543,
+      "sha256": "cd87039dfe1be7bd3f866c4841126132e5dde1550656b2b524b2f08f6eb21373"
+    },
+    {
+      "path": "run_pdf_pipeline.py",
+      "bytes": 5750,
+      "sha256": "50bac9e898e1e15d1691b9fb5b291cbaf761c7baaee07a5e5f14c4f20d411823"
+    },
+    {
+      "path": "scripts/build_faiss_v3.py",
+      "bytes": 1791,
+      "sha256": "7496e9d15e36551a51f07653a244e25fddc82c50eeea5047244659ffdfa95815"
+    },
+    {
+      "path": "scripts/build_rag_core.py",
+      "bytes": 4384,
+      "sha256": "c153fe2f5dddee743cb0939e287c1a9eca3d5a2b9b4f7a9e16689d9b92e19b26"
+    },
+    {
+      "path": "scripts/check_models.py",
+      "bytes": 1467,
+      "sha256": "cd819c175180ff5a59dc09170af0a5f240339fa2684ece06ced1980e6a72d324"
+    },
+    {
+      "path": "scripts/inspect_pdf.py",
+      "bytes": 1214,
+      "sha256": "c875b7731ee199b9b5c872bd2f88337194ca94a75dab00dbf6444059f92ba311"
+    },
+    {
+      "path": "scripts/leakage_filter_v3.py",
+      "bytes": 1475,
+      "sha256": "35a856412e959b65c986abd9a5c4e22b7572a1a9ee64fb96ebe4f32b8b7edbd4"
+    },
+    {
+      "path": "scripts/make_submission.py",
+      "bytes": 1079,
+      "sha256": "7f29f1374a7ec60f5aa8bda631b83bb1500dae47abe5e5a2a6b295ce893cd6a7"
+    },
+    {
+      "path": "scripts/preflight_v26.py",
+      "bytes": 820,
+      "sha256": "3d407b24b357275b60135c164d4e9fff8fb75255fcedd5090cbfb8227d408bdb"
+    },
+    {
+      "path": "scripts/rebuild_seed_index.py",
+      "bytes": 353,
+      "sha256": "7061a8048ef3368b1a2f7972b294608d95fc42cab42a88e9ca2807c504614506"
+    },
+    {
+      "path": "scripts/run_tests_v26.sh",
+      "bytes": 62,
+      "sha256": "d6cdd95207e4eef0e1b06fb92b83d332420b463cda28f0f0ab9f20944a6b3e16"
+    },
+    {
+      "path": "tests/run_all.py",
+      "bytes": 498,
+      "sha256": "5126edaf9f09a9f2d82bddb59f376689d9d22561402f9d33fb55b3dcd2c6fc2c"
+    },
+    {
+      "path": "tests/test_budget.py",
+      "bytes": 452,
+      "sha256": "df98ff4d9681b1d50c283a9508daeed36ac604f1dea3a2be46e0c075a6d3a98a"
+    },
+    {
+      "path": "tests/test_parsing.py",
+      "bytes": 1502,
+      "sha256": "f32bf746c21acf8096953baece4bc2cc1c0c84eb5cc326c2ddda07847a80e13d"
+    },
+    {
+      "path": "tests/test_pdf_reader.py",
+      "bytes": 634,
+      "sha256": "05f07def99ff0a2fb8519811ac81a6fb0fb5e9ee5709afbbdc8fb02bda01bebe"
+    },
+    {
+      "path": "tests/test_pipeline_problem1_mock.py",
+      "bytes": 2332,
+      "sha256": "351188763679d8eadcbea873776d188838cf7580861de2635edb85fec46daa54"
+    },
+    {
+      "path": "tests/test_rag_runtime.py",
+      "bytes": 494,
+      "sha256": "b85220da610411614968827156656d9c7cae12d28a7c02595465add52f5a590d"
+    },
+    {
+      "path": "tests/test_tools.py",
+      "bytes": 674,
+      "sha256": "ff215f6beb6eaafd65ed5871951dc9ba7d3ead1489b9bfeb45351cd2abb2606c"
+    }
+  ],
+  "tests": [
+    "test_parsing",
+    "test_tools",
+    "test_budget",
+    "test_rag_runtime",
+    "test_pipeline_problem1_mock",
+    "test_pdf_reader"
+  ],
+  "local_validation": "all tests passed; all Python files compiled"
+}

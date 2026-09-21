@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Olympiad RAG V3 Document",
+  "type": "object",
+  "required": [
+    "doc_id",
+    "store",
+    "source_id",
+    "source_split",
+    "retrieval_text",
+    "content_hash"
+  ],
+  "properties": {
+    "doc_id": {
+      "type": "string"
+    },
+    "store": {
+      "enum": [
+        "theorem",
+        "problem",
+        "formal",
+        "experience"
+      ]
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "source_split": {
+      "type": "string"
+    },
+    "original_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "domain": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subdomain": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "problem": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "solution": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "theorem_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "formal_statement": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "retrieval_text": {
+      "type": "string"
+    },
+    "symbol_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "quality_prior": {
+      "type": "number"
+    },
+    "source_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "license_snapshot": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "content_hash": {
+      "type": "string"
+    },
+    "benchmark_overlap": {
+      "type": "boolean"
+    }
+  }
+}

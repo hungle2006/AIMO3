@@ -1,0 +1,16 @@
+{
+  "version": "2.6.4",
+  "name": "SEMANTIC_COMPILER",
+  "config": "config_v2_6_4.yaml",
+  "key_modules": [
+    "core/semantic_constraints.py",
+    "core/pipeline.py",
+    "core/prompts.py",
+    "core/parsing.py"
+  ],
+  "tests": [
+    "tests/test_semantic_compiler_guards.py",
+    "tests/test_semantic_repair_pipeline.py",
+    "tests/test_constraint_first_pipeline.py"
+  ]
+}

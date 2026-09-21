@@ -1,0 +1,10 @@
+{
+  "version": "2.7.1",
+  "name": "COMMIT_VERIFY",
+  "default_config": "config_v2_7_1.yaml",
+  "preflight": "scripts/preflight_v271.py",
+  "kaggle_notebook": "Kaggle_v271_Run.ipynb",
+  "new_core_module": "core/proof_obligations.py",
+  "verification_policy": "early candidates are never auto-verified; semantic exact path unchanged",
+  "gpu_validation": "pending Kaggle T4x2 run"
+}

@@ -1,0 +1,123 @@
+project:
+  name: Olympiad AIMO3 Adaptive Reasoner T4x2 v2.6.1 VERIFICATION AUDIT
+  seed: 42
+  output_dir: /kaggle/working/olympiad_runs_v261
+paths:
+  model_dataset_root: /kaggle/input/datasets/leminhhung0101/olympiad-offline-models
+  model_root_fallbacks:
+  - /kaggle/input/olympiad-offline-models
+  proposer_dir: deepseek-r1-distill-qwen-1.5b
+  solver_dir: qwen3-4b-instruct-2507
+  critic_dir: qwen3-4b-thinking-2507
+  rag_dataset_root: /kaggle/input/datasets/leminhhung0101/olympiad-rag-corpus-v3
+runtime:
+  offline: true
+  require_two_gpus: true
+  resident_on_two_gpus: true
+  quantization: 4bit_nf4
+  bnb_compute_dtype: float16
+  attn_implementation: sdpa
+  attn_fallback: eager
+  clear_cache_between_calls: false
+  cuda_alloc_conf: expandable_segments:True
+  batch_size: 1
+  generation_time_safety_sec: 1.0
+models:
+  proposer:
+    gpu: 0
+    do_sample: true
+    temperature: 0.6
+    top_p: 0.95
+    top_k: 40
+    repetition_penalty: 1.05
+    max_new_tokens: 450
+    max_input_tokens: 5000
+  solver:
+    gpu: 0
+    do_sample: false
+    repetition_penalty: 1.02
+    max_new_tokens: 1800
+    max_input_tokens: 9000
+  critic:
+    gpu: 1
+    do_sample: true
+    repetition_penalty: 1.0
+    max_new_tokens: 4096
+    max_input_tokens: 10000
+    temperature: 0.6
+    top_p: 0.95
+    top_k: 20
+controller:
+  easy_threshold: 0.35
+  hard_threshold: 0.7
+  critic_pass_threshold: 0.88
+  solver_confidence_high: 0.82
+  solver_confidence_low: 0.62
+  budgets:
+    easy:
+      max_calls: 3
+      max_total_tokens: 8000
+      max_seconds: 420
+      use_proposer: false
+      initial_solver_attempts: 1
+      max_revisions: 1
+    medium:
+      max_calls: 5
+      max_total_tokens: 14000
+      max_seconds: 600
+      use_proposer: true
+      initial_solver_attempts: 1
+      max_revisions: 1
+    hard:
+      max_calls: 7
+      max_total_tokens: 22000
+      max_seconds: 840
+      use_proposer: true
+      initial_solver_attempts: 2
+      max_revisions: 1
+rag:
+  enabled: true
+  default_policy: conditional
+  never_for_easy_first_pass: true
+  top_k: 8
+  context_char_limit: 4500
+  accept_top1: 0.3
+  weak_top1: 0.18
+  min_margin: 0.02
+  max_contexts: 3
+  trigger_confidence_below: 0.72
+  trigger_on_answer_disagreement: true
+  seed_runtime_rebuild: true
+tools:
+  enabled: true
+  max_requests_per_solution: 6
+  allowed_ops:
+  - identity
+  - simplify
+  - expand
+  - factor
+  - mod_pow
+  - gcd
+  - factorint
+  - valuation_int
+  - valuation_factorial
+  - binomial
+  - totient
+  - check_equalities
+  - check_expression_value
+verification:
+  accept_exact_tool_without_critic: false
+  accept_consensus_without_critic: false
+  answer_min: 0
+  answer_max: 99999
+  require_critic_best_candidate_id: true
+  block_critic_on_failed_tools: true
+  exact_auto_accept_requires_answer_bound_certificate: true
+input:
+  prefer_csv_for_aimo3: true
+  pdf:
+    prefer_poppler_layout: true
+    use_pymupdf_math_view: true
+    allow_ocr: false
+    block_answer_solution_leakage: true
+    detect_statement_images: true

@@ -1,0 +1,27 @@
+{
+  "release": "v2.9.0 EXACT GEOMETRY",
+  "created_utc": "2026-09-20T16:46:46.041957+00:00",
+  "base_release": "v2.8.1 RUNTIME SCOPE FIX",
+  "main_changes": [
+    "exact radical-axis/angle-bisector geometry family engine for P3-like structure",
+    "integer-only relation check a^2*b=(b+c)^2*(b-c)",
+    "exhaustive increasing-perimeter search with uniqueness and acuteness checks",
+    "independent Stewart, coordinate-power, and coprime-parameterization certificates",
+    "fail-closed structural matcher; no benchmark answer embedded in runtime",
+    "v2.8.1 runtime scope fix retained"
+  ],
+  "validated_reference_engine_only": {
+    "P2": 520,
+    "P3": 336,
+    "P4": 580,
+    "P5": 21818
+  },
+  "runtime_answer_leak_scan": "No literal 336 or [7,8,6] in core/rag/scripts runtime source at build time.",
+  "key_tests": [
+    "test_family_engine_geometry_v290.py",
+    "test_family_engine_geometry_fail_closed_v290.py",
+    "test_pipeline_family_exact_geometry_v290.py",
+    "test_family_engine_pdf_reference_v280.py",
+    "scripts/preflight_v290.py --pdf AIMO3_Reference_Problems.pdf"
+  ]
+}

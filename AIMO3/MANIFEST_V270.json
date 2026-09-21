@@ -1,0 +1,16 @@
+{
+  "version": "2.7.0",
+  "name": "FIDELITY_ADAPTIVE",
+  "default_config": "config_v2_7_0.yaml",
+  "runtime_rag": "seed_runtime_tfidf",
+  "external_rag_v3_operational": false,
+  "pdf_solver_text": "semantic_math",
+  "preload_roles": [
+    "solver",
+    "critic"
+  ],
+  "notes": [
+    "benchmark answers are evaluation-only",
+    "reference solutions are not indexed into runtime RAG"
+  ]
+}

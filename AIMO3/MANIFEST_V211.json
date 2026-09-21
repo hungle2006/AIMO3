@@ -1,0 +1,30 @@
+{
+  "version": "2.11.0",
+  "codename": "EXACT_HARD_FAMILIES",
+  "base_release": "2.10.0 MATH_FIDELITY_HARD_HYBRID",
+  "default_config": "config_v2_11_0.yaml",
+  "kaggle_notebook": "Kaggle_v211_Run.ipynb",
+  "preflight": "scripts/preflight_v211.py",
+  "new_exact_engines": [
+    "floor_sum_valuation",
+    "adaptive_digit_sum_dynamics",
+    "finite_correlation_polynomial",
+    "norwegian_divisor_asymptotic"
+  ],
+  "new_families": [
+    "floor_sum_valuation",
+    "adaptive_digit_sum_dynamics",
+    "finite_sequence_correlation",
+    "divisor_minimization_asymptotic"
+  ],
+  "reference_exact_coverage": "P2-P10",
+  "p1_route": "semantic compiler + SymPy in full pipeline",
+  "regression_scripts_passed": 54,
+  "python_files_compile_checked": 103,
+  "live_kaggle_gpu_verified": false,
+  "notes": [
+    "Runtime code does not contain distinctive reference answer literals used by the new hard-family tests.",
+    "P9 statement recovery reconstructs the bilateral sum before family routing.",
+    "Exact engines are fail-closed and fall back to the hard neural path when structural certification fails."
+  ]
+}

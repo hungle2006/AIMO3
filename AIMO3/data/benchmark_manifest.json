@@ -1,0 +1,17 @@
+{
+  "clean_benchmarks": [
+    {
+      "name": "OlympiadBench",
+      "policy": "benchmark_only; not indexed"
+    },
+    {
+      "name": "miniF2F test",
+      "policy": "benchmark_only; not indexed"
+    },
+    {
+      "name": "MATH test",
+      "policy": "benchmark_only unless explicitly doing open-book evaluation"
+    }
+  ],
+  "leakage_rule": "Any item used for evaluation must be excluded from knowledge_rag, experience_memory, strategy_memory, and generated-neighbor stores."
+}

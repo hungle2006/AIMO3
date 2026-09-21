@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "created": "2026-09-15",
+  "purpose": "Offline mathematical knowledge RAG for small-model Olympiad reasoning",
+  "sources": [
+    {
+      "id": "math_dataset",
+      "name": "MATH / Competition Math",
+      "url": "https://huggingface.co/datasets/qwedsacf/competition_math",
+      "license": "MIT (dataset card; review paper legal-compliance appendix)",
+      "recommended_role": "problem_solution_corpus",
+      "index_by_default": false,
+      "notes": "Use TRAIN split only for knowledge/experience experiments; keep evaluation splits separated."
+    },
+    {
+      "id": "minif2f",
+      "name": "miniF2F v2",
+      "url": "https://github.com/facebookresearch/miniF2F",
+      "license": "Permissive per formal-system folders; Lean Apache-2.0, Metamath MIT, Isabelle Apache-2.0, HOL Light FreeBSD",
+      "recommended_role": "formal_benchmark_and_theorem_structure",
+      "index_by_default": false,
+      "notes": "Keep official test split out of the retrieval index for clean evaluation."
+    },
+    {
+      "id": "proofnet",
+      "name": "ProofNet",
+      "url": "https://github.com/zhangir-azerbayev/ProofNet",
+      "license": "MIT",
+      "recommended_role": "proof_structure_corpus",
+      "index_by_default": false,
+      "notes": "Useful for statement/proof structure and theorem verification experiments."
+    },
+    {
+      "id": "proofnet_verified",
+      "name": "ProofNet-Verified",
+      "url": "https://github.com/marcusm117/ProofNet-Verified",
+      "license": "See repository license before redistribution",
+      "recommended_role": "formal_verification_corpus",
+      "index_by_default": false,
+      "notes": "Keep a provenance record for each imported item."
+    },
+    {
+      "id": "olympiadbench",
+      "name": "OlympiadBench",
+      "url": "https://github.com/OpenBMB/OlympiadBench",
+      "license": "MIT repository",
+      "recommended_role": "benchmark_only",
+      "index_by_default": false,
+      "notes": "Do NOT index benchmark questions/solutions when reporting clean evaluation."
+    }
+  ]
+}

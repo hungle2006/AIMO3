@@ -1,0 +1,11 @@
+# Generated Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local/cache artifacts
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db

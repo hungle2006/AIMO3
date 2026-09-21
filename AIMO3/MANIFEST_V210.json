@@ -1,0 +1,42 @@
+{
+  "version": "2.10.0",
+  "codename": "MATH_FIDELITY_HARD_HYBRID",
+  "generated_utc": "2026-09-21T01:08:09.275638+00:00",
+  "validation": {
+    "preflight_v210": "PASS",
+    "regression_tests_passed": 45,
+    "regression_tests_failed": 0,
+    "python_files_compiled": 93,
+    "python_compile_errors": 0,
+    "reference_pdf_exact_engines": {
+      "2": "extremal_rectangle_partition",
+      "3": "radical_axis_angle_bisector_triangle",
+      "4": "shifted_multiplicative_function",
+      "5": "binary_weighted_tournament",
+      "7": "incircle_fibonacci_asymptotic"
+    },
+    "reference_pdf_math_recovery_checked": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "distinctive_runtime_answer_literal_scan": "PASS",
+    "cache_scan": "PASS"
+  },
+  "key_new_files": [
+    "core/pdf_math_recovery.py",
+    "config_v2_10_0.yaml",
+    "scripts/preflight_v210.py",
+    "tests/test_pdf_math_recovery_v210.py",
+    "tests/test_family_engine_asymptotic_v210.py",
+    "tests/test_family_engine_asymptotic_fail_closed_v210.py",
+    "tests/test_pipeline_family_exact_asymptotic_v210.py",
+    "tests/test_hard_retry_after_refutation_v210.py",
+    "Kaggle_v210_Run.ipynb",
+    "README_V210.md",
+    "REFINEMENT_V210.md"
+  ],
+  "file_count_before_manifest": 163
+}

@@ -1,0 +1,499 @@
+{
+  "version": "2.7.2",
+  "name": "Olympiad_AIMO3_Adaptive_Reasoner_T4x2_v2_7_2_TARGET_GROUNDED",
+  "default_config": "config_v2_7_2.yaml",
+  "preflight": "scripts/preflight_v272.py",
+  "tests_total": 29,
+  "cpu_regression": "29/29 pass (test_pdf_reader skips without AIMO_REFERENCE_PDF)",
+  "new_tests": [
+    "tests/test_target_grounding_v272.py",
+    "tests/test_invalid_modulus_commit_v272.py",
+    "tests/test_refutation_repair_v272.py"
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 156
+    },
+    {
+      "path": "ARCHITECTURE_FINAL.md",
+      "bytes": 1400
+    },
+    {
+      "path": "ARCHITECTURE_V26.md",
+      "bytes": 1400
+    },
+    {
+      "path": "AUDIT_FIXES_V261.md",
+      "bytes": 3543
+    },
+    {
+      "path": "FIXES_V263.md",
+      "bytes": 950
+    },
+    {
+      "path": "FIXES_V264.md",
+      "bytes": 2208
+    },
+    {
+      "path": "Kaggle_v26_Run.ipynb",
+      "bytes": 2718
+    },
+    {
+      "path": "Kaggle_v270_Run.ipynb",
+      "bytes": 2431
+    },
+    {
+      "path": "Kaggle_v271_Run.ipynb",
+      "bytes": 2446
+    },
+    {
+      "path": "Kaggle_v272_Run.ipynb",
+      "bytes": 2446
+    },
+    {
+      "path": "MANIFEST_V26.json",
+      "bytes": 10239
+    },
+    {
+      "path": "MANIFEST_V261.json",
+      "bytes": 419
+    },
+    {
+      "path": "MANIFEST_V264.json",
+      "bytes": 374
+    },
+    {
+      "path": "MANIFEST_V270.json",
+      "bytes": 389
+    },
+    {
+      "path": "MANIFEST_V271.json",
+      "bytes": 381
+    },
+    {
+      "path": "README_FINAL.md",
+      "bytes": 4082
+    },
+    {
+      "path": "README_V26.md",
+      "bytes": 4670
+    },
+    {
+      "path": "README_V264.md",
+      "bytes": 979
+    },
+    {
+      "path": "README_V270.md",
+      "bytes": 3492
+    },
+    {
+      "path": "README_V271.md",
+      "bytes": 2781
+    },
+    {
+      "path": "README_V272.md",
+      "bytes": 2797
+    },
+    {
+      "path": "RECOVERY_FIXES_V262.md",
+      "bytes": 1007
+    },
+    {
+      "path": "REFINEMENT_V270.md",
+      "bytes": 2890
+    },
+    {
+      "path": "REFINEMENT_V271.md",
+      "bytes": 4973
+    },
+    {
+      "path": "REFINEMENT_V272.md",
+      "bytes": 2001
+    },
+    {
+      "path": "config.yaml",
+      "bytes": 2977
+    },
+    {
+      "path": "config_final.yaml",
+      "bytes": 2977
+    },
+    {
+      "path": "config_t4x2.yaml",
+      "bytes": 2977
+    },
+    {
+      "path": "config_v2_6.yaml",
+      "bytes": 2977
+    },
+    {
+      "path": "config_v2_6_1.yaml",
+      "bytes": 3108
+    },
+    {
+      "path": "config_v2_6_2.yaml",
+      "bytes": 3108
+    },
+    {
+      "path": "config_v2_6_3.yaml",
+      "bytes": 3212
+    },
+    {
+      "path": "config_v2_6_4.yaml",
+      "bytes": 3304
+    },
+    {
+      "path": "config_v2_7_0.yaml",
+      "bytes": 3795
+    },
+    {
+      "path": "config_v2_7_1.yaml",
+      "bytes": 4133
+    },
+    {
+      "path": "config_v2_7_2.yaml",
+      "bytes": 4360
+    },
+    {
+      "path": "core/__init__.py",
+      "bytes": 43
+    },
+    {
+      "path": "core/answer_contract.py",
+      "bytes": 1683
+    },
+    {
+      "path": "core/budget.py",
+      "bytes": 3904
+    },
+    {
+      "path": "core/config.py",
+      "bytes": 1710
+    },
+    {
+      "path": "core/controller.py",
+      "bytes": 4513
+    },
+    {
+      "path": "core/evaluation.py",
+      "bytes": 1181
+    },
+    {
+      "path": "core/input_adapter.py",
+      "bytes": 3789
+    },
+    {
+      "path": "core/model_manager.py",
+      "bytes": 13987
+    },
+    {
+      "path": "core/parsing.py",
+      "bytes": 18176
+    },
+    {
+      "path": "core/pdf_reader.py",
+      "bytes": 15794
+    },
+    {
+      "path": "core/pipeline.py",
+      "bytes": 61622
+    },
+    {
+      "path": "core/problem_family.py",
+      "bytes": 3382
+    },
+    {
+      "path": "core/prompts.py",
+      "bytes": 19805
+    },
+    {
+      "path": "core/proof_obligations.py",
+      "bytes": 10550
+    },
+    {
+      "path": "core/rag_runtime.py",
+      "bytes": 1538
+    },
+    {
+      "path": "core/reporting.py",
+      "bytes": 1959
+    },
+    {
+      "path": "core/semantic_constraints.py",
+      "bytes": 20048
+    },
+    {
+      "path": "core/target_spec.py",
+      "bytes": 4115
+    },
+    {
+      "path": "core/tools.py",
+      "bytes": 9484
+    },
+    {
+      "path": "core/verification.py",
+      "bytes": 8847
+    },
+    {
+      "path": "data/benchmark_manifest.json",
+      "bytes": 481
+    },
+    {
+      "path": "data/knowledge_chunks.jsonl",
+      "bytes": 40227
+    },
+    {
+      "path": "data/source_catalog_v2.csv",
+      "bytes": 6866
+    },
+    {
+      "path": "data/source_catalog_v2.json",
+      "bytes": 10380
+    },
+    {
+      "path": "data/source_manifest.json",
+      "bytes": 2055
+    },
+    {
+      "path": "data/strategy_patterns.jsonl",
+      "bytes": 2779
+    },
+    {
+      "path": "data/theorems.jsonl",
+      "bytes": 22175
+    },
+    {
+      "path": "examples/problems.jsonl",
+      "bytes": 187
+    },
+    {
+      "path": "index/README_V26.txt",
+      "bytes": 198
+    },
+    {
+      "path": "rag/analyzer.py",
+      "bytes": 6923
+    },
+    {
+      "path": "rag/context.py",
+      "bytes": 1147
+    },
+    {
+      "path": "rag/gate.py",
+      "bytes": 3369
+    },
+    {
+      "path": "rag/retriever.py",
+      "bytes": 2706
+    },
+    {
+      "path": "rag/system.py",
+      "bytes": 1996
+    },
+    {
+      "path": "rag_v3/CUSTOM_RAG_RESEARCH_PLAN.md",
+      "bytes": 9095
+    },
+    {
+      "path": "rag_v3/KAGGLE_BUILD_STEPS.md",
+      "bytes": 2224
+    },
+    {
+      "path": "rag_v3/config_rag_v3.yaml",
+      "bytes": 1093
+    },
+    {
+      "path": "rag_v3/config_source_policy.yaml",
+      "bytes": 1883
+    },
+    {
+      "path": "rag_v3/schemas_document_schema.json",
+      "bytes": 1623
+    },
+    {
+      "path": "requirements-kaggle.txt",
+      "bytes": 183
+    },
+    {
+      "path": "run_batch.py",
+      "bytes": 1679
+    },
+    {
+      "path": "run_full_pipeline.py",
+      "bytes": 1545
+    },
+    {
+      "path": "run_pdf_pipeline.py",
+      "bytes": 6586
+    },
+    {
+      "path": "scripts/build_faiss_v3.py",
+      "bytes": 1791
+    },
+    {
+      "path": "scripts/build_rag_core.py",
+      "bytes": 4384
+    },
+    {
+      "path": "scripts/check_models.py",
+      "bytes": 1467
+    },
+    {
+      "path": "scripts/inspect_pdf.py",
+      "bytes": 1214
+    },
+    {
+      "path": "scripts/leakage_filter_v3.py",
+      "bytes": 1475
+    },
+    {
+      "path": "scripts/make_submission.py",
+      "bytes": 1079
+    },
+    {
+      "path": "scripts/preflight_v26.py",
+      "bytes": 820
+    },
+    {
+      "path": "scripts/preflight_v27.py",
+      "bytes": 1030
+    },
+    {
+      "path": "scripts/preflight_v271.py",
+      "bytes": 1065
+    },
+    {
+      "path": "scripts/preflight_v272.py",
+      "bytes": 1432
+    },
+    {
+      "path": "scripts/rebuild_seed_index.py",
+      "bytes": 353
+    },
+    {
+      "path": "scripts/run_tests_v26.sh",
+      "bytes": 62
+    },
+    {
+      "path": "tests/run_all.py",
+      "bytes": 1656
+    },
+    {
+      "path": "tests/test_budget.py",
+      "bytes": 452
+    },
+    {
+      "path": "tests/test_commit_parser_v271.py",
+      "bytes": 774
+    },
+    {
+      "path": "tests/test_commit_verify_pipeline_v271.py",
+      "bytes": 3002
+    },
+    {
+      "path": "tests/test_constraint_first_pipeline.py",
+      "bytes": 2884
+    },
+    {
+      "path": "tests/test_constraint_parser.py",
+      "bytes": 1285
+    },
+    {
+      "path": "tests/test_deep_candidate_v271.py",
+      "bytes": 2164
+    },
+    {
+      "path": "tests/test_deep_escalation_v27.py",
+      "bytes": 2372
+    },
+    {
+      "path": "tests/test_deep_finish_v27.py",
+      "bytes": 2701
+    },
+    {
+      "path": "tests/test_evaluation.py",
+      "bytes": 812
+    },
+    {
+      "path": "tests/test_generation_budget.py",
+      "bytes": 1005
+    },
+    {
+      "path": "tests/test_implicit_ambiguity.py",
+      "bytes": 475
+    },
+    {
+      "path": "tests/test_invalid_modulus_commit_v272.py",
+      "bytes": 3740
+    },
+    {
+      "path": "tests/test_parsing.py",
+      "bytes": 2201
+    },
+    {
+      "path": "tests/test_pdf_math_fidelity_v27.py",
+      "bytes": 1083
+    },
+    {
+      "path": "tests/test_pdf_reader.py",
+      "bytes": 634
+    },
+    {
+      "path": "tests/test_pipeline_problem1_mock.py",
+      "bytes": 3111
+    },
+    {
+      "path": "tests/test_problem_family_v27.py",
+      "bytes": 952
+    },
+    {
+      "path": "tests/test_rag_dominance_v271.py",
+      "bytes": 740
+    },
+    {
+      "path": "tests/test_rag_refinement_v27.py",
+      "bytes": 737
+    },
+    {
+      "path": "tests/test_rag_runtime.py",
+      "bytes": 494
+    },
+    {
+      "path": "tests/test_recovery_pipeline.py",
+      "bytes": 2892
+    },
+    {
+      "path": "tests/test_refutation_repair_v272.py",
+      "bytes": 3955
+    },
+    {
+      "path": "tests/test_safe_tools.py",
+      "bytes": 665
+    },
+    {
+      "path": "tests/test_semantic_compiler_guards.py",
+      "bytes": 2819
+    },
+    {
+      "path": "tests/test_semantic_repair_pipeline.py",
+      "bytes": 2737
+    },
+    {
+      "path": "tests/test_target_grounding_v272.py",
+      "bytes": 810
+    },
+    {
+      "path": "tests/test_thinking_solver_parser_v27.py",
+      "bytes": 722
+    },
+    {
+      "path": "tests/test_tools.py",
+      "bytes": 674
+    },
+    {
+      "path": "tests/test_verification_guards.py",
+      "bytes": 2092
+    }
+  ]
+}

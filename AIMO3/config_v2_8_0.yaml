@@ -1,0 +1,193 @@
+project:
+  name: Olympiad AIMO3 Adaptive Reasoner T4x2 v2.8.0 DETERMINISTIC FAMILIES
+  seed: 42
+  output_dir: /kaggle/working/olympiad_runs_v280
+paths:
+  model_dataset_root: /kaggle/input/datasets/leminhhung0101/olympiad-offline-models
+  model_root_fallbacks:
+  - /kaggle/input/olympiad-offline-models
+  proposer_dir: deepseek-r1-distill-qwen-1.5b
+  solver_dir: qwen3-4b-instruct-2507
+  critic_dir: qwen3-4b-thinking-2507
+  rag_dataset_root: /kaggle/input/datasets/leminhhung0101/olympiad-rag-corpus-v3
+runtime:
+  offline: true
+  require_two_gpus: true
+  resident_on_two_gpus: true
+  quantization: 4bit_nf4
+  bnb_compute_dtype: float16
+  attn_implementation: sdpa
+  attn_fallback: eager
+  clear_cache_between_calls: false
+  cuda_alloc_conf: expandable_segments:True
+  batch_size: 1
+  generation_time_safety_sec: 1.0
+  preload_roles:
+  - solver
+  - critic
+models:
+  proposer:
+    gpu: 0
+    do_sample: true
+    temperature: 0.6
+    top_p: 0.95
+    top_k: 40
+    repetition_penalty: 1.05
+    max_new_tokens: 450
+    max_input_tokens: 5000
+  solver:
+    gpu: 0
+    do_sample: true
+    repetition_penalty: 1.02
+    max_new_tokens: 850
+    max_input_tokens: 9000
+    temperature: 0.7
+    top_p: 0.8
+    top_k: 20
+  critic:
+    gpu: 1
+    do_sample: true
+    repetition_penalty: 1.0
+    max_new_tokens: 1400
+    max_input_tokens: 10000
+    temperature: 0.6
+    top_p: 0.95
+    top_k: 20
+controller:
+  easy_threshold: 0.35
+  hard_threshold: 0.7
+  critic_pass_threshold: 0.88
+  solver_confidence_high: 0.82
+  solver_confidence_low: 0.62
+  budgets:
+    easy:
+      max_calls: 5
+      max_total_tokens: 7500
+      max_seconds: 480
+      use_proposer: false
+      initial_solver_attempts: 1
+      max_revisions: 0
+    medium:
+      max_calls: 7
+      max_total_tokens: 12000
+      max_seconds: 650
+      use_proposer: false
+      initial_solver_attempts: 1
+      max_revisions: 0
+    hard:
+      max_calls: 9
+      max_total_tokens: 18000
+      max_seconds: 900
+      use_proposer: false
+      initial_solver_attempts: 1
+      max_revisions: 0
+  global_budget:
+    enabled: true
+    reserve_setup_seconds: 600
+    base_problem_seconds: 240
+    high_problem_seconds: 600
+    give_up_after_no_progress_seconds: 420
+rag:
+  enabled: true
+  default_policy: conditional
+  never_for_easy_first_pass: true
+  top_k: 8
+  context_char_limit: 2600
+  accept_top1: 0.2
+  weak_top1: 0.14
+  min_margin: 0.02
+  max_contexts: 2
+  trigger_confidence_below: 0.72
+  trigger_on_answer_disagreement: true
+  seed_runtime_rebuild: true
+  use_only_accept_context: true
+  retry_on_weak: false
+  dominance_margin: 0.1
+  relative_score_floor: 0.72
+tools:
+  enabled: true
+  max_requests_per_solution: 6
+  allowed_ops:
+  - identity
+  - simplify
+  - expand
+  - factor
+  - mod_pow
+  - gcd
+  - factorint
+  - valuation_int
+  - valuation_factorial
+  - binomial
+  - totient
+  - check_equalities
+  - check_expression_value
+verification:
+  accept_exact_tool_without_critic: false
+  accept_consensus_without_critic: false
+  answer_min: 0
+  answer_max: 99999
+  require_critic_best_candidate_id: true
+  block_critic_on_failed_tools: true
+  exact_auto_accept_requires_answer_bound_certificate: true
+  accept_semantic_exact_without_critic: true
+input:
+  prefer_csv_for_aimo3: true
+  pdf:
+    prefer_poppler_layout: true
+    use_pymupdf_math_view: true
+    allow_ocr: false
+    block_answer_solution_leakage: true
+    detect_statement_images: true
+    solver_uses_semantic_text: true
+recovery:
+  enabled: true
+  max_new_tokens: 260
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+constraint_first:
+  enabled: true
+  formalizer_max_new_tokens: 520
+  solver_max_new_tokens: 800
+  repair_max_new_tokens: 520
+  max_repairs: 1
+deep_escalation:
+  enabled: true
+  budgets:
+  - medium
+  - hard
+  max_new_tokens: 1400
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  finish_with_instruct: true
+  finish_max_new_tokens: 300
+  candidate_max_new_tokens: 1150
+  candidate_finish_max_new_tokens: 220
+proof_completion:
+  enabled: true
+  micro_max_new_tokens: 420
+  thinking_obligation_max_new_tokens: 750
+  max_micro_calls_medium: 3
+  max_micro_calls_hard: 4
+  thinking_for_last_missing: true
+  max_micro_calls_easy: 1
+candidate_repair:
+  enabled: true
+  max_rounds: 1
+  max_new_tokens: 380
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+target_grounding:
+  enabled: true
+  reject_invalid_before_proof: true
+  never_auto_reduce_model_guess: true
+family_engines:
+  enabled: true
+  accept_exact_without_critic: true
+  fail_closed: true
+  supported:
+  - extremal_rectangle_partition
+  - shifted_multiplicative_function
+  - binary_weighted_tournament
