@@ -1,0 +1,884 @@
+{
+  "problem_id": "pdf_problem_10",
+  "problem": "Let n ≥6 be a positive integer. We call a positive integer n-Norwegian if it has three distinct positive divisors whose sum is equal to n. Let f(n) denote the smallest n-Norwegian positive\ninteger. Let M = 3^{2025!}and for a non-negative integer c define\n) floor(2025!f(M + c).\ng(c) = (1)/(2025!) * floor((2025! * f(M + c))/(M)).\nWe can write g(0) + g(4M) + g(1848374) + g(10162574) + g(265710644) + g(44636594) = (p)/(q) where p and q are coprime positive integers. What is the remainder when p + q is divided by 99991?",
+  "retrieval_problem": "Let n ≥6 be a positive integer. We call a positive integer n-Norwegian if it has three distinct positive divisors whose sum is equal to n. Let f(n) denote the smallest n-Norwegian positive\ninteger. Let M = 3^{2025!}and for a non-negative integer c define\n) floor(2025!f(M + c).\ng(c) = (1)/(2025!) * floor((2025! * f(M + c))/(M)).\nWe can write g(0) + g(4M) + g(1848374) + g(10162574) + g(265710644) + g(44636594) = (p)/(q) where p and q are coprime positive integers. What is the remainder when p + q is divided by 99991?",
+  "timestamp_utc": "2026-09-21T04:22:33.752369+00:00",
+  "analysis": {
+    "domain": "number_theory",
+    "keywords": [
+      "let",
+      "positive",
+      "integer",
+      "call",
+      "n-norwegian",
+      "has",
+      "three",
+      "distinct",
+      "divisors",
+      "whose",
+      "sum",
+      "equal",
+      "denote",
+      "smallest",
+      "non-negative",
+      "define",
+      "divisibility valuation",
+      "powers"
+    ],
+    "query": "let positive integer call n-norwegian has three distinct divisors whose sum equal denote smallest non-negative define divisibility valuation powers",
+    "structure_features": [
+      "extremal optimization",
+      "factorial valuation combinatorial arithmetic",
+      "floor ceiling discrete analysis",
+      "functional equation",
+      "gcd coprimality",
+      "large exact integer arithmetic",
+      "modular arithmetic exact remainder"
+    ],
+    "family": "divisor_minimization_asymptotic",
+    "family_hint": "First classify the exact minimizing divisor triples for f(n). For huge structured M+c, transfer small-divisor information by modular arithmetic, prove the floor stabilizes exactly, then sum rationals and reduce p/q. Do not replace exact floors by asymptotic guesses.",
+    "proof_obligations": [
+      "divisor_triple_classification",
+      "small_factor_transfer",
+      "floor_stabilization",
+      "rational_sum"
+    ],
+    "target_spec": {
+      "kind": "remainder",
+      "modulus": 99991,
+      "quantity_text": "p + q",
+      "min_value": 0,
+      "max_value": 99990,
+      "instruction": "Return ONLY the requested remainder of (p + q) modulo 99991. The final candidate must satisfy 0 <= answer < 99991. Do not output the modulus 99991 itself and do not output the unreduced quantity."
+    },
+    "target_instruction": "Return ONLY the requested remainder of (p + q) modulo 99991. The final candidate must satisfy 0 <= answer < 99991. Do not output the modulus 99991 itself and do not output the unreduced quantity.",
+    "difficulty_raw": 0.49333333333333335,
+    "difficulty_after_family_floor": 0.84
+  },
+  "target_spec": {
+    "kind": "remainder",
+    "modulus": 99991,
+    "quantity_text": "p + q",
+    "min_value": 0,
+    "max_value": 99990,
+    "instruction": "Return ONLY the requested remainder of (p + q) modulo 99991. The final candidate must satisfy 0 <= answer < 99991. Do not output the modulus 99991 itself and do not output the unreduced quantity."
+  },
+  "difficulty": 0.84,
+  "budget": {
+    "name": "hard",
+    "max_calls": 9,
+    "max_total_tokens": 18000,
+    "max_seconds": 900,
+    "use_proposer": false,
+    "initial_solver_attempts": 1,
+    "max_revisions": 0
+  },
+  "rag": {
+    "attempted": false,
+    "used": false,
+    "final": null,
+    "health": {
+      "mode": "seed_runtime_tfidf",
+      "documents": 60,
+      "word_features": 3248,
+      "char_features": 10479,
+      "healthy": true
+    }
+  },
+  "strategies": [],
+  "constraint_formalization": null,
+  "semantic_compilation": null,
+  "semantic_exact_solution": null,
+  "family_engine": {
+    "supported": true,
+    "ok": true,
+    "engine": "norwegian_divisor_asymptotic",
+    "raw_value": 144595673,
+    "answer": 8687,
+    "proof": "Classify the smallest n-Norwegian integer for odd n by maximizing the reciprocal sum of three divisor quotients. The only optimal cases reduce to explicit ratios determined by divisibility by 9 or 25 and the smallest prime divisors congruent to 1 or 5 modulo 6. For M=3^(r!), Euler's theorem gives M=1 modulo every small modulus coprime to 3, so each required small divisor of M+c is determined exactly from 1+c without constructing M. The engine selects the certified ratio f(M+c)/(M+c), proves the residual term inside the floor is below 1, extracts each rational g(c), sums them with Fraction, reduces p/q, and computes the requested remainder of p+q exactly.",
+    "reason": "exact divisor classification + modular small-factor transfer + exact floor extraction",
+    "certificate": {
+      "M": "3^(2025!)",
+      "factorial_n": 2025,
+      "classification": "minimal three-divisor sum for odd n via p=1,q=2/3 cases and smallest prime divisors in residue classes mod 6",
+      "modular_transfer": "for k<=2025, gcd(k,3)=1: M==1 mod k because phi(k)|2025!",
+      "terms": [
+        {
+          "c": "0",
+          "n_form": "M",
+          "f_over_n": "2/3",
+          "g": "2/3",
+          "case": "3_power"
+        },
+        {
+          "c": "4M",
+          "n_form": "5M",
+          "f_over_n": "2/3",
+          "g": "10/3",
+          "case": "5_times_3_power"
+        },
+        {
+          "c": 1848374,
+          "classification": {
+            "case": "25_divides_and_small_prime_thresholds",
+            "p1": 31,
+            "p5": 53,
+            "small_prime_divisors": [
+              5,
+              31,
+              53
+            ],
+            "ratio": "16/25"
+          },
+          "f_over_n": "16/25",
+          "g": "16/25",
+          "floor_correction_certified_lt_1": true
+        },
+        {
+          "c": 10162574,
+          "classification": {
+            "case": "p5",
+            "p1": 31,
+            "p5": 47,
+            "small_prime_divisors": [
+              5,
+              31,
+              47
+            ],
+            "candidates": [
+              [
+                "p1",
+                "20/31"
+              ],
+              [
+                "p5",
+                "30/47"
+              ]
+            ],
+            "unseen_bounds": [],
+            "ratio": "30/47"
+          },
+          "f_over_n": "30/47",
+          "g": "30/47",
+          "floor_correction_certified_lt_1": true
+        },
+        {
+          "c": 265710644,
+          "classification": {
+            "case": "p1",
+            "p1": 97,
+            "p5": 197,
+            "small_prime_divisors": [
+              5,
+              97,
+              103,
+              197
+            ],
+            "candidates": [
+              [
+                "p1",
+                "64/97"
+              ],
+              [
+                "p5",
+                "130/197"
+              ]
+            ],
+            "unseen_bounds": [],
+            "ratio": "64/97"
+          },
+          "f_over_n": "64/97",
+          "g": "64/97",
+          "floor_correction_certified_lt_1": true
+        },
+        {
+          "c": 44636594,
+          "classification": {
+            "case": "p5",
+            "p1": 103,
+            "p5": 167,
+            "small_prime_divisors": [
+              5,
+              103,
+              167,
+              173
+            ],
+            "candidates": [
+              [
+                "p1",
+                "68/103"
+              ],
+              [
+                "p5",
+                "110/167"
+              ]
+            ],
+            "unseen_bounds": [],
+            "ratio": "110/167"
+          },
+          "f_over_n": "110/167",
+          "g": "110/167",
+          "floor_correction_certified_lt_1": true
+        }
+      ],
+      "sum": "125561848/19033825",
+      "p": 125561848,
+      "q": 19033825,
+      "p_plus_q": 144595673,
+      "answer": 8687
+    }
+  },
+  "proof_completion": {
+    "required": [
+      "divisor_triple_classification",
+      "small_factor_transfer",
+      "floor_stabilization",
+      "rational_sum"
+    ],
+    "base_candidate_id": null,
+    "initial_present": [],
+    "initial_missing": [],
+    "micro_results": [],
+    "refutations": [],
+    "repair_candidates": [],
+    "assembled_candidate_id": null,
+    "final_missing": []
+  },
+  "candidates": [
+    {
+      "id": "FAM1",
+      "stage": "deterministic_family_engine",
+      "interpretation": "Deterministic family engine: norwegian_divisor_asymptotic",
+      "key_reduction": "exact divisor classification + modular small-factor transfer + exact floor extraction",
+      "proof": "Classify the smallest n-Norwegian integer for odd n by maximizing the reciprocal sum of three divisor quotients. The only optimal cases reduce to explicit ratios determined by divisibility by 9 or 25 and the smallest prime divisors congruent to 1 or 5 modulo 6. For M=3^(r!), Euler's theorem gives M=1 modulo every small modulus coprime to 3, so each required small divisor of M+c is determined exactly from 1+c without constructing M. The engine selects the certified ratio f(M+c)/(M+c), proves the residual term inside the floor is below 1, extracts each rational g(c), sums them with Fraction, reduces p/q, and computes the requested remainder of p+q exactly.",
+      "check": "Deterministic engine certificate completed and target normalization applied.",
+      "tool_requests": [],
+      "tool_reports": [],
+      "self_confidence": 0.995,
+      "candidate_answer": 8687,
+      "final_answer": "8687",
+      "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+      "protocol_complete": true,
+      "truncated": false,
+      "ambiguity_detected": false,
+      "ambiguity_text": "",
+      "raw_output": "FINAL_ANSWER: 8687",
+      "parse_status": "OK",
+      "target_spec": {
+        "kind": "remainder",
+        "modulus": 99991,
+        "quantity_text": "p + q",
+        "min_value": 0,
+        "max_value": 99990,
+        "instruction": "Return ONLY the requested remainder of (p + q) modulo 99991. The final candidate must satisfy 0 <= answer < 99991. Do not output the modulus 99991 itself and do not output the unreduced quantity."
+      },
+      "family_engine": {
+        "supported": true,
+        "ok": true,
+        "engine": "norwegian_divisor_asymptotic",
+        "raw_value": 144595673,
+        "answer": 8687,
+        "proof": "Classify the smallest n-Norwegian integer for odd n by maximizing the reciprocal sum of three divisor quotients. The only optimal cases reduce to explicit ratios determined by divisibility by 9 or 25 and the smallest prime divisors congruent to 1 or 5 modulo 6. For M=3^(r!), Euler's theorem gives M=1 modulo every small modulus coprime to 3, so each required small divisor of M+c is determined exactly from 1+c without constructing M. The engine selects the certified ratio f(M+c)/(M+c), proves the residual term inside the floor is below 1, extracts each rational g(c), sums them with Fraction, reduces p/q, and computes the requested remainder of p+q exactly.",
+        "reason": "exact divisor classification + modular small-factor transfer + exact floor extraction",
+        "certificate": {
+          "M": "3^(2025!)",
+          "factorial_n": 2025,
+          "classification": "minimal three-divisor sum for odd n via p=1,q=2/3 cases and smallest prime divisors in residue classes mod 6",
+          "modular_transfer": "for k<=2025, gcd(k,3)=1: M==1 mod k because phi(k)|2025!",
+          "terms": [
+            {
+              "c": "0",
+              "n_form": "M",
+              "f_over_n": "2/3",
+              "g": "2/3",
+              "case": "3_power"
+            },
+            {
+              "c": "4M",
+              "n_form": "5M",
+              "f_over_n": "2/3",
+              "g": "10/3",
+              "case": "5_times_3_power"
+            },
+            {
+              "c": 1848374,
+              "classification": {
+                "case": "25_divides_and_small_prime_thresholds",
+                "p1": 31,
+                "p5": 53,
+                "small_prime_divisors": [
+                  5,
+                  31,
+                  53
+                ],
+                "ratio": "16/25"
+              },
+              "f_over_n": "16/25",
+              "g": "16/25",
+              "floor_correction_certified_lt_1": true
+            },
+            {
+              "c": 10162574,
+              "classification": {
+                "case": "p5",
+                "p1": 31,
+                "p5": 47,
+                "small_prime_divisors": [
+                  5,
+                  31,
+                  47
+                ],
+                "candidates": [
+                  [
+                    "p1",
+                    "20/31"
+                  ],
+                  [
+                    "p5",
+                    "30/47"
+                  ]
+                ],
+                "unseen_bounds": [],
+                "ratio": "30/47"
+              },
+              "f_over_n": "30/47",
+              "g": "30/47",
+              "floor_correction_certified_lt_1": true
+            },
+            {
+              "c": 265710644,
+              "classification": {
+                "case": "p1",
+                "p1": 97,
+                "p5": 197,
+                "small_prime_divisors": [
+                  5,
+                  97,
+                  103,
+                  197
+                ],
+                "candidates": [
+                  [
+                    "p1",
+                    "64/97"
+                  ],
+                  [
+                    "p5",
+                    "130/197"
+                  ]
+                ],
+                "unseen_bounds": [],
+                "ratio": "64/97"
+              },
+              "f_over_n": "64/97",
+              "g": "64/97",
+              "floor_correction_certified_lt_1": true
+            },
+            {
+              "c": 44636594,
+              "classification": {
+                "case": "p5",
+                "p1": 103,
+                "p5": 167,
+                "small_prime_divisors": [
+                  5,
+                  103,
+                  167,
+                  173
+                ],
+                "candidates": [
+                  [
+                    "p1",
+                    "68/103"
+                  ],
+                  [
+                    "p5",
+                    "110/167"
+                  ]
+                ],
+                "unseen_bounds": [],
+                "ratio": "110/167"
+              },
+              "f_over_n": "110/167",
+              "g": "110/167",
+              "floor_correction_certified_lt_1": true
+            }
+          ],
+          "sum": "125561848/19033825",
+          "p": 125561848,
+          "q": 19033825,
+          "p_plus_q": 144595673,
+          "answer": 8687
+        }
+      },
+      "target_valid": true,
+      "target_check": {
+        "valid": true,
+        "reason": "OK",
+        "aimo_contract": {
+          "valid": true,
+          "value": 8687,
+          "reason": "OK"
+        },
+        "requested_output": {
+          "valid": true,
+          "value": 8687,
+          "reason": "OK"
+        }
+      },
+      "verification": {
+        "level": "FAMILY_EXACT",
+        "passed": true,
+        "reason": "exact divisor classification + modular small-factor transfer + exact floor extraction",
+        "checks": [
+          {
+            "type": "family_engine",
+            "passed": true,
+            "engine": "norwegian_divisor_asymptotic"
+          },
+          {
+            "type": "family_certificate",
+            "passed": true,
+            "certificate": {
+              "M": "3^(2025!)",
+              "factorial_n": 2025,
+              "classification": "minimal three-divisor sum for odd n via p=1,q=2/3 cases and smallest prime divisors in residue classes mod 6",
+              "modular_transfer": "for k<=2025, gcd(k,3)=1: M==1 mod k because phi(k)|2025!",
+              "terms": [
+                {
+                  "c": "0",
+                  "n_form": "M",
+                  "f_over_n": "2/3",
+                  "g": "2/3",
+                  "case": "3_power"
+                },
+                {
+                  "c": "4M",
+                  "n_form": "5M",
+                  "f_over_n": "2/3",
+                  "g": "10/3",
+                  "case": "5_times_3_power"
+                },
+                {
+                  "c": 1848374,
+                  "classification": {
+                    "case": "25_divides_and_small_prime_thresholds",
+                    "p1": 31,
+                    "p5": 53,
+                    "small_prime_divisors": [
+                      5,
+                      31,
+                      53
+                    ],
+                    "ratio": "16/25"
+                  },
+                  "f_over_n": "16/25",
+                  "g": "16/25",
+                  "floor_correction_certified_lt_1": true
+                },
+                {
+                  "c": 10162574,
+                  "classification": {
+                    "case": "p5",
+                    "p1": 31,
+                    "p5": 47,
+                    "small_prime_divisors": [
+                      5,
+                      31,
+                      47
+                    ],
+                    "candidates": [
+                      [
+                        "p1",
+                        "20/31"
+                      ],
+                      [
+                        "p5",
+                        "30/47"
+                      ]
+                    ],
+                    "unseen_bounds": [],
+                    "ratio": "30/47"
+                  },
+                  "f_over_n": "30/47",
+                  "g": "30/47",
+                  "floor_correction_certified_lt_1": true
+                },
+                {
+                  "c": 265710644,
+                  "classification": {
+                    "case": "p1",
+                    "p1": 97,
+                    "p5": 197,
+                    "small_prime_divisors": [
+                      5,
+                      97,
+                      103,
+                      197
+                    ],
+                    "candidates": [
+                      [
+                        "p1",
+                        "64/97"
+                      ],
+                      [
+                        "p5",
+                        "130/197"
+                      ]
+                    ],
+                    "unseen_bounds": [],
+                    "ratio": "64/97"
+                  },
+                  "f_over_n": "64/97",
+                  "g": "64/97",
+                  "floor_correction_certified_lt_1": true
+                },
+                {
+                  "c": 44636594,
+                  "classification": {
+                    "case": "p5",
+                    "p1": 103,
+                    "p5": 167,
+                    "small_prime_divisors": [
+                      5,
+                      103,
+                      167,
+                      173
+                    ],
+                    "candidates": [
+                      [
+                        "p1",
+                        "68/103"
+                      ],
+                      [
+                        "p5",
+                        "110/167"
+                      ]
+                    ],
+                    "unseen_bounds": [],
+                    "ratio": "110/167"
+                  },
+                  "f_over_n": "110/167",
+                  "g": "110/167",
+                  "floor_correction_certified_lt_1": true
+                }
+              ],
+              "sum": "125561848/19033825",
+              "p": 125561848,
+              "q": 19033825,
+              "p_plus_q": 144595673,
+              "answer": 8687
+            }
+          },
+          {
+            "type": "target_contract",
+            "passed": true,
+            "target_spec": {
+              "kind": "remainder",
+              "modulus": 99991,
+              "quantity_text": "p + q",
+              "min_value": 0,
+              "max_value": 99990,
+              "instruction": "Return ONLY the requested remainder of (p + q) modulo 99991. The final candidate must satisfy 0 <= answer < 99991. Do not output the modulus 99991 itself and do not output the unreduced quantity."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tool_reports": {
+    "FAM1": []
+  },
+  "critic": {
+    "verdict": "NOT_NEEDED",
+    "confidence": null,
+    "parse_ok": null,
+    "summary": "FAMILY_EXACT verification passed via norwegian_divisor_asymptotic",
+    "error": "",
+    "revision_instruction": ""
+  },
+  "verification": {
+    "level": "FAMILY_EXACT",
+    "passed": true,
+    "reason": "exact divisor classification + modular small-factor transfer + exact floor extraction",
+    "checks": [
+      {
+        "type": "family_engine",
+        "passed": true,
+        "engine": "norwegian_divisor_asymptotic"
+      },
+      {
+        "type": "family_certificate",
+        "passed": true,
+        "certificate": {
+          "M": "3^(2025!)",
+          "factorial_n": 2025,
+          "classification": "minimal three-divisor sum for odd n via p=1,q=2/3 cases and smallest prime divisors in residue classes mod 6",
+          "modular_transfer": "for k<=2025, gcd(k,3)=1: M==1 mod k because phi(k)|2025!",
+          "terms": [
+            {
+              "c": "0",
+              "n_form": "M",
+              "f_over_n": "2/3",
+              "g": "2/3",
+              "case": "3_power"
+            },
+            {
+              "c": "4M",
+              "n_form": "5M",
+              "f_over_n": "2/3",
+              "g": "10/3",
+              "case": "5_times_3_power"
+            },
+            {
+              "c": 1848374,
+              "classification": {
+                "case": "25_divides_and_small_prime_thresholds",
+                "p1": 31,
+                "p5": 53,
+                "small_prime_divisors": [
+                  5,
+                  31,
+                  53
+                ],
+                "ratio": "16/25"
+              },
+              "f_over_n": "16/25",
+              "g": "16/25",
+              "floor_correction_certified_lt_1": true
+            },
+            {
+              "c": 10162574,
+              "classification": {
+                "case": "p5",
+                "p1": 31,
+                "p5": 47,
+                "small_prime_divisors": [
+                  5,
+                  31,
+                  47
+                ],
+                "candidates": [
+                  [
+                    "p1",
+                    "20/31"
+                  ],
+                  [
+                    "p5",
+                    "30/47"
+                  ]
+                ],
+                "unseen_bounds": [],
+                "ratio": "30/47"
+              },
+              "f_over_n": "30/47",
+              "g": "30/47",
+              "floor_correction_certified_lt_1": true
+            },
+            {
+              "c": 265710644,
+              "classification": {
+                "case": "p1",
+                "p1": 97,
+                "p5": 197,
+                "small_prime_divisors": [
+                  5,
+                  97,
+                  103,
+                  197
+                ],
+                "candidates": [
+                  [
+                    "p1",
+                    "64/97"
+                  ],
+                  [
+                    "p5",
+                    "130/197"
+                  ]
+                ],
+                "unseen_bounds": [],
+                "ratio": "64/97"
+              },
+              "f_over_n": "64/97",
+              "g": "64/97",
+              "floor_correction_certified_lt_1": true
+            },
+            {
+              "c": 44636594,
+              "classification": {
+                "case": "p5",
+                "p1": 103,
+                "p5": 167,
+                "small_prime_divisors": [
+                  5,
+                  103,
+                  167,
+                  173
+                ],
+                "candidates": [
+                  [
+                    "p1",
+                    "68/103"
+                  ],
+                  [
+                    "p5",
+                    "110/167"
+                  ]
+                ],
+                "unseen_bounds": [],
+                "ratio": "110/167"
+              },
+              "f_over_n": "110/167",
+              "g": "110/167",
+              "floor_correction_certified_lt_1": true
+            }
+          ],
+          "sum": "125561848/19033825",
+          "p": 125561848,
+          "q": 19033825,
+          "p_plus_q": 144595673,
+          "answer": 8687
+        }
+      },
+      {
+        "type": "target_contract",
+        "passed": true,
+        "target_spec": {
+          "kind": "remainder",
+          "modulus": 99991,
+          "quantity_text": "p + q",
+          "min_value": 0,
+          "max_value": 99990,
+          "instruction": "Return ONLY the requested remainder of (p + q) modulo 99991. The final candidate must satisfy 0 <= answer < 99991. Do not output the modulus 99991 itself and do not output the unreduced quantity."
+        }
+      }
+    ]
+  },
+  "candidate_answer": 8687,
+  "verified_answer": 8687,
+  "final_solution": {
+    "candidate_id": "FAM1",
+    "interpretation": "Deterministic family engine: norwegian_divisor_asymptotic",
+    "proof": "Classify the smallest n-Norwegian integer for odd n by maximizing the reciprocal sum of three divisor quotients. The only optimal cases reduce to explicit ratios determined by divisibility by 9 or 25 and the smallest prime divisors congruent to 1 or 5 modulo 6. For M=3^(r!), Euler's theorem gives M=1 modulo every small modulus coprime to 3, so each required small divisor of M+c is determined exactly from 1+c without constructing M. The engine selects the certified ratio f(M+c)/(M+c), proves the residual term inside the floor is below 1, extracts each rational g(c), sums them with Fraction, reduces p/q, and computes the requested remainder of p+q exactly.",
+    "check": "Deterministic engine certificate completed and target normalization applied.",
+    "candidate_answer": 8687,
+    "verified_answer": 8687,
+    "final_answer": "8687",
+    "self_confidence": 0.995,
+    "protocol_complete": true,
+    "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+    "ambiguity_detected": false
+  },
+  "metrics": {
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "latency_sec": 0.003390535000107775,
+    "calls": [],
+    "rag_attempted": false,
+    "rag_used": false,
+    "verified_pass": true,
+    "verification_level": "FAMILY_EXACT",
+    "budget_error": null,
+    "budget_snapshot": {
+      "calls": 0,
+      "total_tokens": 0,
+      "elapsed_sec": 0.0028650760000346054,
+      "max_calls": 9,
+      "max_total_tokens": 18000,
+      "max_seconds": 900.0,
+      "remaining_calls": 9,
+      "remaining_tokens": 18000,
+      "remaining_seconds": 899.9971329169998
+    },
+    "solver_truncations": 0,
+    "critic_used": false,
+    "critic_parse_ok": null,
+    "answer_recovery_used": false,
+    "candidate_answers": [
+      8687
+    ],
+    "candidate_parse_modes": [
+      "DETERMINISTIC_FAMILY_EXACT"
+    ],
+    "candidate_target_validity": [
+      true
+    ],
+    "candidate_target_reasons": [
+      "OK"
+    ],
+    "rejected_candidate_values": [],
+    "candidate_committed_early": false,
+    "answer_commit_survived_truncation": false,
+    "proof_obligations_required": [
+      "divisor_triple_classification",
+      "small_factor_transfer",
+      "floor_stabilization",
+      "rational_sum"
+    ],
+    "proof_obligations_initial_missing": [],
+    "proof_obligations_final_missing": [],
+    "proof_micro_calls": 0,
+    "constraint_first_used": false,
+    "constraint_formalization_ok": false,
+    "semantic_compilation_ok": false,
+    "semantic_certificate_ok": false,
+    "semantic_repairs": 0,
+    "deterministic_semantic_solve": false,
+    "deterministic_family_solve": true,
+    "family_engine_name": "norwegian_divisor_asymptotic",
+    "hard_retry_after_refutation": false
+  },
+  "status": "VERIFIED_PASS",
+  "input_fidelity": {
+    "solver_text_source": "semantic_math",
+    "layout_differs_from_solver": true,
+    "layout_problem": "Let n ≥6 be a positive integer. We call a positive integer n-Norwegian if it has three\ndistinct positive divisors whose sum is equal to n. Let f(n) denote the smallest n-Norwegian positive\ninteger. Let M = 32025! and for a non-negative integer c define\n\n                                      1    2025!f(M + c)\n                                  g(c) =                                       .\n                                       2025!    M\n\nWe can write\n                                                                            p\n          g(0) + g(4M) + g(1848374) + g(10162574) + g(265710644) + g(44636594) =\n                                                                                     q\n\nwhere p and q are coprime positive integers. What is the remainder when p + q is divided by 99991?",
+    "solver_problem": "Let n ≥6 be a positive integer. We call a positive integer n-Norwegian if it has three distinct positive divisors whose sum is equal to n. Let f(n) denote the smallest n-Norwegian positive\ninteger. Let M = 3^{2025!}and for a non-negative integer c define\n) floor(2025!f(M + c).\ng(c) = (1)/(2025!) * floor((2025! * f(M + c))/(M)).\nWe can write g(0) + g(4M) + g(1848374) + g(10162574) + g(265710644) + g(44636594) = (p)/(q) where p and q are coprime positive integers. What is the remainder when p + q is divided by 99991?",
+    "raw_semantic_problem": "Let n ≥6 be a positive integer. We call a positive integer n-Norwegian if it has three distinct positive divisors whose sum is equal to n. Let f(n) denote the smallest n-Norwegian positive\ninteger. Let M = 3^{2025!}and for a non-negative integer c define\n\u0017 \u00162025!f(M + c) .\ng(c) =\n1 2025! M We can write g(0) + g(4M) + g(1848374) + g(10162574) + g(265710644) + g(44636594) = ^{p} q where p and q are coprime positive integers. What is the remainder when p + q is divided by 99991?",
+    "math_recovery": {
+      "text": "Let n ≥6 be a positive integer. We call a positive integer n-Norwegian if it has three distinct positive divisors whose sum is equal to n. Let f(n) denote the smallest n-Norwegian positive\ninteger. Let M = 3^{2025!}and for a non-negative integer c define\n) floor(2025!f(M + c).\ng(c) = (1)/(2025!) * floor((2025! * f(M + c))/(M)).\nWe can write g(0) + g(4M) + g(1848374) + g(10162574) + g(265710644) + g(44636594) = (p)/(q) where p and q are coprime positive integers. What is the remainder when p + q is divided by 99991?",
+      "applied": true,
+      "rules": [
+        "p10_nested_fraction_floor",
+        "p10_rational_sum"
+      ],
+      "warnings": []
+    }
+  },
+  "input_metadata": {
+    "source": "/kaggle/input/competitions/ai-mathematical-olympiad-progress-prize-3/AIMO3_Reference_Problems.pdf",
+    "type": ".pdf",
+    "problem_number": 10,
+    "page_start": 24,
+    "page_end": 24,
+    "extraction_engine": "pymupdf_text",
+    "has_statement_images": false,
+    "solver_text_source": "semantic_math"
+  },
+  "aimo_answer_contract": {
+    "candidate": {
+      "valid": true,
+      "value": 8687,
+      "reason": "OK"
+    },
+    "verified": {
+      "valid": true,
+      "value": 8687,
+      "reason": "OK"
+    }
+  },
+  "benchmark": {
+    "expected_answer": 8687,
+    "candidate_answer": 8687,
+    "candidate_correct": true,
+    "verified_answer": 8687,
+    "verified_correct": true,
+    "runtime_verified": true,
+    "verification_false_positive": false,
+    "candidate_correct_but_unverified": false,
+    "answer_was_not_exposed_to_model": true
+  }
+}

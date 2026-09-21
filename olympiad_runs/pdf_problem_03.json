@@ -1,0 +1,740 @@
+{
+  "problem_id": "pdf_problem_03",
+  "problem": "Let ABC be an acute-angled triangle with integer side lengths and AB < AC. Points D and E lie on segments BC and AC, respectively, such that AD = AE = AB. Line DE intersects AB at X. Circles BXD and CED intersect for the second time at Y̸ = D. Suppose that Y lies on line AD. There is a unique such triangle with minimal perimeter. This triangle has side lengths a = BC, b = CA, and c = AB. Find the remainder when abc is divided by 10^{5}.",
+  "retrieval_problem": "Let ABC be an acute-angled triangle with integer side lengths and AB < AC. Points D and E lie on segments BC and AC, respectively, such that AD = AE = AB. Line DE intersects AB at X. Circles BXD and CED intersect for the second time at Y̸ = D. Suppose that Y lies on line AD. There is a unique such triangle with minimal perimeter. This triangle has side lengths a = BC, b = CA, and c = AB. Find the remainder when abc is divided by 10^{5}.",
+  "timestamp_utc": "2026-09-21T04:22:33.353059+00:00",
+  "analysis": {
+    "domain": "geometry",
+    "keywords": [
+      "let",
+      "abc",
+      "acute-angled",
+      "triangle",
+      "integer",
+      "side",
+      "lengths",
+      "points",
+      "lie",
+      "segments",
+      "respectively",
+      "line",
+      "intersects",
+      "circles",
+      "bxd",
+      "ced",
+      "circle theorem",
+      "radical axis",
+      "power of a point"
+    ],
+    "query": "let abc acute-angled triangle integer side lengths points lie segments respectively line intersects circles bxd ced circle theorem radical axis power of a point",
+    "structure_features": [
+      "euclidean geometry",
+      "extremal optimization",
+      "large exact integer arithmetic",
+      "modular arithmetic exact remainder"
+    ],
+    "family": "euclidean_geometry",
+    "family_hint": "Prefer exact geometry reductions: power of a point/radical axis, directed ratios, coordinates, or symbolic equations. Do not guess familiar integer triangles without deriving the condition.",
+    "proof_obligations": [
+      "exact_geometry_relation",
+      "configuration_conditions",
+      "integer_extremum"
+    ],
+    "target_spec": {
+      "kind": "remainder",
+      "modulus": 100000,
+      "quantity_text": "abc",
+      "min_value": 0,
+      "max_value": 99999,
+      "instruction": "Return ONLY the requested remainder of (abc) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+    },
+    "target_instruction": "Return ONLY the requested remainder of (abc) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity.",
+    "difficulty_raw": 0.5906666666666667,
+    "difficulty_after_family_floor": 0.5906666666666667
+  },
+  "target_spec": {
+    "kind": "remainder",
+    "modulus": 100000,
+    "quantity_text": "abc",
+    "min_value": 0,
+    "max_value": 99999,
+    "instruction": "Return ONLY the requested remainder of (abc) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+  },
+  "difficulty": 0.5906666666666667,
+  "budget": {
+    "name": "medium",
+    "max_calls": 7,
+    "max_total_tokens": 12000,
+    "max_seconds": 650,
+    "use_proposer": false,
+    "initial_solver_attempts": 1,
+    "max_revisions": 0
+  },
+  "rag": {
+    "attempted": false,
+    "used": false,
+    "final": null,
+    "health": {
+      "mode": "seed_runtime_tfidf",
+      "documents": 60,
+      "word_features": 3248,
+      "char_features": 10479,
+      "healthy": true
+    }
+  },
+  "strategies": [],
+  "constraint_formalization": null,
+  "semantic_compilation": null,
+  "semantic_exact_solution": null,
+  "family_engine": {
+    "supported": true,
+    "ok": true,
+    "engine": "radical_axis_angle_bisector_triangle",
+    "raw_value": 336,
+    "answer": 336,
+    "proof": "Because Y and D are the two common points of circles BXD and CED and Y lies on AD, A lies on their radical axis. Equal powers give AB·AX=AE·AC, hence AX=AC because AE=AB. The resulting reflection across the A-angle bisector shows that D is exactly the internal angle-bisector point; conversely this condition is sufficient. The angle-bisector theorem and Stewart reduce the configuration exactly to a^2 b=(b+c)^2(b-c), with a=BC,b=CA,c=AB and c<b. The engine then exhaustively checked every positive labeled integer triple of smaller perimeter and found none; at perimeter 21 it found the unique admissible acute triple (7, 8, 6). A second exact certificate verifies AD=AB, equal powers at A, and the coprime parameterization before computing abc and applying the requested modulus.",
+    "reason": "exact radical-axis reduction + exhaustive minimal-perimeter search",
+    "certificate": {
+      "sides": {
+        "a_BC": 7,
+        "b_CA": 8,
+        "c_AB": 6
+      },
+      "triangle_acute": true,
+      "AB_lt_AC": true,
+      "cleared_relation": {
+        "lhs_a2b": 392,
+        "rhs_sum2_diff": 392,
+        "equal": true
+      },
+      "angle_bisector": {
+        "BD": [
+          3,
+          1
+        ],
+        "DC": [
+          4,
+          1
+        ],
+        "AD_squared": [
+          36,
+          1
+        ],
+        "AB_squared": [
+          36,
+          1
+        ],
+        "AD_equals_AB": true
+      },
+      "coordinate_crosscheck": {
+        "C_x": [
+          17,
+          4
+        ],
+        "C_y_squared": [
+          735,
+          16
+        ],
+        "X_x_equals_AX": [
+          8,
+          1
+        ],
+        "expected_AX_equals_AC": 8,
+        "power_A_circle_BXD": [
+          48,
+          1
+        ],
+        "power_A_circle_CED": [
+          48,
+          1
+        ],
+        "A_on_radical_axis": true
+      },
+      "coprime_parameterization": {
+        "gcd_b_c": 2,
+        "b_prime": 4,
+        "c_prime": 3,
+        "b_prime_minus_c_prime": 1,
+        "valid": true,
+        "reconstruction": {
+          "x": 2,
+          "y": 1,
+          "k": 1,
+          "a": 7,
+          "b": 8,
+          "c": 6
+        }
+      },
+      "engine_derivation": [
+        "Y and D lie on the radical axis of circles BXD and CED, so A is on that radical axis.",
+        "Power equality at A gives AB*AX = AE*AC; since AE=AB, AX=AC.",
+        "This reflection relation makes D the internal angle-bisector point; the argument is reversible.",
+        "Angle-bisector theorem plus Stewart gives (a/(b+c))^2=(b-c)/b.",
+        "Clearing denominators gives a^2*b=(b+c)^2*(b-c)."
+      ],
+      "search": {
+        "perimeters_exhausted_before_solution": [
+          3,
+          20
+        ],
+        "minimal_perimeter": 21,
+        "minimal_hits": [
+          [
+            7,
+            8,
+            6
+          ]
+        ],
+        "checked_perimeters": 19,
+        "checked_triples": 615,
+        "search_cap": 2000
+      }
+    }
+  },
+  "proof_completion": {
+    "required": [
+      "exact_geometry_relation",
+      "configuration_conditions",
+      "integer_extremum"
+    ],
+    "base_candidate_id": null,
+    "initial_present": [],
+    "initial_missing": [],
+    "micro_results": [],
+    "refutations": [],
+    "repair_candidates": [],
+    "assembled_candidate_id": null,
+    "final_missing": []
+  },
+  "candidates": [
+    {
+      "id": "FAM1",
+      "stage": "deterministic_family_engine",
+      "interpretation": "Deterministic family engine: radical_axis_angle_bisector_triangle",
+      "key_reduction": "exact radical-axis reduction + exhaustive minimal-perimeter search",
+      "proof": "Because Y and D are the two common points of circles BXD and CED and Y lies on AD, A lies on their radical axis. Equal powers give AB·AX=AE·AC, hence AX=AC because AE=AB. The resulting reflection across the A-angle bisector shows that D is exactly the internal angle-bisector point; conversely this condition is sufficient. The angle-bisector theorem and Stewart reduce the configuration exactly to a^2 b=(b+c)^2(b-c), with a=BC,b=CA,c=AB and c<b. The engine then exhaustively checked every positive labeled integer triple of smaller perimeter and found none; at perimeter 21 it found the unique admissible acute triple (7, 8, 6). A second exact certificate verifies AD=AB, equal powers at A, and the coprime parameterization before computing abc and applying the requested modulus.",
+      "check": "Deterministic engine certificate completed and target normalization applied.",
+      "tool_requests": [],
+      "tool_reports": [],
+      "self_confidence": 0.995,
+      "candidate_answer": 336,
+      "final_answer": "336",
+      "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+      "protocol_complete": true,
+      "truncated": false,
+      "ambiguity_detected": false,
+      "ambiguity_text": "",
+      "raw_output": "FINAL_ANSWER: 336",
+      "parse_status": "OK",
+      "target_spec": {
+        "kind": "remainder",
+        "modulus": 100000,
+        "quantity_text": "abc",
+        "min_value": 0,
+        "max_value": 99999,
+        "instruction": "Return ONLY the requested remainder of (abc) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+      },
+      "family_engine": {
+        "supported": true,
+        "ok": true,
+        "engine": "radical_axis_angle_bisector_triangle",
+        "raw_value": 336,
+        "answer": 336,
+        "proof": "Because Y and D are the two common points of circles BXD and CED and Y lies on AD, A lies on their radical axis. Equal powers give AB·AX=AE·AC, hence AX=AC because AE=AB. The resulting reflection across the A-angle bisector shows that D is exactly the internal angle-bisector point; conversely this condition is sufficient. The angle-bisector theorem and Stewart reduce the configuration exactly to a^2 b=(b+c)^2(b-c), with a=BC,b=CA,c=AB and c<b. The engine then exhaustively checked every positive labeled integer triple of smaller perimeter and found none; at perimeter 21 it found the unique admissible acute triple (7, 8, 6). A second exact certificate verifies AD=AB, equal powers at A, and the coprime parameterization before computing abc and applying the requested modulus.",
+        "reason": "exact radical-axis reduction + exhaustive minimal-perimeter search",
+        "certificate": {
+          "sides": {
+            "a_BC": 7,
+            "b_CA": 8,
+            "c_AB": 6
+          },
+          "triangle_acute": true,
+          "AB_lt_AC": true,
+          "cleared_relation": {
+            "lhs_a2b": 392,
+            "rhs_sum2_diff": 392,
+            "equal": true
+          },
+          "angle_bisector": {
+            "BD": [
+              3,
+              1
+            ],
+            "DC": [
+              4,
+              1
+            ],
+            "AD_squared": [
+              36,
+              1
+            ],
+            "AB_squared": [
+              36,
+              1
+            ],
+            "AD_equals_AB": true
+          },
+          "coordinate_crosscheck": {
+            "C_x": [
+              17,
+              4
+            ],
+            "C_y_squared": [
+              735,
+              16
+            ],
+            "X_x_equals_AX": [
+              8,
+              1
+            ],
+            "expected_AX_equals_AC": 8,
+            "power_A_circle_BXD": [
+              48,
+              1
+            ],
+            "power_A_circle_CED": [
+              48,
+              1
+            ],
+            "A_on_radical_axis": true
+          },
+          "coprime_parameterization": {
+            "gcd_b_c": 2,
+            "b_prime": 4,
+            "c_prime": 3,
+            "b_prime_minus_c_prime": 1,
+            "valid": true,
+            "reconstruction": {
+              "x": 2,
+              "y": 1,
+              "k": 1,
+              "a": 7,
+              "b": 8,
+              "c": 6
+            }
+          },
+          "engine_derivation": [
+            "Y and D lie on the radical axis of circles BXD and CED, so A is on that radical axis.",
+            "Power equality at A gives AB*AX = AE*AC; since AE=AB, AX=AC.",
+            "This reflection relation makes D the internal angle-bisector point; the argument is reversible.",
+            "Angle-bisector theorem plus Stewart gives (a/(b+c))^2=(b-c)/b.",
+            "Clearing denominators gives a^2*b=(b+c)^2*(b-c)."
+          ],
+          "search": {
+            "perimeters_exhausted_before_solution": [
+              3,
+              20
+            ],
+            "minimal_perimeter": 21,
+            "minimal_hits": [
+              [
+                7,
+                8,
+                6
+              ]
+            ],
+            "checked_perimeters": 19,
+            "checked_triples": 615,
+            "search_cap": 2000
+          }
+        }
+      },
+      "target_valid": true,
+      "target_check": {
+        "valid": true,
+        "reason": "OK",
+        "aimo_contract": {
+          "valid": true,
+          "value": 336,
+          "reason": "OK"
+        },
+        "requested_output": {
+          "valid": true,
+          "value": 336,
+          "reason": "OK"
+        }
+      },
+      "verification": {
+        "level": "FAMILY_EXACT",
+        "passed": true,
+        "reason": "exact radical-axis reduction + exhaustive minimal-perimeter search",
+        "checks": [
+          {
+            "type": "family_engine",
+            "passed": true,
+            "engine": "radical_axis_angle_bisector_triangle"
+          },
+          {
+            "type": "family_certificate",
+            "passed": true,
+            "certificate": {
+              "sides": {
+                "a_BC": 7,
+                "b_CA": 8,
+                "c_AB": 6
+              },
+              "triangle_acute": true,
+              "AB_lt_AC": true,
+              "cleared_relation": {
+                "lhs_a2b": 392,
+                "rhs_sum2_diff": 392,
+                "equal": true
+              },
+              "angle_bisector": {
+                "BD": [
+                  3,
+                  1
+                ],
+                "DC": [
+                  4,
+                  1
+                ],
+                "AD_squared": [
+                  36,
+                  1
+                ],
+                "AB_squared": [
+                  36,
+                  1
+                ],
+                "AD_equals_AB": true
+              },
+              "coordinate_crosscheck": {
+                "C_x": [
+                  17,
+                  4
+                ],
+                "C_y_squared": [
+                  735,
+                  16
+                ],
+                "X_x_equals_AX": [
+                  8,
+                  1
+                ],
+                "expected_AX_equals_AC": 8,
+                "power_A_circle_BXD": [
+                  48,
+                  1
+                ],
+                "power_A_circle_CED": [
+                  48,
+                  1
+                ],
+                "A_on_radical_axis": true
+              },
+              "coprime_parameterization": {
+                "gcd_b_c": 2,
+                "b_prime": 4,
+                "c_prime": 3,
+                "b_prime_minus_c_prime": 1,
+                "valid": true,
+                "reconstruction": {
+                  "x": 2,
+                  "y": 1,
+                  "k": 1,
+                  "a": 7,
+                  "b": 8,
+                  "c": 6
+                }
+              },
+              "engine_derivation": [
+                "Y and D lie on the radical axis of circles BXD and CED, so A is on that radical axis.",
+                "Power equality at A gives AB*AX = AE*AC; since AE=AB, AX=AC.",
+                "This reflection relation makes D the internal angle-bisector point; the argument is reversible.",
+                "Angle-bisector theorem plus Stewart gives (a/(b+c))^2=(b-c)/b.",
+                "Clearing denominators gives a^2*b=(b+c)^2*(b-c)."
+              ],
+              "search": {
+                "perimeters_exhausted_before_solution": [
+                  3,
+                  20
+                ],
+                "minimal_perimeter": 21,
+                "minimal_hits": [
+                  [
+                    7,
+                    8,
+                    6
+                  ]
+                ],
+                "checked_perimeters": 19,
+                "checked_triples": 615,
+                "search_cap": 2000
+              }
+            }
+          },
+          {
+            "type": "target_contract",
+            "passed": true,
+            "target_spec": {
+              "kind": "remainder",
+              "modulus": 100000,
+              "quantity_text": "abc",
+              "min_value": 0,
+              "max_value": 99999,
+              "instruction": "Return ONLY the requested remainder of (abc) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tool_reports": {
+    "FAM1": []
+  },
+  "critic": {
+    "verdict": "NOT_NEEDED",
+    "confidence": null,
+    "parse_ok": null,
+    "summary": "FAMILY_EXACT verification passed via radical_axis_angle_bisector_triangle",
+    "error": "",
+    "revision_instruction": ""
+  },
+  "verification": {
+    "level": "FAMILY_EXACT",
+    "passed": true,
+    "reason": "exact radical-axis reduction + exhaustive minimal-perimeter search",
+    "checks": [
+      {
+        "type": "family_engine",
+        "passed": true,
+        "engine": "radical_axis_angle_bisector_triangle"
+      },
+      {
+        "type": "family_certificate",
+        "passed": true,
+        "certificate": {
+          "sides": {
+            "a_BC": 7,
+            "b_CA": 8,
+            "c_AB": 6
+          },
+          "triangle_acute": true,
+          "AB_lt_AC": true,
+          "cleared_relation": {
+            "lhs_a2b": 392,
+            "rhs_sum2_diff": 392,
+            "equal": true
+          },
+          "angle_bisector": {
+            "BD": [
+              3,
+              1
+            ],
+            "DC": [
+              4,
+              1
+            ],
+            "AD_squared": [
+              36,
+              1
+            ],
+            "AB_squared": [
+              36,
+              1
+            ],
+            "AD_equals_AB": true
+          },
+          "coordinate_crosscheck": {
+            "C_x": [
+              17,
+              4
+            ],
+            "C_y_squared": [
+              735,
+              16
+            ],
+            "X_x_equals_AX": [
+              8,
+              1
+            ],
+            "expected_AX_equals_AC": 8,
+            "power_A_circle_BXD": [
+              48,
+              1
+            ],
+            "power_A_circle_CED": [
+              48,
+              1
+            ],
+            "A_on_radical_axis": true
+          },
+          "coprime_parameterization": {
+            "gcd_b_c": 2,
+            "b_prime": 4,
+            "c_prime": 3,
+            "b_prime_minus_c_prime": 1,
+            "valid": true,
+            "reconstruction": {
+              "x": 2,
+              "y": 1,
+              "k": 1,
+              "a": 7,
+              "b": 8,
+              "c": 6
+            }
+          },
+          "engine_derivation": [
+            "Y and D lie on the radical axis of circles BXD and CED, so A is on that radical axis.",
+            "Power equality at A gives AB*AX = AE*AC; since AE=AB, AX=AC.",
+            "This reflection relation makes D the internal angle-bisector point; the argument is reversible.",
+            "Angle-bisector theorem plus Stewart gives (a/(b+c))^2=(b-c)/b.",
+            "Clearing denominators gives a^2*b=(b+c)^2*(b-c)."
+          ],
+          "search": {
+            "perimeters_exhausted_before_solution": [
+              3,
+              20
+            ],
+            "minimal_perimeter": 21,
+            "minimal_hits": [
+              [
+                7,
+                8,
+                6
+              ]
+            ],
+            "checked_perimeters": 19,
+            "checked_triples": 615,
+            "search_cap": 2000
+          }
+        }
+      },
+      {
+        "type": "target_contract",
+        "passed": true,
+        "target_spec": {
+          "kind": "remainder",
+          "modulus": 100000,
+          "quantity_text": "abc",
+          "min_value": 0,
+          "max_value": 99999,
+          "instruction": "Return ONLY the requested remainder of (abc) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+        }
+      }
+    ]
+  },
+  "candidate_answer": 336,
+  "verified_answer": 336,
+  "final_solution": {
+    "candidate_id": "FAM1",
+    "interpretation": "Deterministic family engine: radical_axis_angle_bisector_triangle",
+    "proof": "Because Y and D are the two common points of circles BXD and CED and Y lies on AD, A lies on their radical axis. Equal powers give AB·AX=AE·AC, hence AX=AC because AE=AB. The resulting reflection across the A-angle bisector shows that D is exactly the internal angle-bisector point; conversely this condition is sufficient. The angle-bisector theorem and Stewart reduce the configuration exactly to a^2 b=(b+c)^2(b-c), with a=BC,b=CA,c=AB and c<b. The engine then exhaustively checked every positive labeled integer triple of smaller perimeter and found none; at perimeter 21 it found the unique admissible acute triple (7, 8, 6). A second exact certificate verifies AD=AB, equal powers at A, and the coprime parameterization before computing abc and applying the requested modulus.",
+    "check": "Deterministic engine certificate completed and target normalization applied.",
+    "candidate_answer": 336,
+    "verified_answer": 336,
+    "final_answer": "336",
+    "self_confidence": 0.995,
+    "protocol_complete": true,
+    "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+    "ambiguity_detected": false
+  },
+  "metrics": {
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "latency_sec": 0.0010963440001887648,
+    "calls": [],
+    "rag_attempted": false,
+    "rag_used": false,
+    "verified_pass": true,
+    "verification_level": "FAMILY_EXACT",
+    "budget_error": null,
+    "budget_snapshot": {
+      "calls": 0,
+      "total_tokens": 0,
+      "elapsed_sec": 0.0005229439998402086,
+      "max_calls": 7,
+      "max_total_tokens": 12000,
+      "max_seconds": 650.0,
+      "remaining_calls": 7,
+      "remaining_tokens": 12000,
+      "remaining_seconds": 649.999475219
+    },
+    "solver_truncations": 0,
+    "critic_used": false,
+    "critic_parse_ok": null,
+    "answer_recovery_used": false,
+    "candidate_answers": [
+      336
+    ],
+    "candidate_parse_modes": [
+      "DETERMINISTIC_FAMILY_EXACT"
+    ],
+    "candidate_target_validity": [
+      true
+    ],
+    "candidate_target_reasons": [
+      "OK"
+    ],
+    "rejected_candidate_values": [],
+    "candidate_committed_early": false,
+    "answer_commit_survived_truncation": false,
+    "proof_obligations_required": [
+      "exact_geometry_relation",
+      "configuration_conditions",
+      "integer_extremum"
+    ],
+    "proof_obligations_initial_missing": [],
+    "proof_obligations_final_missing": [],
+    "proof_micro_calls": 0,
+    "constraint_first_used": false,
+    "constraint_formalization_ok": false,
+    "semantic_compilation_ok": false,
+    "semantic_certificate_ok": false,
+    "semantic_repairs": 0,
+    "deterministic_semantic_solve": false,
+    "deterministic_family_solve": true,
+    "family_engine_name": "radical_axis_angle_bisector_triangle",
+    "hard_retry_after_refutation": false
+  },
+  "status": "VERIFIED_PASS",
+  "input_fidelity": {
+    "solver_text_source": "semantic_math",
+    "layout_differs_from_solver": true,
+    "layout_problem": "Let ABC be an acute-angled triangle with integer side lengths and AB < AC. Points\nD and E lie on segments BC and AC, respectively, such that AD = AE = AB. Line DE intersects\nAB at X. Circles BXD and CED intersect for the second time at Y̸ = D. Suppose that Y  lies\non line AD. There is a unique such triangle with minimal perimeter. This triangle has side lengths\na = BC, b = CA, and c = AB. Find the remainder when abc is divided by 105.",
+    "solver_problem": "Let ABC be an acute-angled triangle with integer side lengths and AB < AC. Points D and E lie on segments BC and AC, respectively, such that AD = AE = AB. Line DE intersects AB at X. Circles BXD and CED intersect for the second time at Y̸ = D. Suppose that Y lies on line AD. There is a unique such triangle with minimal perimeter. This triangle has side lengths a = BC, b = CA, and c = AB. Find the remainder when abc is divided by 10^{5}.",
+    "raw_semantic_problem": "Let ABC be an acute-angled triangle with integer side lengths and AB < AC. Points D and E lie on segments BC and AC, respectively, such that AD = AE = AB. Line DE intersects AB at X. Circles BXD and CED intersect for the second time at Y̸ = D. Suppose that Y lies on line AD. There is a unique such triangle with minimal perimeter. This triangle has side lengths a = BC, b = CA, and c = AB. Find the remainder when abc is divided by 10^{5}.",
+    "math_recovery": {
+      "text": "Let ABC be an acute-angled triangle with integer side lengths and AB < AC. Points D and E lie on segments BC and AC, respectively, such that AD = AE = AB. Line DE intersects AB at X. Circles BXD and CED intersect for the second time at Y̸ = D. Suppose that Y lies on line AD. There is a unique such triangle with minimal perimeter. This triangle has side lengths a = BC, b = CA, and c = AB. Find the remainder when abc is divided by 10^{5}.",
+      "applied": false,
+      "rules": [],
+      "warnings": []
+    }
+  },
+  "input_metadata": {
+    "source": "/kaggle/input/competitions/ai-mathematical-olympiad-progress-prize-3/AIMO3_Reference_Problems.pdf",
+    "type": ".pdf",
+    "problem_number": 3,
+    "page_start": 6,
+    "page_end": 7,
+    "extraction_engine": "pymupdf_text",
+    "has_statement_images": false,
+    "solver_text_source": "semantic_math"
+  },
+  "aimo_answer_contract": {
+    "candidate": {
+      "valid": true,
+      "value": 336,
+      "reason": "OK"
+    },
+    "verified": {
+      "valid": true,
+      "value": 336,
+      "reason": "OK"
+    }
+  },
+  "benchmark": {
+    "expected_answer": 336,
+    "candidate_answer": 336,
+    "candidate_correct": true,
+    "verified_answer": 336,
+    "verified_correct": true,
+    "runtime_verified": true,
+    "verification_false_positive": false,
+    "candidate_correct_but_unverified": false,
+    "answer_was_not_exposed_to_model": true
+  }
+}

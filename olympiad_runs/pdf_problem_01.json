@@ -1,0 +1,1064 @@
+{
+  "problem_id": "pdf_problem_01",
+  "problem": "Alice and Bob are each holding some integer number of sweets. Alice says to Bob: “If we each added the number of sweets we’re holding to our (positive integer) age, my answer would be double yours. If we took the product, then my answer would be four times yours.” Bob replies: “Why don’t you give me five of your sweets because then both our sum and product would be equal.” What is the product of Alice and Bob’s ages?",
+  "retrieval_problem": "Alice and Bob are each holding some integer number of sweets. Alice says to Bob: “If we each added the number of sweets we’re holding to our (positive integer) age, my answer would be double yours. If we took the product, then my answer would be four times yours.” Bob replies: “Why don’t you give me five of your sweets because then both our sum and product would be equal.” What is the product of Alice and Bob’s ages?",
+  "timestamp_utc": "2026-09-21T04:22:33.241975+00:00",
+  "analysis": {
+    "domain": "algebra",
+    "keywords": [
+      "alice",
+      "bob",
+      "are",
+      "each",
+      "holding",
+      "some",
+      "integer",
+      "number",
+      "sweets",
+      "says",
+      "added",
+      "our",
+      "positive",
+      "age",
+      "answer",
+      "would",
+      "positive variables",
+      "integer word problem",
+      "equal sum equal product",
+      "quadratic roots",
+      "small diophantine system"
+    ],
+    "query": "alice bob are each holding some integer number sweets says added our positive age answer would positive variables integer word problem equal sum equal product quadratic roots small diophantine system",
+    "structure_features": [],
+    "family": "relational_algebra",
+    "family_hint": "Translate ownership, transfers, sums/products, and equality clauses into a compact system first. Use exact symbolic solving when the system is small.",
+    "proof_obligations": [
+      "equation_model",
+      "integer_solution",
+      "answer_check"
+    ],
+    "target_spec": {
+      "kind": "direct_integer",
+      "modulus": null,
+      "quantity_text": "",
+      "min_value": null,
+      "max_value": null,
+      "instruction": "Return the exact integer requested by the problem."
+    },
+    "target_instruction": "Return the exact integer requested by the problem.",
+    "difficulty_raw": 0.22000000000000003,
+    "difficulty_after_family_floor": 0.22000000000000003
+  },
+  "target_spec": {
+    "kind": "direct_integer",
+    "modulus": null,
+    "quantity_text": "",
+    "min_value": null,
+    "max_value": null,
+    "instruction": "Return the exact integer requested by the problem."
+  },
+  "difficulty": 0.22000000000000003,
+  "budget": {
+    "name": "easy",
+    "max_calls": 5,
+    "max_total_tokens": 7500,
+    "max_seconds": 480,
+    "use_proposer": false,
+    "initial_solver_attempts": 1,
+    "max_revisions": 0
+  },
+  "rag": {
+    "attempted": false,
+    "used": false,
+    "final": null,
+    "health": {
+      "mode": "seed_runtime_tfidf",
+      "documents": 60,
+      "word_features": 3248,
+      "char_features": 10479,
+      "healthy": true
+    }
+  },
+  "strategies": [],
+  "constraint_formalization": {
+    "parse_ok": true,
+    "entities": [
+      "Alice",
+      "Bob"
+    ],
+    "variables": [
+      {
+        "name": "a",
+        "owner": "Alice",
+        "kind": "sweets",
+        "domain": "integer"
+      },
+      {
+        "name": "b",
+        "owner": "Bob",
+        "kind": "sweets",
+        "domain": "integer"
+      },
+      {
+        "name": "x",
+        "owner": "Alice",
+        "kind": "age",
+        "domain": "positive integer"
+      },
+      {
+        "name": "y",
+        "owner": "Bob",
+        "kind": "age",
+        "domain": "positive integer"
+      }
+    ],
+    "pre_relations": [
+      {
+        "type": "sum_ratio",
+        "left": "Alice",
+        "right": "Bob",
+        "factor": 2,
+        "operands": [
+          "age",
+          "sweets"
+        ]
+      },
+      {
+        "type": "product_ratio",
+        "left": "Alice",
+        "right": "Bob",
+        "factor": 4,
+        "operands": [
+          "age",
+          "sweets"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "type": "transfer",
+        "asset": "sweets",
+        "amount": 5,
+        "from": "Alice",
+        "to": "Bob"
+      }
+    ],
+    "post_equalities": [
+      {
+        "type": "sum_equal",
+        "left": "Alice",
+        "right": "Bob",
+        "operands": [
+          "age",
+          "sweets"
+        ]
+      },
+      {
+        "type": "product_equal",
+        "left": "Alice",
+        "right": "Bob",
+        "operands": [
+          "age",
+          "sweets"
+        ]
+      }
+    ],
+    "goal": {
+      "type": "product",
+      "terms": [
+        "Alice.age",
+        "Bob.age"
+      ]
+    },
+    "ambiguity": "NONE",
+    "raw_output": "{\n  \"entities\": [\"Alice\", \"Bob\"],\n  \"variables\": [\n    {\"name\":\"a\",\"owner\":\"Alice\",\"kind\":\"sweets\",\"domain\":\"integer\"},\n    {\"name\":\"b\",\"owner\":\"Bob\",\"kind\":\"sweets\",\"domain\":\"integer\"},\n    {\"name\":\"x\",\"owner\":\"Alice\",\"kind\":\"age\",\"domain\":\"positive integer\"},\n    {\"name\":\"y\",\"owner\":\"Bob\",\"kind\":\"age\",\"domain\":\"positive integer\"}\n  ],\n  \"pre_relations\": [\n    {\"type\":\"sum_ratio\",\"left\":\"Alice\",\"right\":\"Bob\",\"factor\":2,\"operands\":[\"age\",\"sweets\"]},\n    {\"type\":\"product_ratio\",\"left\":\"Alice\",\"right\":\"Bob\",\"factor\":4,\"operands\":[\"age\",\"sweets\"]}\n  ],\n  \"events\": [\n    {\"type\":\"transfer\",\"asset\":\"sweets\",\"amount\":5,\"from\":\"Alice\",\"to\":\"Bob\"}\n  ],\n  \"post_equalities\": [\n    {\"type\":\"sum_equal\",\"left\":\"Alice\",\"right\":\"Bob\",\"operands\":[\"age\",\"sweets\"]},\n    {\"type\":\"product_equal\",\"left\":\"Alice\",\"right\":\"Bob\",\"operands\":[\"age\",\"sweets\"]}\n  ],\n  \"goal\": {\"type\":\"product\",\"terms\":[\"Alice.age\",\"Bob.age\"]},\n  \"ambiguity\": \"NONE\"\n}",
+    "stage": "formalize_constraints",
+    "truncated": false
+  },
+  "semantic_compilation": {
+    "ok": true,
+    "equations": [
+      "(x+a)=2*(y+b)",
+      "(x)*(a)=4*(y)*(b)",
+      "(x+(a-5))=(y+(b+5))",
+      "(x)*((a-5))=(y)*((b+5))"
+    ],
+    "goal_expr": "(x)*(y)",
+    "checks": [
+      {
+        "type": "variable_role_map",
+        "passed": true,
+        "mapped": {
+          "alice.sweets": "a",
+          "bob.sweets": "b",
+          "alice.age": "x",
+          "bob.age": "y"
+        }
+      },
+      {
+        "type": "text_transfer_crosscheck",
+        "passed": true,
+        "text_event": {
+          "type": "transfer",
+          "asset": "sweets",
+          "amount": 5,
+          "from": "Alice",
+          "to": "Bob",
+          "source": "dialogue_give_me_your"
+        },
+        "model_event": {
+          "type": "transfer",
+          "asset": "sweets",
+          "amount": 5,
+          "from": "Alice",
+          "to": "Bob"
+        }
+      },
+      {
+        "type": "lexical_relation_crosscheck",
+        "passed": true,
+        "details": [
+          {
+            "signal": "double/twice",
+            "passed": true
+          },
+          {
+            "signal": "four times",
+            "passed": true
+          },
+          {
+            "signal": "sum and product equal",
+            "passed": true
+          }
+        ]
+      },
+      {
+        "type": "transfer_conservation",
+        "passed": true,
+        "before": "a+b",
+        "after": "(a-5)+(b+5)"
+      },
+      {
+        "type": "compiled_relations",
+        "passed": true,
+        "equations": [
+          "(x+a)=2*(y+b)",
+          "(x)*(a)=4*(y)*(b)",
+          "(x+(a-5))=(y+(b+5))",
+          "(x)*((a-5))=(y)*((b+5))"
+        ],
+        "goal_expr": "(x)*(y)"
+      }
+    ],
+    "variable_domains": {
+      "a": "integer",
+      "b": "integer",
+      "x": "positive integer",
+      "y": "positive integer"
+    },
+    "event": {
+      "type": "transfer",
+      "asset": "sweets",
+      "amount": 5,
+      "from": "Alice",
+      "to": "Bob"
+    },
+    "reason": "ok"
+  },
+  "semantic_exact_solution": {
+    "ok": true,
+    "unique_answer": true,
+    "answer": 50,
+    "assignments": {
+      "a": 10,
+      "b": 5,
+      "x": 10,
+      "y": 5
+    },
+    "solutions": [
+      {
+        "assignments": {
+          "a": 10,
+          "b": 5,
+          "x": 10,
+          "y": 5
+        },
+        "answer": 50
+      }
+    ],
+    "reason": "unique exact integer goal value"
+  },
+  "family_engine": {
+    "supported": false,
+    "ok": false,
+    "engine": "none",
+    "raw_value": null,
+    "answer": null,
+    "proof": "",
+    "reason": "no deterministic family engine matched",
+    "certificate": null
+  },
+  "proof_completion": {
+    "required": [
+      "equation_model",
+      "integer_solution",
+      "answer_check"
+    ],
+    "base_candidate_id": null,
+    "initial_present": [],
+    "initial_missing": [],
+    "micro_results": [],
+    "refutations": [],
+    "repair_candidates": [],
+    "assembled_candidate_id": null,
+    "final_missing": []
+  },
+  "candidates": [
+    {
+      "id": "DET1",
+      "stage": "deterministic_semantic_solve",
+      "interpretation": "Validated structured semantics; transfer conservation passed.",
+      "proof": "A deterministic semantic compiler converted the validated relational structure into equations, and SymPy solved the resulting integer system exactly. Assignments: {'a': 10, 'b': 5, 'x': 10, 'y': 5}.",
+      "check": "All compiled equations and the goal value are checked exactly.",
+      "tool_requests": [
+        {
+          "op": "check_equalities",
+          "assignments": {
+            "a": 10,
+            "b": 5,
+            "x": 10,
+            "y": 5
+          },
+          "equalities": [
+            {
+              "lhs": "(x+a)",
+              "rhs": "2*(y+b)"
+            },
+            {
+              "lhs": "(x)*(a)",
+              "rhs": "4*(y)*(b)"
+            },
+            {
+              "lhs": "(x+(a-5))",
+              "rhs": "(y+(b+5))"
+            },
+            {
+              "lhs": "(x)*((a-5))",
+              "rhs": "(y)*((b+5))"
+            }
+          ],
+          "answer_expr": "(x)*(y)",
+          "expected_answer": 50
+        }
+      ],
+      "self_confidence": 0.99,
+      "candidate_answer": 50,
+      "final_answer": "50",
+      "answer_parse_mode": "DETERMINISTIC_EXACT",
+      "protocol_complete": true,
+      "truncated": false,
+      "ambiguity_detected": false,
+      "ambiguity_text": "",
+      "raw_output": "FINAL_ANSWER: 50",
+      "parse_status": "OK",
+      "deterministic_solution": {
+        "ok": true,
+        "unique_answer": true,
+        "answer": 50,
+        "assignments": {
+          "a": 10,
+          "b": 5,
+          "x": 10,
+          "y": 5
+        },
+        "solutions": [
+          {
+            "assignments": {
+              "a": 10,
+              "b": 5,
+              "x": 10,
+              "y": 5
+            },
+            "answer": 50
+          }
+        ],
+        "reason": "unique exact integer goal value"
+      },
+      "semantic_compilation": {
+        "ok": true,
+        "equations": [
+          "(x+a)=2*(y+b)",
+          "(x)*(a)=4*(y)*(b)",
+          "(x+(a-5))=(y+(b+5))",
+          "(x)*((a-5))=(y)*((b+5))"
+        ],
+        "goal_expr": "(x)*(y)",
+        "checks": [
+          {
+            "type": "variable_role_map",
+            "passed": true,
+            "mapped": {
+              "alice.sweets": "a",
+              "bob.sweets": "b",
+              "alice.age": "x",
+              "bob.age": "y"
+            }
+          },
+          {
+            "type": "text_transfer_crosscheck",
+            "passed": true,
+            "text_event": {
+              "type": "transfer",
+              "asset": "sweets",
+              "amount": 5,
+              "from": "Alice",
+              "to": "Bob",
+              "source": "dialogue_give_me_your"
+            },
+            "model_event": {
+              "type": "transfer",
+              "asset": "sweets",
+              "amount": 5,
+              "from": "Alice",
+              "to": "Bob"
+            }
+          },
+          {
+            "type": "lexical_relation_crosscheck",
+            "passed": true,
+            "details": [
+              {
+                "signal": "double/twice",
+                "passed": true
+              },
+              {
+                "signal": "four times",
+                "passed": true
+              },
+              {
+                "signal": "sum and product equal",
+                "passed": true
+              }
+            ]
+          },
+          {
+            "type": "transfer_conservation",
+            "passed": true,
+            "before": "a+b",
+            "after": "(a-5)+(b+5)"
+          },
+          {
+            "type": "compiled_relations",
+            "passed": true,
+            "equations": [
+              "(x+a)=2*(y+b)",
+              "(x)*(a)=4*(y)*(b)",
+              "(x+(a-5))=(y+(b+5))",
+              "(x)*((a-5))=(y)*((b+5))"
+            ],
+            "goal_expr": "(x)*(y)"
+          }
+        ],
+        "variable_domains": {
+          "a": "integer",
+          "b": "integer",
+          "x": "positive integer",
+          "y": "positive integer"
+        },
+        "event": {
+          "type": "transfer",
+          "asset": "sweets",
+          "amount": 5,
+          "from": "Alice",
+          "to": "Bob"
+        },
+        "reason": "ok"
+      },
+      "constraint_formalization": {
+        "parse_ok": true,
+        "entities": [
+          "Alice",
+          "Bob"
+        ],
+        "variables": [
+          {
+            "name": "a",
+            "owner": "Alice",
+            "kind": "sweets",
+            "domain": "integer"
+          },
+          {
+            "name": "b",
+            "owner": "Bob",
+            "kind": "sweets",
+            "domain": "integer"
+          },
+          {
+            "name": "x",
+            "owner": "Alice",
+            "kind": "age",
+            "domain": "positive integer"
+          },
+          {
+            "name": "y",
+            "owner": "Bob",
+            "kind": "age",
+            "domain": "positive integer"
+          }
+        ],
+        "pre_relations": [
+          {
+            "type": "sum_ratio",
+            "left": "Alice",
+            "right": "Bob",
+            "factor": 2,
+            "operands": [
+              "age",
+              "sweets"
+            ]
+          },
+          {
+            "type": "product_ratio",
+            "left": "Alice",
+            "right": "Bob",
+            "factor": 4,
+            "operands": [
+              "age",
+              "sweets"
+            ]
+          }
+        ],
+        "events": [
+          {
+            "type": "transfer",
+            "asset": "sweets",
+            "amount": 5,
+            "from": "Alice",
+            "to": "Bob"
+          }
+        ],
+        "post_equalities": [
+          {
+            "type": "sum_equal",
+            "left": "Alice",
+            "right": "Bob",
+            "operands": [
+              "age",
+              "sweets"
+            ]
+          },
+          {
+            "type": "product_equal",
+            "left": "Alice",
+            "right": "Bob",
+            "operands": [
+              "age",
+              "sweets"
+            ]
+          }
+        ],
+        "goal": {
+          "type": "product",
+          "terms": [
+            "Alice.age",
+            "Bob.age"
+          ]
+        },
+        "ambiguity": "NONE",
+        "raw_output": "{\n  \"entities\": [\"Alice\", \"Bob\"],\n  \"variables\": [\n    {\"name\":\"a\",\"owner\":\"Alice\",\"kind\":\"sweets\",\"domain\":\"integer\"},\n    {\"name\":\"b\",\"owner\":\"Bob\",\"kind\":\"sweets\",\"domain\":\"integer\"},\n    {\"name\":\"x\",\"owner\":\"Alice\",\"kind\":\"age\",\"domain\":\"positive integer\"},\n    {\"name\":\"y\",\"owner\":\"Bob\",\"kind\":\"age\",\"domain\":\"positive integer\"}\n  ],\n  \"pre_relations\": [\n    {\"type\":\"sum_ratio\",\"left\":\"Alice\",\"right\":\"Bob\",\"factor\":2,\"operands\":[\"age\",\"sweets\"]},\n    {\"type\":\"product_ratio\",\"left\":\"Alice\",\"right\":\"Bob\",\"factor\":4,\"operands\":[\"age\",\"sweets\"]}\n  ],\n  \"events\": [\n    {\"type\":\"transfer\",\"asset\":\"sweets\",\"amount\":5,\"from\":\"Alice\",\"to\":\"Bob\"}\n  ],\n  \"post_equalities\": [\n    {\"type\":\"sum_equal\",\"left\":\"Alice\",\"right\":\"Bob\",\"operands\":[\"age\",\"sweets\"]},\n    {\"type\":\"product_equal\",\"left\":\"Alice\",\"right\":\"Bob\",\"operands\":[\"age\",\"sweets\"]}\n  ],\n  \"goal\": {\"type\":\"product\",\"terms\":[\"Alice.age\",\"Bob.age\"]},\n  \"ambiguity\": \"NONE\"\n}",
+        "stage": "formalize_constraints",
+        "truncated": false
+      },
+      "tool_reports": [
+        {
+          "ok": true,
+          "op": "check_equalities",
+          "verified": true,
+          "assignments": {
+            "a": 10,
+            "b": 5,
+            "x": 10,
+            "y": 5
+          },
+          "checks": [
+            {
+              "lhs": "(x+a)",
+              "rhs": "2*(y+b)",
+              "verified": true,
+              "residual": "0"
+            },
+            {
+              "lhs": "(x)*(a)",
+              "rhs": "4*(y)*(b)",
+              "verified": true,
+              "residual": "0"
+            },
+            {
+              "lhs": "(x+(a-5))",
+              "rhs": "(y+(b+5))",
+              "verified": true,
+              "residual": "0"
+            },
+            {
+              "lhs": "(x)*((a-5))",
+              "rhs": "(y)*((b+5))",
+              "verified": true,
+              "residual": "0"
+            }
+          ],
+          "answer_check": {
+            "expr": "(x)*(y)",
+            "value": "50",
+            "expected_answer": 50,
+            "verified": true
+          },
+          "answer_bound": true
+        }
+      ],
+      "verification": {
+        "level": "EXACT_TOOL",
+        "passed": true,
+        "reason": "answer-bound equality certificate passed",
+        "checks": [
+          {
+            "type": "answer_contract",
+            "passed": true,
+            "reason": "OK",
+            "value": 50
+          },
+          {
+            "type": "target_contract",
+            "passed": true,
+            "reason": "OK",
+            "value": 50,
+            "target_spec": null
+          },
+          {
+            "type": "protocol",
+            "passed": true,
+            "reason": "complete final sentinel"
+          },
+          {
+            "type": "tool_reports",
+            "reports": [
+              {
+                "ok": true,
+                "op": "check_equalities",
+                "verified": true,
+                "assignments": {
+                  "a": 10,
+                  "b": 5,
+                  "x": 10,
+                  "y": 5
+                },
+                "checks": [
+                  {
+                    "lhs": "(x+a)",
+                    "rhs": "2*(y+b)",
+                    "verified": true,
+                    "residual": "0"
+                  },
+                  {
+                    "lhs": "(x)*(a)",
+                    "rhs": "4*(y)*(b)",
+                    "verified": true,
+                    "residual": "0"
+                  },
+                  {
+                    "lhs": "(x+(a-5))",
+                    "rhs": "(y+(b+5))",
+                    "verified": true,
+                    "residual": "0"
+                  },
+                  {
+                    "lhs": "(x)*((a-5))",
+                    "rhs": "(y)*((b+5))",
+                    "verified": true,
+                    "residual": "0"
+                  }
+                ],
+                "answer_check": {
+                  "expr": "(x)*(y)",
+                  "value": "50",
+                  "expected_answer": 50,
+                  "verified": true
+                },
+                "answer_bound": true
+              }
+            ]
+          },
+          {
+            "type": "answer_bound_certificate",
+            "passed": true,
+            "reason": "answer-bound equality certificate passed"
+          }
+        ]
+      },
+      "target_spec": {
+        "kind": "direct_integer",
+        "modulus": null,
+        "quantity_text": "",
+        "min_value": null,
+        "max_value": null,
+        "instruction": "Return the exact integer requested by the problem."
+      },
+      "target_valid": true,
+      "target_check": {
+        "valid": true,
+        "reason": "OK",
+        "aimo_contract": {
+          "valid": true,
+          "value": 50,
+          "reason": "OK"
+        },
+        "requested_output": {
+          "valid": true,
+          "value": 50,
+          "reason": "OK"
+        }
+      }
+    }
+  ],
+  "tool_reports": {
+    "DET1": [
+      {
+        "ok": true,
+        "op": "check_equalities",
+        "verified": true,
+        "assignments": {
+          "a": 10,
+          "b": 5,
+          "x": 10,
+          "y": 5
+        },
+        "checks": [
+          {
+            "lhs": "(x+a)",
+            "rhs": "2*(y+b)",
+            "verified": true,
+            "residual": "0"
+          },
+          {
+            "lhs": "(x)*(a)",
+            "rhs": "4*(y)*(b)",
+            "verified": true,
+            "residual": "0"
+          },
+          {
+            "lhs": "(x+(a-5))",
+            "rhs": "(y+(b+5))",
+            "verified": true,
+            "residual": "0"
+          },
+          {
+            "lhs": "(x)*((a-5))",
+            "rhs": "(y)*((b+5))",
+            "verified": true,
+            "residual": "0"
+          }
+        ],
+        "answer_check": {
+          "expr": "(x)*(y)",
+          "value": "50",
+          "expected_answer": 50,
+          "verified": true
+        },
+        "answer_bound": true
+      }
+    ]
+  },
+  "critic": {
+    "verdict": "NOT_NEEDED",
+    "confidence": null,
+    "parse_ok": null,
+    "summary": "SEMANTIC_EXACT verification already passed",
+    "error": "",
+    "revision_instruction": ""
+  },
+  "verification": {
+    "level": "SEMANTIC_EXACT",
+    "passed": true,
+    "reason": "text-crosschecked semantic compiler + unique exact integer solution",
+    "checks": [
+      {
+        "type": "variable_role_map",
+        "passed": true,
+        "mapped": {
+          "alice.sweets": "a",
+          "bob.sweets": "b",
+          "alice.age": "x",
+          "bob.age": "y"
+        }
+      },
+      {
+        "type": "text_transfer_crosscheck",
+        "passed": true,
+        "text_event": {
+          "type": "transfer",
+          "asset": "sweets",
+          "amount": 5,
+          "from": "Alice",
+          "to": "Bob",
+          "source": "dialogue_give_me_your"
+        },
+        "model_event": {
+          "type": "transfer",
+          "asset": "sweets",
+          "amount": 5,
+          "from": "Alice",
+          "to": "Bob"
+        }
+      },
+      {
+        "type": "lexical_relation_crosscheck",
+        "passed": true,
+        "details": [
+          {
+            "signal": "double/twice",
+            "passed": true
+          },
+          {
+            "signal": "four times",
+            "passed": true
+          },
+          {
+            "signal": "sum and product equal",
+            "passed": true
+          }
+        ]
+      },
+      {
+        "type": "transfer_conservation",
+        "passed": true,
+        "before": "a+b",
+        "after": "(a-5)+(b+5)"
+      },
+      {
+        "type": "compiled_relations",
+        "passed": true,
+        "equations": [
+          "(x+a)=2*(y+b)",
+          "(x)*(a)=4*(y)*(b)",
+          "(x+(a-5))=(y+(b+5))",
+          "(x)*((a-5))=(y)*((b+5))"
+        ],
+        "goal_expr": "(x)*(y)"
+      },
+      {
+        "type": "answer_contract",
+        "passed": true,
+        "reason": "OK",
+        "value": 50
+      },
+      {
+        "type": "target_contract",
+        "passed": true,
+        "reason": "OK",
+        "value": 50,
+        "target_spec": null
+      },
+      {
+        "type": "protocol",
+        "passed": true,
+        "reason": "complete final sentinel"
+      },
+      {
+        "type": "tool_reports",
+        "reports": [
+          {
+            "ok": true,
+            "op": "check_equalities",
+            "verified": true,
+            "assignments": {
+              "a": 10,
+              "b": 5,
+              "x": 10,
+              "y": 5
+            },
+            "checks": [
+              {
+                "lhs": "(x+a)",
+                "rhs": "2*(y+b)",
+                "verified": true,
+                "residual": "0"
+              },
+              {
+                "lhs": "(x)*(a)",
+                "rhs": "4*(y)*(b)",
+                "verified": true,
+                "residual": "0"
+              },
+              {
+                "lhs": "(x+(a-5))",
+                "rhs": "(y+(b+5))",
+                "verified": true,
+                "residual": "0"
+              },
+              {
+                "lhs": "(x)*((a-5))",
+                "rhs": "(y)*((b+5))",
+                "verified": true,
+                "residual": "0"
+              }
+            ],
+            "answer_check": {
+              "expr": "(x)*(y)",
+              "value": "50",
+              "expected_answer": 50,
+              "verified": true
+            },
+            "answer_bound": true
+          }
+        ]
+      },
+      {
+        "type": "answer_bound_certificate",
+        "passed": true,
+        "reason": "answer-bound equality certificate passed"
+      }
+    ]
+  },
+  "candidate_answer": 50,
+  "verified_answer": 50,
+  "final_solution": {
+    "candidate_id": "DET1",
+    "interpretation": "Validated structured semantics; transfer conservation passed.",
+    "proof": "A deterministic semantic compiler converted the validated relational structure into equations, and SymPy solved the resulting integer system exactly. Assignments: {'a': 10, 'b': 5, 'x': 10, 'y': 5}.",
+    "check": "All compiled equations and the goal value are checked exactly.",
+    "candidate_answer": 50,
+    "verified_answer": 50,
+    "final_answer": "50",
+    "self_confidence": 0.99,
+    "protocol_complete": true,
+    "answer_parse_mode": "DETERMINISTIC_EXACT",
+    "ambiguity_detected": false
+  },
+  "metrics": {
+    "model_calls": 1,
+    "input_tokens": 476,
+    "output_tokens": 268,
+    "total_tokens": 744,
+    "latency_sec": 21.918271174999973,
+    "calls": [
+      {
+        "stage": "formalize_constraints",
+        "role": "solver",
+        "input_tokens": 476,
+        "output_tokens": 268,
+        "max_new_tokens": 520,
+        "total_tokens": 744,
+        "latency_sec": 21.198727585000142,
+        "gpu": 0,
+        "peak_allocated_gb": 2.6547317504882812,
+        "free_before_gb": 10.63751220703125,
+        "free_after_gb": 10.54180908203125,
+        "do_sample": false,
+        "finish_reason": "eos_or_stop",
+        "truncated": false,
+        "timed_out": false,
+        "ended_with_eos": true,
+        "raw_output": "{\n  \"entities\": [\"Alice\", \"Bob\"],\n  \"variables\": [\n    {\"name\":\"a\",\"owner\":\"Alice\",\"kind\":\"sweets\",\"domain\":\"integer\"},\n    {\"name\":\"b\",\"owner\":\"Bob\",\"kind\":\"sweets\",\"domain\":\"integer\"},\n    {\"name\":\"x\",\"owner\":\"Alice\",\"kind\":\"age\",\"domain\":\"positive integer\"},\n    {\"name\":\"y\",\"owner\":\"Bob\",\"kind\":\"age\",\"domain\":\"positive integer\"}\n  ],\n  \"pre_relations\": [\n    {\"type\":\"sum_ratio\",\"left\":\"Alice\",\"right\":\"Bob\",\"factor\":2,\"operands\":[\"age\",\"sweets\"]},\n    {\"type\":\"product_ratio\",\"left\":\"Alice\",\"right\":\"Bob\",\"factor\":4,\"operands\":[\"age\",\"sweets\"]}\n  ],\n  \"events\": [\n    {\"type\":\"transfer\",\"asset\":\"sweets\",\"amount\":5,\"from\":\"Alice\",\"to\":\"Bob\"}\n  ],\n  \"post_equalities\": [\n    {\"type\":\"sum_equal\",\"left\":\"Alice\",\"right\":\"Bob\",\"operands\":[\"age\",\"sweets\"]},\n    {\"type\":\"product_equal\",\"left\":\"Alice\",\"right\":\"Bob\",\"operands\":[\"age\",\"sweets\"]}\n  ],\n  \"goal\": {\"type\":\"product\",\"terms\":[\"Alice.age\",\"Bob.age\"]},\n  \"ambiguity\": \"NONE\"\n}<|im_end|>",
+        "decoded_output": "{\n  \"entities\": [\"Alice\", \"Bob\"],\n  \"variables\": [\n    {\"name\":\"a\",\"owner\":\"Alice\",\"kind\":\"sweets\",\"domain\":\"integer\"},\n    {\"name\":\"b\",\"owner\":\"Bob\",\"kind\":\"sweets\",\"domain\":\"integer\"},\n    {\"name\":\"x\",\"owner\":\"Alice\",\"kind\":\"age\",\"domain\":\"positive integer\"},\n    {\"name\":\"y\",\"owner\":\"Bob\",\"kind\":\"age\",\"domain\":\"positive integer\"}\n  ],\n  \"pre_relations\": [\n    {\"type\":\"sum_ratio\",\"left\":\"Alice\",\"right\":\"Bob\",\"factor\":2,\"operands\":[\"age\",\"sweets\"]},\n    {\"type\":\"product_ratio\",\"left\":\"Alice\",\"right\":\"Bob\",\"factor\":4,\"operands\":[\"age\",\"sweets\"]}\n  ],\n  \"events\": [\n    {\"type\":\"transfer\",\"asset\":\"sweets\",\"amount\":5,\"from\":\"Alice\",\"to\":\"Bob\"}\n  ],\n  \"post_equalities\": [\n    {\"type\":\"sum_equal\",\"left\":\"Alice\",\"right\":\"Bob\",\"operands\":[\"age\",\"sweets\"]},\n    {\"type\":\"product_equal\",\"left\":\"Alice\",\"right\":\"Bob\",\"operands\":[\"age\",\"sweets\"]}\n  ],\n  \"goal\": {\"type\":\"product\",\"terms\":[\"Alice.age\",\"Bob.age\"]},\n  \"ambiguity\": \"NONE\"\n}"
+      }
+    ],
+    "rag_attempted": false,
+    "rag_used": false,
+    "verified_pass": true,
+    "verification_level": "SEMANTIC_EXACT",
+    "budget_error": null,
+    "budget_snapshot": {
+      "calls": 1,
+      "total_tokens": 744,
+      "elapsed_sec": 21.914793347000113,
+      "max_calls": 5,
+      "max_total_tokens": 7500,
+      "max_seconds": 480.0,
+      "remaining_calls": 4,
+      "remaining_tokens": 6756,
+      "remaining_seconds": 458.085201933
+    },
+    "solver_truncations": 0,
+    "critic_used": false,
+    "critic_parse_ok": null,
+    "answer_recovery_used": false,
+    "candidate_answers": [
+      50
+    ],
+    "candidate_parse_modes": [
+      "DETERMINISTIC_EXACT"
+    ],
+    "candidate_target_validity": [
+      true
+    ],
+    "candidate_target_reasons": [
+      "OK"
+    ],
+    "rejected_candidate_values": [],
+    "candidate_committed_early": false,
+    "answer_commit_survived_truncation": false,
+    "proof_obligations_required": [
+      "equation_model",
+      "integer_solution",
+      "answer_check"
+    ],
+    "proof_obligations_initial_missing": [],
+    "proof_obligations_final_missing": [],
+    "proof_micro_calls": 0,
+    "constraint_first_used": true,
+    "constraint_formalization_ok": true,
+    "semantic_compilation_ok": true,
+    "semantic_certificate_ok": true,
+    "semantic_repairs": 0,
+    "deterministic_semantic_solve": true,
+    "deterministic_family_solve": false,
+    "family_engine_name": "none",
+    "hard_retry_after_refutation": false
+  },
+  "status": "VERIFIED_PASS",
+  "input_fidelity": {
+    "solver_text_source": "semantic_math",
+    "layout_differs_from_solver": true,
+    "layout_problem": "Alice and Bob are each holding some integer number of sweets. Alice says to Bob:  “If\nwe each added the number of sweets we’re holding to our (positive integer) age, my answer would\nbe double yours. If we took the product, then my answer would be four times yours.” Bob replies:\n“Why don’t you give me five of your sweets because then both our sum and product would be equal.”\nWhat is the product of Alice and Bob’s ages?",
+    "solver_problem": "Alice and Bob are each holding some integer number of sweets. Alice says to Bob: “If we each added the number of sweets we’re holding to our (positive integer) age, my answer would be double yours. If we took the product, then my answer would be four times yours.” Bob replies: “Why don’t you give me five of your sweets because then both our sum and product would be equal.” What is the product of Alice and Bob’s ages?",
+    "raw_semantic_problem": "Alice and Bob are each holding some integer number of sweets. Alice says to Bob: “If we each added the number of sweets we’re holding to our (positive integer) age, my answer would be double yours. If we took the product, then my answer would be four times yours.” Bob replies: “Why don’t you give me five of your sweets because then both our sum and product would be equal.” What is the product of Alice and Bob’s ages?",
+    "math_recovery": {
+      "text": "Alice and Bob are each holding some integer number of sweets. Alice says to Bob: “If we each added the number of sweets we’re holding to our (positive integer) age, my answer would be double yours. If we took the product, then my answer would be four times yours.” Bob replies: “Why don’t you give me five of your sweets because then both our sum and product would be equal.” What is the product of Alice and Bob’s ages?",
+      "applied": false,
+      "rules": [],
+      "warnings": []
+    }
+  },
+  "input_metadata": {
+    "source": "/kaggle/input/competitions/ai-mathematical-olympiad-progress-prize-3/AIMO3_Reference_Problems.pdf",
+    "type": ".pdf",
+    "problem_number": 1,
+    "page_start": 3,
+    "page_end": 3,
+    "extraction_engine": "pymupdf_text",
+    "has_statement_images": false,
+    "solver_text_source": "semantic_math"
+  },
+  "aimo_answer_contract": {
+    "candidate": {
+      "valid": true,
+      "value": 50,
+      "reason": "OK"
+    },
+    "verified": {
+      "valid": true,
+      "value": 50,
+      "reason": "OK"
+    }
+  },
+  "benchmark": {
+    "expected_answer": 50,
+    "candidate_answer": 50,
+    "candidate_correct": true,
+    "verified_answer": 50,
+    "verified_correct": true,
+    "runtime_verified": true,
+    "verification_false_positive": false,
+    "candidate_correct_but_unverified": false,
+    "answer_was_not_exposed_to_model": true
+  }
+}

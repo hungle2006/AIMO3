@@ -1,0 +1,885 @@
+{
+  "problem_id": "pdf_problem_05",
+  "problem": "A tournament is held with 2^{20}runners each of which has a different running speed. In each race, two runners compete against each other with the faster runner always winning the race. The competition consists of 20 rounds with each runner starting with a score of 0. In each round, the runners are paired in such a way that in each pair, both runners have the same score at the beginning of the round. The winner of each race in the i^{th}round receives 2^{20−i}points and the loser gets no points. At the end of the tournament, we rank the competitors according to their scores. Let N denote the number of possible orderings of the competitors at the end of the tournament. Let k be the largest positive integer such that 10^{k}divides N. What is the remainder when k is divided by 10^{5}?",
+  "retrieval_problem": "A tournament is held with 2^{20}runners each of which has a different running speed. In each race, two runners compete against each other with the faster runner always winning the race. The competition consists of 20 rounds with each runner starting with a score of 0. In each round, the runners are paired in such a way that in each pair, both runners have the same score at the beginning of the round. The winner of each race in the i^{th}round receives 2^{20−i}points and the loser gets no points. At the end of the tournament, we rank the competitors according to their scores. Let N denote the number of possible orderings of the competitors at the end of the tournament. Let k be the largest positive integer such that 10^{k}divides N. What is the remainder when k is divided by 10^{5}?",
+  "timestamp_utc": "2026-09-21T04:22:33.629251+00:00",
+  "analysis": {
+    "domain": "combinatorics",
+    "keywords": [
+      "tournament",
+      "held",
+      "runners",
+      "each",
+      "has",
+      "different",
+      "running",
+      "speed",
+      "race",
+      "two",
+      "compete",
+      "against",
+      "other",
+      "faster",
+      "runner",
+      "always",
+      "binary weighted process",
+      "score history tree",
+      "powers of two unique encoding",
+      "counting valuation"
+    ],
+    "query": "tournament held runners each has different running speed race two compete against other faster runner always binary weighted process score history tree powers of two unique encoding counting valuation",
+    "structure_features": [
+      "combinatorics counting",
+      "divisibility valuation",
+      "large exact integer arithmetic",
+      "modular arithmetic exact remainder"
+    ],
+    "family": "combinatorial_process",
+    "family_hint": "Compress the process into states/recurrences/invariants. Distinct powers of two encode binary histories uniquely; when counting orderings or divisibility, derive the counting formula first and only then compute valuations.",
+    "proof_obligations": [
+      "state_invariant",
+      "counting_formula",
+      "valuation_or_final_count"
+    ],
+    "target_spec": {
+      "kind": "remainder",
+      "modulus": 100000,
+      "quantity_text": "k",
+      "min_value": 0,
+      "max_value": 99999,
+      "instruction": "Return ONLY the requested remainder of (k) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+    },
+    "target_instruction": "Return ONLY the requested remainder of (k) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity.",
+    "difficulty_raw": 0.5,
+    "difficulty_after_family_floor": 0.5
+  },
+  "target_spec": {
+    "kind": "remainder",
+    "modulus": 100000,
+    "quantity_text": "k",
+    "min_value": 0,
+    "max_value": 99999,
+    "instruction": "Return ONLY the requested remainder of (k) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+  },
+  "difficulty": 0.5,
+  "budget": {
+    "name": "medium",
+    "max_calls": 7,
+    "max_total_tokens": 12000,
+    "max_seconds": 650,
+    "use_proposer": false,
+    "initial_solver_attempts": 1,
+    "max_revisions": 0
+  },
+  "rag": {
+    "attempted": false,
+    "used": false,
+    "final": null,
+    "health": {
+      "mode": "seed_runtime_tfidf",
+      "documents": 60,
+      "word_features": 3248,
+      "char_features": 10479,
+      "healthy": true
+    }
+  },
+  "strategies": [],
+  "constraint_formalization": null,
+  "semantic_compilation": null,
+  "semantic_exact_solution": null,
+  "family_engine": {
+    "supported": true,
+    "ok": true,
+    "engine": "binary_weighted_tournament",
+    "raw_value": 121818,
+    "answer": 21818,
+    "proof": "The binary round weights force equal scores to mean identical prior win/loss histories. In round i there are 2^(i-1) equal-history groups, each with 2^(R-i+1) runners. For a group of 2n speed-ordered runners, valid winner sets are counted by Catalan(n). Thus N is the product of those Catalan factors. The engine evaluated v2 and v5 of that product exactly using Legendre factorial valuations, giving v2=524287, v5=121818; hence the largest power of 10 is k=121818.",
+    "reason": "exact Catalan valuation computation",
+    "certificate": {
+      "rounds": 20,
+      "runners": 1048576,
+      "count_formula": "N = product_i Catalan(2^(R-i))^(2^(i-1))",
+      "valuations": {
+        "2": 524287,
+        "5": 121818
+      },
+      "limiting_k": 121818,
+      "v5_round_terms": [
+        {
+          "round": 1,
+          "group_size_half": 524288,
+          "groups": 1,
+          "v5_catalan": 6
+        },
+        {
+          "round": 2,
+          "group_size_half": 262144,
+          "groups": 2,
+          "v5_catalan": 4
+        },
+        {
+          "round": 3,
+          "group_size_half": 131072,
+          "groups": 4,
+          "v5_catalan": 5
+        },
+        {
+          "round": 4,
+          "group_size_half": 65536,
+          "groups": 8,
+          "v5_catalan": 3
+        },
+        {
+          "round": 5,
+          "group_size_half": 32768,
+          "groups": 16,
+          "v5_catalan": 2
+        },
+        {
+          "round": 6,
+          "group_size_half": 16384,
+          "groups": 32,
+          "v5_catalan": 0
+        },
+        {
+          "round": 7,
+          "group_size_half": 8192,
+          "groups": 64,
+          "v5_catalan": 4
+        },
+        {
+          "round": 8,
+          "group_size_half": 4096,
+          "groups": 128,
+          "v5_catalan": 3
+        },
+        {
+          "round": 9,
+          "group_size_half": 2048,
+          "groups": 256,
+          "v5_catalan": 3
+        },
+        {
+          "round": 10,
+          "group_size_half": 1024,
+          "groups": 512,
+          "v5_catalan": 1
+        },
+        {
+          "round": 11,
+          "group_size_half": 512,
+          "groups": 1024,
+          "v5_catalan": 1
+        },
+        {
+          "round": 12,
+          "group_size_half": 256,
+          "groups": 2048,
+          "v5_catalan": 0
+        },
+        {
+          "round": 13,
+          "group_size_half": 128,
+          "groups": 4096,
+          "v5_catalan": 1
+        },
+        {
+          "round": 14,
+          "group_size_half": 64,
+          "groups": 8192,
+          "v5_catalan": 2
+        },
+        {
+          "round": 15,
+          "group_size_half": 32,
+          "groups": 16384,
+          "v5_catalan": 0
+        },
+        {
+          "round": 16,
+          "group_size_half": 16,
+          "groups": 32768,
+          "v5_catalan": 1
+        },
+        {
+          "round": 17,
+          "group_size_half": 8,
+          "groups": 65536,
+          "v5_catalan": 1
+        },
+        {
+          "round": 18,
+          "group_size_half": 4,
+          "groups": 131072,
+          "v5_catalan": 0
+        },
+        {
+          "round": 19,
+          "group_size_half": 2,
+          "groups": 262144,
+          "v5_catalan": 0
+        },
+        {
+          "round": 20,
+          "group_size_half": 1,
+          "groups": 524288,
+          "v5_catalan": 0
+        }
+      ]
+    }
+  },
+  "proof_completion": {
+    "required": [
+      "state_invariant",
+      "counting_formula",
+      "valuation_or_final_count"
+    ],
+    "base_candidate_id": null,
+    "initial_present": [],
+    "initial_missing": [],
+    "micro_results": [],
+    "refutations": [],
+    "repair_candidates": [],
+    "assembled_candidate_id": null,
+    "final_missing": []
+  },
+  "candidates": [
+    {
+      "id": "FAM1",
+      "stage": "deterministic_family_engine",
+      "interpretation": "Deterministic family engine: binary_weighted_tournament",
+      "key_reduction": "exact Catalan valuation computation",
+      "proof": "The binary round weights force equal scores to mean identical prior win/loss histories. In round i there are 2^(i-1) equal-history groups, each with 2^(R-i+1) runners. For a group of 2n speed-ordered runners, valid winner sets are counted by Catalan(n). Thus N is the product of those Catalan factors. The engine evaluated v2 and v5 of that product exactly using Legendre factorial valuations, giving v2=524287, v5=121818; hence the largest power of 10 is k=121818.",
+      "check": "Deterministic engine certificate completed and target normalization applied.",
+      "tool_requests": [],
+      "tool_reports": [],
+      "self_confidence": 0.995,
+      "candidate_answer": 21818,
+      "final_answer": "21818",
+      "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+      "protocol_complete": true,
+      "truncated": false,
+      "ambiguity_detected": false,
+      "ambiguity_text": "",
+      "raw_output": "FINAL_ANSWER: 21818",
+      "parse_status": "OK",
+      "target_spec": {
+        "kind": "remainder",
+        "modulus": 100000,
+        "quantity_text": "k",
+        "min_value": 0,
+        "max_value": 99999,
+        "instruction": "Return ONLY the requested remainder of (k) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+      },
+      "family_engine": {
+        "supported": true,
+        "ok": true,
+        "engine": "binary_weighted_tournament",
+        "raw_value": 121818,
+        "answer": 21818,
+        "proof": "The binary round weights force equal scores to mean identical prior win/loss histories. In round i there are 2^(i-1) equal-history groups, each with 2^(R-i+1) runners. For a group of 2n speed-ordered runners, valid winner sets are counted by Catalan(n). Thus N is the product of those Catalan factors. The engine evaluated v2 and v5 of that product exactly using Legendre factorial valuations, giving v2=524287, v5=121818; hence the largest power of 10 is k=121818.",
+        "reason": "exact Catalan valuation computation",
+        "certificate": {
+          "rounds": 20,
+          "runners": 1048576,
+          "count_formula": "N = product_i Catalan(2^(R-i))^(2^(i-1))",
+          "valuations": {
+            "2": 524287,
+            "5": 121818
+          },
+          "limiting_k": 121818,
+          "v5_round_terms": [
+            {
+              "round": 1,
+              "group_size_half": 524288,
+              "groups": 1,
+              "v5_catalan": 6
+            },
+            {
+              "round": 2,
+              "group_size_half": 262144,
+              "groups": 2,
+              "v5_catalan": 4
+            },
+            {
+              "round": 3,
+              "group_size_half": 131072,
+              "groups": 4,
+              "v5_catalan": 5
+            },
+            {
+              "round": 4,
+              "group_size_half": 65536,
+              "groups": 8,
+              "v5_catalan": 3
+            },
+            {
+              "round": 5,
+              "group_size_half": 32768,
+              "groups": 16,
+              "v5_catalan": 2
+            },
+            {
+              "round": 6,
+              "group_size_half": 16384,
+              "groups": 32,
+              "v5_catalan": 0
+            },
+            {
+              "round": 7,
+              "group_size_half": 8192,
+              "groups": 64,
+              "v5_catalan": 4
+            },
+            {
+              "round": 8,
+              "group_size_half": 4096,
+              "groups": 128,
+              "v5_catalan": 3
+            },
+            {
+              "round": 9,
+              "group_size_half": 2048,
+              "groups": 256,
+              "v5_catalan": 3
+            },
+            {
+              "round": 10,
+              "group_size_half": 1024,
+              "groups": 512,
+              "v5_catalan": 1
+            },
+            {
+              "round": 11,
+              "group_size_half": 512,
+              "groups": 1024,
+              "v5_catalan": 1
+            },
+            {
+              "round": 12,
+              "group_size_half": 256,
+              "groups": 2048,
+              "v5_catalan": 0
+            },
+            {
+              "round": 13,
+              "group_size_half": 128,
+              "groups": 4096,
+              "v5_catalan": 1
+            },
+            {
+              "round": 14,
+              "group_size_half": 64,
+              "groups": 8192,
+              "v5_catalan": 2
+            },
+            {
+              "round": 15,
+              "group_size_half": 32,
+              "groups": 16384,
+              "v5_catalan": 0
+            },
+            {
+              "round": 16,
+              "group_size_half": 16,
+              "groups": 32768,
+              "v5_catalan": 1
+            },
+            {
+              "round": 17,
+              "group_size_half": 8,
+              "groups": 65536,
+              "v5_catalan": 1
+            },
+            {
+              "round": 18,
+              "group_size_half": 4,
+              "groups": 131072,
+              "v5_catalan": 0
+            },
+            {
+              "round": 19,
+              "group_size_half": 2,
+              "groups": 262144,
+              "v5_catalan": 0
+            },
+            {
+              "round": 20,
+              "group_size_half": 1,
+              "groups": 524288,
+              "v5_catalan": 0
+            }
+          ]
+        }
+      },
+      "target_valid": true,
+      "target_check": {
+        "valid": true,
+        "reason": "OK",
+        "aimo_contract": {
+          "valid": true,
+          "value": 21818,
+          "reason": "OK"
+        },
+        "requested_output": {
+          "valid": true,
+          "value": 21818,
+          "reason": "OK"
+        }
+      },
+      "verification": {
+        "level": "FAMILY_EXACT",
+        "passed": true,
+        "reason": "exact Catalan valuation computation",
+        "checks": [
+          {
+            "type": "family_engine",
+            "passed": true,
+            "engine": "binary_weighted_tournament"
+          },
+          {
+            "type": "family_certificate",
+            "passed": true,
+            "certificate": {
+              "rounds": 20,
+              "runners": 1048576,
+              "count_formula": "N = product_i Catalan(2^(R-i))^(2^(i-1))",
+              "valuations": {
+                "2": 524287,
+                "5": 121818
+              },
+              "limiting_k": 121818,
+              "v5_round_terms": [
+                {
+                  "round": 1,
+                  "group_size_half": 524288,
+                  "groups": 1,
+                  "v5_catalan": 6
+                },
+                {
+                  "round": 2,
+                  "group_size_half": 262144,
+                  "groups": 2,
+                  "v5_catalan": 4
+                },
+                {
+                  "round": 3,
+                  "group_size_half": 131072,
+                  "groups": 4,
+                  "v5_catalan": 5
+                },
+                {
+                  "round": 4,
+                  "group_size_half": 65536,
+                  "groups": 8,
+                  "v5_catalan": 3
+                },
+                {
+                  "round": 5,
+                  "group_size_half": 32768,
+                  "groups": 16,
+                  "v5_catalan": 2
+                },
+                {
+                  "round": 6,
+                  "group_size_half": 16384,
+                  "groups": 32,
+                  "v5_catalan": 0
+                },
+                {
+                  "round": 7,
+                  "group_size_half": 8192,
+                  "groups": 64,
+                  "v5_catalan": 4
+                },
+                {
+                  "round": 8,
+                  "group_size_half": 4096,
+                  "groups": 128,
+                  "v5_catalan": 3
+                },
+                {
+                  "round": 9,
+                  "group_size_half": 2048,
+                  "groups": 256,
+                  "v5_catalan": 3
+                },
+                {
+                  "round": 10,
+                  "group_size_half": 1024,
+                  "groups": 512,
+                  "v5_catalan": 1
+                },
+                {
+                  "round": 11,
+                  "group_size_half": 512,
+                  "groups": 1024,
+                  "v5_catalan": 1
+                },
+                {
+                  "round": 12,
+                  "group_size_half": 256,
+                  "groups": 2048,
+                  "v5_catalan": 0
+                },
+                {
+                  "round": 13,
+                  "group_size_half": 128,
+                  "groups": 4096,
+                  "v5_catalan": 1
+                },
+                {
+                  "round": 14,
+                  "group_size_half": 64,
+                  "groups": 8192,
+                  "v5_catalan": 2
+                },
+                {
+                  "round": 15,
+                  "group_size_half": 32,
+                  "groups": 16384,
+                  "v5_catalan": 0
+                },
+                {
+                  "round": 16,
+                  "group_size_half": 16,
+                  "groups": 32768,
+                  "v5_catalan": 1
+                },
+                {
+                  "round": 17,
+                  "group_size_half": 8,
+                  "groups": 65536,
+                  "v5_catalan": 1
+                },
+                {
+                  "round": 18,
+                  "group_size_half": 4,
+                  "groups": 131072,
+                  "v5_catalan": 0
+                },
+                {
+                  "round": 19,
+                  "group_size_half": 2,
+                  "groups": 262144,
+                  "v5_catalan": 0
+                },
+                {
+                  "round": 20,
+                  "group_size_half": 1,
+                  "groups": 524288,
+                  "v5_catalan": 0
+                }
+              ]
+            }
+          },
+          {
+            "type": "target_contract",
+            "passed": true,
+            "target_spec": {
+              "kind": "remainder",
+              "modulus": 100000,
+              "quantity_text": "k",
+              "min_value": 0,
+              "max_value": 99999,
+              "instruction": "Return ONLY the requested remainder of (k) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tool_reports": {
+    "FAM1": []
+  },
+  "critic": {
+    "verdict": "NOT_NEEDED",
+    "confidence": null,
+    "parse_ok": null,
+    "summary": "FAMILY_EXACT verification passed via binary_weighted_tournament",
+    "error": "",
+    "revision_instruction": ""
+  },
+  "verification": {
+    "level": "FAMILY_EXACT",
+    "passed": true,
+    "reason": "exact Catalan valuation computation",
+    "checks": [
+      {
+        "type": "family_engine",
+        "passed": true,
+        "engine": "binary_weighted_tournament"
+      },
+      {
+        "type": "family_certificate",
+        "passed": true,
+        "certificate": {
+          "rounds": 20,
+          "runners": 1048576,
+          "count_formula": "N = product_i Catalan(2^(R-i))^(2^(i-1))",
+          "valuations": {
+            "2": 524287,
+            "5": 121818
+          },
+          "limiting_k": 121818,
+          "v5_round_terms": [
+            {
+              "round": 1,
+              "group_size_half": 524288,
+              "groups": 1,
+              "v5_catalan": 6
+            },
+            {
+              "round": 2,
+              "group_size_half": 262144,
+              "groups": 2,
+              "v5_catalan": 4
+            },
+            {
+              "round": 3,
+              "group_size_half": 131072,
+              "groups": 4,
+              "v5_catalan": 5
+            },
+            {
+              "round": 4,
+              "group_size_half": 65536,
+              "groups": 8,
+              "v5_catalan": 3
+            },
+            {
+              "round": 5,
+              "group_size_half": 32768,
+              "groups": 16,
+              "v5_catalan": 2
+            },
+            {
+              "round": 6,
+              "group_size_half": 16384,
+              "groups": 32,
+              "v5_catalan": 0
+            },
+            {
+              "round": 7,
+              "group_size_half": 8192,
+              "groups": 64,
+              "v5_catalan": 4
+            },
+            {
+              "round": 8,
+              "group_size_half": 4096,
+              "groups": 128,
+              "v5_catalan": 3
+            },
+            {
+              "round": 9,
+              "group_size_half": 2048,
+              "groups": 256,
+              "v5_catalan": 3
+            },
+            {
+              "round": 10,
+              "group_size_half": 1024,
+              "groups": 512,
+              "v5_catalan": 1
+            },
+            {
+              "round": 11,
+              "group_size_half": 512,
+              "groups": 1024,
+              "v5_catalan": 1
+            },
+            {
+              "round": 12,
+              "group_size_half": 256,
+              "groups": 2048,
+              "v5_catalan": 0
+            },
+            {
+              "round": 13,
+              "group_size_half": 128,
+              "groups": 4096,
+              "v5_catalan": 1
+            },
+            {
+              "round": 14,
+              "group_size_half": 64,
+              "groups": 8192,
+              "v5_catalan": 2
+            },
+            {
+              "round": 15,
+              "group_size_half": 32,
+              "groups": 16384,
+              "v5_catalan": 0
+            },
+            {
+              "round": 16,
+              "group_size_half": 16,
+              "groups": 32768,
+              "v5_catalan": 1
+            },
+            {
+              "round": 17,
+              "group_size_half": 8,
+              "groups": 65536,
+              "v5_catalan": 1
+            },
+            {
+              "round": 18,
+              "group_size_half": 4,
+              "groups": 131072,
+              "v5_catalan": 0
+            },
+            {
+              "round": 19,
+              "group_size_half": 2,
+              "groups": 262144,
+              "v5_catalan": 0
+            },
+            {
+              "round": 20,
+              "group_size_half": 1,
+              "groups": 524288,
+              "v5_catalan": 0
+            }
+          ]
+        }
+      },
+      {
+        "type": "target_contract",
+        "passed": true,
+        "target_spec": {
+          "kind": "remainder",
+          "modulus": 100000,
+          "quantity_text": "k",
+          "min_value": 0,
+          "max_value": 99999,
+          "instruction": "Return ONLY the requested remainder of (k) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+        }
+      }
+    ]
+  },
+  "candidate_answer": 21818,
+  "verified_answer": 21818,
+  "final_solution": {
+    "candidate_id": "FAM1",
+    "interpretation": "Deterministic family engine: binary_weighted_tournament",
+    "proof": "The binary round weights force equal scores to mean identical prior win/loss histories. In round i there are 2^(i-1) equal-history groups, each with 2^(R-i+1) runners. For a group of 2n speed-ordered runners, valid winner sets are counted by Catalan(n). Thus N is the product of those Catalan factors. The engine evaluated v2 and v5 of that product exactly using Legendre factorial valuations, giving v2=524287, v5=121818; hence the largest power of 10 is k=121818.",
+    "check": "Deterministic engine certificate completed and target normalization applied.",
+    "candidate_answer": 21818,
+    "verified_answer": 21818,
+    "final_answer": "21818",
+    "self_confidence": 0.995,
+    "protocol_complete": true,
+    "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+    "ambiguity_detected": false
+  },
+  "metrics": {
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "latency_sec": 0.0017159710000669293,
+    "calls": [],
+    "rag_attempted": false,
+    "rag_used": false,
+    "verified_pass": true,
+    "verification_level": "FAMILY_EXACT",
+    "budget_error": null,
+    "budget_snapshot": {
+      "calls": 0,
+      "total_tokens": 0,
+      "elapsed_sec": 0.0009038309999596095,
+      "max_calls": 7,
+      "max_total_tokens": 12000,
+      "max_seconds": 650.0,
+      "remaining_calls": 7,
+      "remaining_tokens": 12000,
+      "remaining_seconds": 649.999093725
+    },
+    "solver_truncations": 0,
+    "critic_used": false,
+    "critic_parse_ok": null,
+    "answer_recovery_used": false,
+    "candidate_answers": [
+      21818
+    ],
+    "candidate_parse_modes": [
+      "DETERMINISTIC_FAMILY_EXACT"
+    ],
+    "candidate_target_validity": [
+      true
+    ],
+    "candidate_target_reasons": [
+      "OK"
+    ],
+    "rejected_candidate_values": [],
+    "candidate_committed_early": false,
+    "answer_commit_survived_truncation": false,
+    "proof_obligations_required": [
+      "state_invariant",
+      "counting_formula",
+      "valuation_or_final_count"
+    ],
+    "proof_obligations_initial_missing": [],
+    "proof_obligations_final_missing": [],
+    "proof_micro_calls": 0,
+    "constraint_first_used": false,
+    "constraint_formalization_ok": false,
+    "semantic_compilation_ok": false,
+    "semantic_certificate_ok": false,
+    "semantic_repairs": 0,
+    "deterministic_semantic_solve": false,
+    "deterministic_family_solve": true,
+    "family_engine_name": "binary_weighted_tournament",
+    "hard_retry_after_refutation": false
+  },
+  "status": "VERIFIED_PASS",
+  "input_fidelity": {
+    "solver_text_source": "semantic_math",
+    "layout_differs_from_solver": true,
+    "layout_problem": "A tournament is held with 220 runners each of which has a different running speed. In\neach race, two runners compete against each other with the faster runner always winning the race.\nThe competition consists of 20 rounds with each runner starting with a score of 0. In each round,\nthe runners are paired in such a way that in each pair, both runners have the same score at the\nbeginning of the round. The winner of each race in the ith round receives 220−i points and the loser\ngets no points.\n\nAt the end of the tournament, we rank the competitors according to their scores. Let N denote the\nnumber of possible orderings of the competitors at the end of the tournament. Let k be the largest\npositive integer such that 10k divides N. What is the remainder when k is divided by 105?",
+    "solver_problem": "A tournament is held with 2^{20}runners each of which has a different running speed. In each race, two runners compete against each other with the faster runner always winning the race. The competition consists of 20 rounds with each runner starting with a score of 0. In each round, the runners are paired in such a way that in each pair, both runners have the same score at the beginning of the round. The winner of each race in the i^{th}round receives 2^{20−i}points and the loser gets no points. At the end of the tournament, we rank the competitors according to their scores. Let N denote the number of possible orderings of the competitors at the end of the tournament. Let k be the largest positive integer such that 10^{k}divides N. What is the remainder when k is divided by 10^{5}?",
+    "raw_semantic_problem": "A tournament is held with 2^{20}runners each of which has a different running speed. In each race, two runners compete against each other with the faster runner always winning the race. The competition consists of 20 rounds with each runner starting with a score of 0. In each round, the runners are paired in such a way that in each pair, both runners have the same score at the beginning of the round. The winner of each race in the i^{th}round receives 2^{20−i}points and the loser gets no points. At the end of the tournament, we rank the competitors according to their scores. Let N denote the number of possible orderings of the competitors at the end of the tournament. Let k be the largest positive integer such that 10^{k}divides N. What is the remainder when k is divided by 10^{5}?",
+    "math_recovery": {
+      "text": "A tournament is held with 2^{20}runners each of which has a different running speed. In each race, two runners compete against each other with the faster runner always winning the race. The competition consists of 20 rounds with each runner starting with a score of 0. In each round, the runners are paired in such a way that in each pair, both runners have the same score at the beginning of the round. The winner of each race in the i^{th}round receives 2^{20−i}points and the loser gets no points. At the end of the tournament, we rank the competitors according to their scores. Let N denote the number of possible orderings of the competitors at the end of the tournament. Let k be the largest positive integer such that 10^{k}divides N. What is the remainder when k is divided by 10^{5}?",
+      "applied": false,
+      "rules": [],
+      "warnings": []
+    }
+  },
+  "input_metadata": {
+    "source": "/kaggle/input/competitions/ai-mathematical-olympiad-progress-prize-3/AIMO3_Reference_Problems.pdf",
+    "type": ".pdf",
+    "problem_number": 5,
+    "page_start": 10,
+    "page_end": 11,
+    "extraction_engine": "pymupdf_text",
+    "has_statement_images": false,
+    "solver_text_source": "semantic_math"
+  },
+  "aimo_answer_contract": {
+    "candidate": {
+      "valid": true,
+      "value": 21818,
+      "reason": "OK"
+    },
+    "verified": {
+      "valid": true,
+      "value": 21818,
+      "reason": "OK"
+    }
+  },
+  "benchmark": {
+    "expected_answer": 21818,
+    "candidate_answer": 21818,
+    "candidate_correct": true,
+    "verified_answer": 21818,
+    "verified_correct": true,
+    "runtime_verified": true,
+    "verification_false_positive": false,
+    "candidate_correct_but_unverified": false,
+    "answer_was_not_exposed_to_model": true
+  }
+}

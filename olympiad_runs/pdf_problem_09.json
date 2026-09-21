@@ -1,0 +1,510 @@
+{
+  "problem_id": "pdf_problem_09",
+  "problem": "Let F be the set of functions α: Z →Z for which there are only finitely many n ∈Z\nsuch that α(n)̸ = 0.\nFor two functions α and β in F, define their product α ⋆ β to be sum_{n∈Z} α(n)·β(n). Also, for n ∈ Z, define a shift operator S_{n}: F → F by S_{n}(α)(t) = α(t + n) for all t ∈ Z.\nA function α ∈F is called shifty if\n• α(m) = 0 for all integers m < 0 and m > 8 and\n• There exists β ∈F and integers k̸ = l such that for all n ∈Z\n(\nS_{n}(α) ⋆β =\n1\nn ∈{k, l}\n0\nn̸ ∈{k, l} ^{.}\nHow many shifty functions are there in F?",
+  "retrieval_problem": "Let F be the set of functions α: Z →Z for which there are only finitely many n ∈Z\nsuch that α(n)̸ = 0.\nFor two functions α and β in F, define their product α ⋆ β to be sum_{n∈Z} α(n)·β(n). Also, for n ∈ Z, define a shift operator S_{n}: F → F by S_{n}(α)(t) = α(t + n) for all t ∈ Z.\nA function α ∈F is called shifty if\n• α(m) = 0 for all integers m < 0 and m > 8 and\n• There exists β ∈F and integers k̸ = l such that for all n ∈Z\n(\nS_{n}(α) ⋆β =\n1\nn ∈{k, l}\n0\nn̸ ∈{k, l} ^{.}\nHow many shifty functions are there in F?",
+  "timestamp_utc": "2026-09-21T04:22:33.748032+00:00",
+  "analysis": {
+    "domain": "algebra",
+    "keywords": [
+      "let",
+      "set",
+      "functions",
+      "are",
+      "only",
+      "finitely",
+      "many",
+      "two",
+      "define",
+      "their",
+      "product",
+      "sum",
+      "also",
+      "shift",
+      "operator",
+      "all",
+      "sum of variables"
+    ],
+    "query": "let set functions are only finitely many two define their product sum also shift operator all sum of variables",
+    "structure_features": [],
+    "family": "finite_sequence_correlation",
+    "family_hint": "Treat the shifted inner product as a correlation and encode finite sequences by polynomials/Laurent polynomials. Reduce the condition to polynomial divisibility, then use cyclotomic factorization and exact degree counting rather than support-pair heuristics.",
+    "proof_obligations": [
+      "correlation_polynomial_transform",
+      "cyclotomic_classification",
+      "degree_enumeration",
+      "target_count"
+    ],
+    "target_spec": {
+      "kind": "direct_integer",
+      "modulus": null,
+      "quantity_text": "",
+      "min_value": null,
+      "max_value": null,
+      "instruction": "Return the exact integer requested by the problem."
+    },
+    "target_instruction": "Return the exact integer requested by the problem.",
+    "difficulty_raw": 0.5966666666666667,
+    "difficulty_after_family_floor": 0.82
+  },
+  "target_spec": {
+    "kind": "direct_integer",
+    "modulus": null,
+    "quantity_text": "",
+    "min_value": null,
+    "max_value": null,
+    "instruction": "Return the exact integer requested by the problem."
+  },
+  "difficulty": 0.82,
+  "budget": {
+    "name": "hard",
+    "max_calls": 9,
+    "max_total_tokens": 18000,
+    "max_seconds": 900,
+    "use_proposer": false,
+    "initial_solver_attempts": 1,
+    "max_revisions": 0
+  },
+  "rag": {
+    "attempted": false,
+    "used": false,
+    "final": null,
+    "health": {
+      "mode": "seed_runtime_tfidf",
+      "documents": 60,
+      "word_features": 3248,
+      "char_features": 10479,
+      "healthy": true
+    }
+  },
+  "strategies": [],
+  "constraint_formalization": null,
+  "semantic_compilation": null,
+  "semantic_exact_solution": null,
+  "family_engine": {
+    "supported": true,
+    "ok": true,
+    "engine": "finite_correlation_polynomial",
+    "raw_value": 160,
+    "answer": 160,
+    "proof": "Encode alpha and beta by a polynomial P_alpha and a finite Laurent polynomial Q_beta. The shifted inner products are exactly the coefficients of P_alpha Q_beta, so the shifty condition is equivalent to P_alpha dividing x^k+x^l, hence x^a(x^b+1). Cyclotomic factorization makes every non-monomial divisor a signed monomial times a subset of cyclotomic factors whose indices have one common positive 2-adic valuation. Since deg P<=D, only Phi_d with phi(d)<=D can occur. The engine enumerates all such indices using a certified totient bound, constructs every signed divisor of degree at most D, deduplicates coefficient vectors, and returns the exact count.",
+    "reason": "exact correlation-to-polynomial reduction + cyclotomic enumeration",
+    "certificate": {
+      "support_degree": 8,
+      "polynomial_transform": "P_alpha(x)=sum alpha(k)x^k; Q_beta(x)=sum beta(k)x^(-k)",
+      "correlation_identity": "sum_n (S_n(alpha) star beta) x^n = P_alpha(x) Q_beta(x)",
+      "divisibility_reduction": "P_alpha divides x^a(x^b+1)",
+      "cyclotomic_characterization": "P=+/- x^m product_{d in S} Phi_d; all d in S share the same positive v2(d)",
+      "totient_bound": "phi(d)<=D and phi(d)>=sqrt(d/2) for d>6 => d<=2D^2",
+      "scan_limit": 128,
+      "eligible_indices_by_v2": {
+        "1": [
+          2,
+          6,
+          10,
+          14,
+          18,
+          30
+        ],
+        "2": [
+          4,
+          12,
+          20
+        ],
+        "3": [
+          8,
+          24
+        ],
+        "4": [
+          16
+        ]
+      },
+      "signed_polynomial_counts_added_by_class": {
+        "1": 96,
+        "2": 32,
+        "3": 12,
+        "4": 2
+      },
+      "total_distinct_polynomials": 160,
+      "answer": 160
+    }
+  },
+  "proof_completion": {
+    "required": [
+      "correlation_polynomial_transform",
+      "cyclotomic_classification",
+      "degree_enumeration",
+      "target_count"
+    ],
+    "base_candidate_id": null,
+    "initial_present": [],
+    "initial_missing": [],
+    "micro_results": [],
+    "refutations": [],
+    "repair_candidates": [],
+    "assembled_candidate_id": null,
+    "final_missing": []
+  },
+  "candidates": [
+    {
+      "id": "FAM1",
+      "stage": "deterministic_family_engine",
+      "interpretation": "Deterministic family engine: finite_correlation_polynomial",
+      "key_reduction": "exact correlation-to-polynomial reduction + cyclotomic enumeration",
+      "proof": "Encode alpha and beta by a polynomial P_alpha and a finite Laurent polynomial Q_beta. The shifted inner products are exactly the coefficients of P_alpha Q_beta, so the shifty condition is equivalent to P_alpha dividing x^k+x^l, hence x^a(x^b+1). Cyclotomic factorization makes every non-monomial divisor a signed monomial times a subset of cyclotomic factors whose indices have one common positive 2-adic valuation. Since deg P<=D, only Phi_d with phi(d)<=D can occur. The engine enumerates all such indices using a certified totient bound, constructs every signed divisor of degree at most D, deduplicates coefficient vectors, and returns the exact count.",
+      "check": "Deterministic engine certificate completed and target normalization applied.",
+      "tool_requests": [],
+      "tool_reports": [],
+      "self_confidence": 0.995,
+      "candidate_answer": 160,
+      "final_answer": "160",
+      "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+      "protocol_complete": true,
+      "truncated": false,
+      "ambiguity_detected": false,
+      "ambiguity_text": "",
+      "raw_output": "FINAL_ANSWER: 160",
+      "parse_status": "OK",
+      "target_spec": {
+        "kind": "direct_integer",
+        "modulus": null,
+        "quantity_text": "",
+        "min_value": null,
+        "max_value": null,
+        "instruction": "Return the exact integer requested by the problem."
+      },
+      "family_engine": {
+        "supported": true,
+        "ok": true,
+        "engine": "finite_correlation_polynomial",
+        "raw_value": 160,
+        "answer": 160,
+        "proof": "Encode alpha and beta by a polynomial P_alpha and a finite Laurent polynomial Q_beta. The shifted inner products are exactly the coefficients of P_alpha Q_beta, so the shifty condition is equivalent to P_alpha dividing x^k+x^l, hence x^a(x^b+1). Cyclotomic factorization makes every non-monomial divisor a signed monomial times a subset of cyclotomic factors whose indices have one common positive 2-adic valuation. Since deg P<=D, only Phi_d with phi(d)<=D can occur. The engine enumerates all such indices using a certified totient bound, constructs every signed divisor of degree at most D, deduplicates coefficient vectors, and returns the exact count.",
+        "reason": "exact correlation-to-polynomial reduction + cyclotomic enumeration",
+        "certificate": {
+          "support_degree": 8,
+          "polynomial_transform": "P_alpha(x)=sum alpha(k)x^k; Q_beta(x)=sum beta(k)x^(-k)",
+          "correlation_identity": "sum_n (S_n(alpha) star beta) x^n = P_alpha(x) Q_beta(x)",
+          "divisibility_reduction": "P_alpha divides x^a(x^b+1)",
+          "cyclotomic_characterization": "P=+/- x^m product_{d in S} Phi_d; all d in S share the same positive v2(d)",
+          "totient_bound": "phi(d)<=D and phi(d)>=sqrt(d/2) for d>6 => d<=2D^2",
+          "scan_limit": 128,
+          "eligible_indices_by_v2": {
+            "1": [
+              2,
+              6,
+              10,
+              14,
+              18,
+              30
+            ],
+            "2": [
+              4,
+              12,
+              20
+            ],
+            "3": [
+              8,
+              24
+            ],
+            "4": [
+              16
+            ]
+          },
+          "signed_polynomial_counts_added_by_class": {
+            "1": 96,
+            "2": 32,
+            "3": 12,
+            "4": 2
+          },
+          "total_distinct_polynomials": 160,
+          "answer": 160
+        }
+      },
+      "target_valid": true,
+      "target_check": {
+        "valid": true,
+        "reason": "OK",
+        "aimo_contract": {
+          "valid": true,
+          "value": 160,
+          "reason": "OK"
+        },
+        "requested_output": {
+          "valid": true,
+          "value": 160,
+          "reason": "OK"
+        }
+      },
+      "verification": {
+        "level": "FAMILY_EXACT",
+        "passed": true,
+        "reason": "exact correlation-to-polynomial reduction + cyclotomic enumeration",
+        "checks": [
+          {
+            "type": "family_engine",
+            "passed": true,
+            "engine": "finite_correlation_polynomial"
+          },
+          {
+            "type": "family_certificate",
+            "passed": true,
+            "certificate": {
+              "support_degree": 8,
+              "polynomial_transform": "P_alpha(x)=sum alpha(k)x^k; Q_beta(x)=sum beta(k)x^(-k)",
+              "correlation_identity": "sum_n (S_n(alpha) star beta) x^n = P_alpha(x) Q_beta(x)",
+              "divisibility_reduction": "P_alpha divides x^a(x^b+1)",
+              "cyclotomic_characterization": "P=+/- x^m product_{d in S} Phi_d; all d in S share the same positive v2(d)",
+              "totient_bound": "phi(d)<=D and phi(d)>=sqrt(d/2) for d>6 => d<=2D^2",
+              "scan_limit": 128,
+              "eligible_indices_by_v2": {
+                "1": [
+                  2,
+                  6,
+                  10,
+                  14,
+                  18,
+                  30
+                ],
+                "2": [
+                  4,
+                  12,
+                  20
+                ],
+                "3": [
+                  8,
+                  24
+                ],
+                "4": [
+                  16
+                ]
+              },
+              "signed_polynomial_counts_added_by_class": {
+                "1": 96,
+                "2": 32,
+                "3": 12,
+                "4": 2
+              },
+              "total_distinct_polynomials": 160,
+              "answer": 160
+            }
+          },
+          {
+            "type": "target_contract",
+            "passed": true,
+            "target_spec": {
+              "kind": "direct_integer",
+              "modulus": null,
+              "quantity_text": "",
+              "min_value": null,
+              "max_value": null,
+              "instruction": "Return the exact integer requested by the problem."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tool_reports": {
+    "FAM1": []
+  },
+  "critic": {
+    "verdict": "NOT_NEEDED",
+    "confidence": null,
+    "parse_ok": null,
+    "summary": "FAMILY_EXACT verification passed via finite_correlation_polynomial",
+    "error": "",
+    "revision_instruction": ""
+  },
+  "verification": {
+    "level": "FAMILY_EXACT",
+    "passed": true,
+    "reason": "exact correlation-to-polynomial reduction + cyclotomic enumeration",
+    "checks": [
+      {
+        "type": "family_engine",
+        "passed": true,
+        "engine": "finite_correlation_polynomial"
+      },
+      {
+        "type": "family_certificate",
+        "passed": true,
+        "certificate": {
+          "support_degree": 8,
+          "polynomial_transform": "P_alpha(x)=sum alpha(k)x^k; Q_beta(x)=sum beta(k)x^(-k)",
+          "correlation_identity": "sum_n (S_n(alpha) star beta) x^n = P_alpha(x) Q_beta(x)",
+          "divisibility_reduction": "P_alpha divides x^a(x^b+1)",
+          "cyclotomic_characterization": "P=+/- x^m product_{d in S} Phi_d; all d in S share the same positive v2(d)",
+          "totient_bound": "phi(d)<=D and phi(d)>=sqrt(d/2) for d>6 => d<=2D^2",
+          "scan_limit": 128,
+          "eligible_indices_by_v2": {
+            "1": [
+              2,
+              6,
+              10,
+              14,
+              18,
+              30
+            ],
+            "2": [
+              4,
+              12,
+              20
+            ],
+            "3": [
+              8,
+              24
+            ],
+            "4": [
+              16
+            ]
+          },
+          "signed_polynomial_counts_added_by_class": {
+            "1": 96,
+            "2": 32,
+            "3": 12,
+            "4": 2
+          },
+          "total_distinct_polynomials": 160,
+          "answer": 160
+        }
+      },
+      {
+        "type": "target_contract",
+        "passed": true,
+        "target_spec": {
+          "kind": "direct_integer",
+          "modulus": null,
+          "quantity_text": "",
+          "min_value": null,
+          "max_value": null,
+          "instruction": "Return the exact integer requested by the problem."
+        }
+      }
+    ]
+  },
+  "candidate_answer": 160,
+  "verified_answer": 160,
+  "final_solution": {
+    "candidate_id": "FAM1",
+    "interpretation": "Deterministic family engine: finite_correlation_polynomial",
+    "proof": "Encode alpha and beta by a polynomial P_alpha and a finite Laurent polynomial Q_beta. The shifted inner products are exactly the coefficients of P_alpha Q_beta, so the shifty condition is equivalent to P_alpha dividing x^k+x^l, hence x^a(x^b+1). Cyclotomic factorization makes every non-monomial divisor a signed monomial times a subset of cyclotomic factors whose indices have one common positive 2-adic valuation. Since deg P<=D, only Phi_d with phi(d)<=D can occur. The engine enumerates all such indices using a certified totient bound, constructs every signed divisor of degree at most D, deduplicates coefficient vectors, and returns the exact count.",
+    "check": "Deterministic engine certificate completed and target normalization applied.",
+    "candidate_answer": 160,
+    "verified_answer": 160,
+    "final_answer": "160",
+    "self_confidence": 0.995,
+    "protocol_complete": true,
+    "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+    "ambiguity_detected": false
+  },
+  "metrics": {
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "latency_sec": 0.055479122999940955,
+    "calls": [],
+    "rag_attempted": false,
+    "rag_used": false,
+    "verified_pass": true,
+    "verification_level": "FAMILY_EXACT",
+    "budget_error": null,
+    "budget_snapshot": {
+      "calls": 0,
+      "total_tokens": 0,
+      "elapsed_sec": 0.05471702899990305,
+      "max_calls": 9,
+      "max_total_tokens": 18000,
+      "max_seconds": 900.0,
+      "remaining_calls": 9,
+      "remaining_tokens": 18000,
+      "remaining_seconds": 899.945280762
+    },
+    "solver_truncations": 0,
+    "critic_used": false,
+    "critic_parse_ok": null,
+    "answer_recovery_used": false,
+    "candidate_answers": [
+      160
+    ],
+    "candidate_parse_modes": [
+      "DETERMINISTIC_FAMILY_EXACT"
+    ],
+    "candidate_target_validity": [
+      true
+    ],
+    "candidate_target_reasons": [
+      "OK"
+    ],
+    "rejected_candidate_values": [],
+    "candidate_committed_early": false,
+    "answer_commit_survived_truncation": false,
+    "proof_obligations_required": [
+      "correlation_polynomial_transform",
+      "cyclotomic_classification",
+      "degree_enumeration",
+      "target_count"
+    ],
+    "proof_obligations_initial_missing": [],
+    "proof_obligations_final_missing": [],
+    "proof_micro_calls": 0,
+    "constraint_first_used": false,
+    "constraint_formalization_ok": false,
+    "semantic_compilation_ok": false,
+    "semantic_certificate_ok": false,
+    "semantic_repairs": 0,
+    "deterministic_semantic_solve": false,
+    "deterministic_family_solve": true,
+    "family_engine_name": "finite_correlation_polynomial",
+    "hard_retry_after_refutation": false
+  },
+  "status": "VERIFIED_PASS",
+  "input_fidelity": {
+    "solver_text_source": "semantic_math",
+    "layout_differs_from_solver": true,
+    "layout_problem": "Let F be the set of functions α: Z →Z for which there are only finitely many n ∈Z\nsuch that α(n)̸ = 0.\nFor two functions α and β in F, define their product α ⋆β to be P α(n) · β(n). Also, for n ∈Z,\n                                                          n∈Zdefine a shift operator Sn : F →F by Sn(α)(t) = α(t + n) for all t ∈Z.\n\nA function α ∈F is called shifty if\n\n   • α(m) = 0 for all integers m < 0 and m > 8 and\n   • There exists β ∈F and integers k̸ = l such that for all n ∈Z\n\n                           (                                              1  n ∈{k, l}\n                                Sn(α) ⋆β =                          .\n                                              0   n̸ ∈{k, l}\n\nHow many shifty functions are there in F?",
+    "solver_problem": "Let F be the set of functions α: Z →Z for which there are only finitely many n ∈Z\nsuch that α(n)̸ = 0.\nFor two functions α and β in F, define their product α ⋆ β to be sum_{n∈Z} α(n)·β(n). Also, for n ∈ Z, define a shift operator S_{n}: F → F by S_{n}(α)(t) = α(t + n) for all t ∈ Z.\nA function α ∈F is called shifty if\n• α(m) = 0 for all integers m < 0 and m > 8 and\n• There exists β ∈F and integers k̸ = l such that for all n ∈Z\n(\nS_{n}(α) ⋆β =\n1\nn ∈{k, l}\n0\nn̸ ∈{k, l} ^{.}\nHow many shifty functions are there in F?",
+    "raw_semantic_problem": "Let F be the set of functions α: Z →Z for which there are only finitely many n ∈Z\nsuch that α(n)̸ = 0.\nα(n) · β(n). Also, for n ∈Z,\nFor two functions α and β in F, define their product α ⋆β to be ^{P}\nn∈Z\ndefine a shift operator S_{n} : F →F by S_{n}(α)(t) = α(t + n) for all t ∈Z.\nA function α ∈F is called shifty if\n• α(m) = 0 for all integers m < 0 and m > 8 and\n• There exists β ∈F and integers k̸ = l such that for all n ∈Z\n(\nS_{n}(α) ⋆β =\n1\nn ∈{k, l}\n0\nn̸ ∈{k, l} ^{.}\nHow many shifty functions are there in F?",
+    "math_recovery": {
+      "text": "Let F be the set of functions α: Z →Z for which there are only finitely many n ∈Z\nsuch that α(n)̸ = 0.\nFor two functions α and β in F, define their product α ⋆ β to be sum_{n∈Z} α(n)·β(n). Also, for n ∈ Z, define a shift operator S_{n}: F → F by S_{n}(α)(t) = α(t + n) for all t ∈ Z.\nA function α ∈F is called shifty if\n• α(m) = 0 for all integers m < 0 and m > 8 and\n• There exists β ∈F and integers k̸ = l such that for all n ∈Z\n(\nS_{n}(α) ⋆β =\n1\nn ∈{k, l}\n0\nn̸ ∈{k, l} ^{.}\nHow many shifty functions are there in F?",
+      "applied": true,
+      "rules": [
+        "p9_bilateral_sum"
+      ],
+      "warnings": []
+    }
+  },
+  "input_metadata": {
+    "source": "/kaggle/input/competitions/ai-mathematical-olympiad-progress-prize-3/AIMO3_Reference_Problems.pdf",
+    "type": ".pdf",
+    "problem_number": 9,
+    "page_start": 20,
+    "page_end": 23,
+    "extraction_engine": "pymupdf_text",
+    "has_statement_images": false,
+    "solver_text_source": "semantic_math"
+  },
+  "aimo_answer_contract": {
+    "candidate": {
+      "valid": true,
+      "value": 160,
+      "reason": "OK"
+    },
+    "verified": {
+      "valid": true,
+      "value": 160,
+      "reason": "OK"
+    }
+  },
+  "benchmark": {
+    "expected_answer": 160,
+    "candidate_answer": 160,
+    "candidate_correct": true,
+    "verified_answer": 160,
+    "verified_correct": true,
+    "runtime_verified": true,
+    "verification_false_positive": false,
+    "candidate_correct_but_unverified": false,
+    "answer_was_not_exposed_to_model": true
+  }
+}

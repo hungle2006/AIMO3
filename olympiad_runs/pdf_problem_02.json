@@ -1,0 +1,627 @@
+{
+  "problem_id": "pdf_problem_02",
+  "problem": "A 500 × 500 square is divided into k rectangles, each having integer side lengths. Given that no two of these rectangles have the same perimeter, the largest possible value of k is K. What\nis the remainder when K is divided by 10^{5}?",
+  "retrieval_problem": "A 500 × 500 square is divided into k rectangles, each having integer side lengths. Given that no two of these rectangles have the same perimeter, the largest possible value of k is K. What\nis the remainder when K is divided by 10^{5}?",
+  "timestamp_utc": "2026-09-21T04:22:33.350887+00:00",
+  "analysis": {
+    "domain": "combinatorics",
+    "keywords": [
+      "square",
+      "divided",
+      "into",
+      "rectangles",
+      "each",
+      "having",
+      "integer",
+      "side",
+      "lengths",
+      "two",
+      "these",
+      "have",
+      "same",
+      "perimeter",
+      "largest",
+      "possible",
+      "extremal tiling",
+      "upper bound and explicit construction",
+      "integer side cap piecewise area bound"
+    ],
+    "query": "square divided into rectangles each having integer side lengths two these have same perimeter largest possible extremal tiling upper bound and explicit construction integer side cap piecewise area bound",
+    "structure_features": [
+      "extremal optimization",
+      "large exact integer arithmetic",
+      "modular arithmetic exact remainder"
+    ],
+    "family": "extremal_partition",
+    "family_hint": "Separate the extremal proof into (i) a rigorous upper bound and (ii) an explicit realizable construction. Do not infer a tiling merely because independently chosen rectangles satisfy an area bound.",
+    "proof_obligations": [
+      "upper_bound",
+      "construction",
+      "arithmetic_check"
+    ],
+    "target_spec": {
+      "kind": "remainder",
+      "modulus": 100000,
+      "quantity_text": "K",
+      "min_value": 0,
+      "max_value": 99999,
+      "instruction": "Return ONLY the requested remainder of (K) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+    },
+    "target_instruction": "Return ONLY the requested remainder of (K) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity.",
+    "difficulty_raw": 0.36600000000000005,
+    "difficulty_after_family_floor": 0.46
+  },
+  "target_spec": {
+    "kind": "remainder",
+    "modulus": 100000,
+    "quantity_text": "K",
+    "min_value": 0,
+    "max_value": 99999,
+    "instruction": "Return ONLY the requested remainder of (K) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+  },
+  "difficulty": 0.46,
+  "budget": {
+    "name": "medium",
+    "max_calls": 7,
+    "max_total_tokens": 12000,
+    "max_seconds": 650,
+    "use_proposer": false,
+    "initial_solver_attempts": 1,
+    "max_revisions": 0
+  },
+  "rag": {
+    "attempted": false,
+    "used": false,
+    "final": null,
+    "health": {
+      "mode": "seed_runtime_tfidf",
+      "documents": 60,
+      "word_features": 3248,
+      "char_features": 10479,
+      "healthy": true
+    }
+  },
+  "strategies": [],
+  "constraint_formalization": null,
+  "semantic_compilation": null,
+  "semantic_exact_solution": null,
+  "family_engine": {
+    "supported": true,
+    "ok": true,
+    "engine": "extremal_rectangle_partition",
+    "raw_value": 520,
+    "answer": 520,
+    "proof": "For the 500x500 integer rectangle board, a deterministic area-bound engine computed that 521 distinct semiperimeters would force total minimum area above 250000, hence K <= 520. A parameter-searched two-zone strip tiling was then generated and mechanically checked to cover the board with exactly 520 non-overlapping integer rectangles having pairwise distinct perimeters. Therefore K=520.",
+    "reason": "exact upper/lower bounds meet",
+    "certificate": {
+      "board": [
+        500,
+        500
+      ],
+      "upper_bound": 520,
+      "construction_count": 520,
+      "construction": {
+        "template": "two_zone_strip",
+        "orientation_swapped": false,
+        "paired_unit_rows": 249,
+        "remaining_height": 250,
+        "top_consecutive_start": 3,
+        "top_consecutive_count": 20,
+        "verified": {
+          "ok": true,
+          "count": 520,
+          "area": 250000,
+          "min_perimeter": 4,
+          "max_perimeter": 1042,
+          "perimeter_count": 520
+        }
+      },
+      "construction_verified": {
+        "ok": true,
+        "count": 520,
+        "area": 250000,
+        "min_perimeter": 4,
+        "max_perimeter": 1042,
+        "perimeter_count": 520
+      },
+      "next_min_area_sum": 251250,
+      "board_area": 250000,
+      "smallest_area_semiperimeters_sample": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          9
+        ]
+      ]
+    }
+  },
+  "proof_completion": {
+    "required": [
+      "upper_bound",
+      "construction",
+      "arithmetic_check"
+    ],
+    "base_candidate_id": null,
+    "initial_present": [],
+    "initial_missing": [],
+    "micro_results": [],
+    "refutations": [],
+    "repair_candidates": [],
+    "assembled_candidate_id": null,
+    "final_missing": []
+  },
+  "candidates": [
+    {
+      "id": "FAM1",
+      "stage": "deterministic_family_engine",
+      "interpretation": "Deterministic family engine: extremal_rectangle_partition",
+      "key_reduction": "exact upper/lower bounds meet",
+      "proof": "For the 500x500 integer rectangle board, a deterministic area-bound engine computed that 521 distinct semiperimeters would force total minimum area above 250000, hence K <= 520. A parameter-searched two-zone strip tiling was then generated and mechanically checked to cover the board with exactly 520 non-overlapping integer rectangles having pairwise distinct perimeters. Therefore K=520.",
+      "check": "Deterministic engine certificate completed and target normalization applied.",
+      "tool_requests": [],
+      "tool_reports": [],
+      "self_confidence": 0.995,
+      "candidate_answer": 520,
+      "final_answer": "520",
+      "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+      "protocol_complete": true,
+      "truncated": false,
+      "ambiguity_detected": false,
+      "ambiguity_text": "",
+      "raw_output": "FINAL_ANSWER: 520",
+      "parse_status": "OK",
+      "target_spec": {
+        "kind": "remainder",
+        "modulus": 100000,
+        "quantity_text": "K",
+        "min_value": 0,
+        "max_value": 99999,
+        "instruction": "Return ONLY the requested remainder of (K) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+      },
+      "family_engine": {
+        "supported": true,
+        "ok": true,
+        "engine": "extremal_rectangle_partition",
+        "raw_value": 520,
+        "answer": 520,
+        "proof": "For the 500x500 integer rectangle board, a deterministic area-bound engine computed that 521 distinct semiperimeters would force total minimum area above 250000, hence K <= 520. A parameter-searched two-zone strip tiling was then generated and mechanically checked to cover the board with exactly 520 non-overlapping integer rectangles having pairwise distinct perimeters. Therefore K=520.",
+        "reason": "exact upper/lower bounds meet",
+        "certificate": {
+          "board": [
+            500,
+            500
+          ],
+          "upper_bound": 520,
+          "construction_count": 520,
+          "construction": {
+            "template": "two_zone_strip",
+            "orientation_swapped": false,
+            "paired_unit_rows": 249,
+            "remaining_height": 250,
+            "top_consecutive_start": 3,
+            "top_consecutive_count": 20,
+            "verified": {
+              "ok": true,
+              "count": 520,
+              "area": 250000,
+              "min_perimeter": 4,
+              "max_perimeter": 1042,
+              "perimeter_count": 520
+            }
+          },
+          "construction_verified": {
+            "ok": true,
+            "count": 520,
+            "area": 250000,
+            "min_perimeter": 4,
+            "max_perimeter": 1042,
+            "perimeter_count": 520
+          },
+          "next_min_area_sum": 251250,
+          "board_area": 250000,
+          "smallest_area_semiperimeters_sample": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        }
+      },
+      "target_valid": true,
+      "target_check": {
+        "valid": true,
+        "reason": "OK",
+        "aimo_contract": {
+          "valid": true,
+          "value": 520,
+          "reason": "OK"
+        },
+        "requested_output": {
+          "valid": true,
+          "value": 520,
+          "reason": "OK"
+        }
+      },
+      "verification": {
+        "level": "FAMILY_EXACT",
+        "passed": true,
+        "reason": "exact upper/lower bounds meet",
+        "checks": [
+          {
+            "type": "family_engine",
+            "passed": true,
+            "engine": "extremal_rectangle_partition"
+          },
+          {
+            "type": "family_certificate",
+            "passed": true,
+            "certificate": {
+              "board": [
+                500,
+                500
+              ],
+              "upper_bound": 520,
+              "construction_count": 520,
+              "construction": {
+                "template": "two_zone_strip",
+                "orientation_swapped": false,
+                "paired_unit_rows": 249,
+                "remaining_height": 250,
+                "top_consecutive_start": 3,
+                "top_consecutive_count": 20,
+                "verified": {
+                  "ok": true,
+                  "count": 520,
+                  "area": 250000,
+                  "min_perimeter": 4,
+                  "max_perimeter": 1042,
+                  "perimeter_count": 520
+                }
+              },
+              "construction_verified": {
+                "ok": true,
+                "count": 520,
+                "area": 250000,
+                "min_perimeter": 4,
+                "max_perimeter": 1042,
+                "perimeter_count": 520
+              },
+              "next_min_area_sum": 251250,
+              "board_area": 250000,
+              "smallest_area_semiperimeters_sample": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  7,
+                  8
+                ],
+                [
+                  8,
+                  9
+                ]
+              ]
+            }
+          },
+          {
+            "type": "target_contract",
+            "passed": true,
+            "target_spec": {
+              "kind": "remainder",
+              "modulus": 100000,
+              "quantity_text": "K",
+              "min_value": 0,
+              "max_value": 99999,
+              "instruction": "Return ONLY the requested remainder of (K) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tool_reports": {
+    "FAM1": []
+  },
+  "critic": {
+    "verdict": "NOT_NEEDED",
+    "confidence": null,
+    "parse_ok": null,
+    "summary": "FAMILY_EXACT verification passed via extremal_rectangle_partition",
+    "error": "",
+    "revision_instruction": ""
+  },
+  "verification": {
+    "level": "FAMILY_EXACT",
+    "passed": true,
+    "reason": "exact upper/lower bounds meet",
+    "checks": [
+      {
+        "type": "family_engine",
+        "passed": true,
+        "engine": "extremal_rectangle_partition"
+      },
+      {
+        "type": "family_certificate",
+        "passed": true,
+        "certificate": {
+          "board": [
+            500,
+            500
+          ],
+          "upper_bound": 520,
+          "construction_count": 520,
+          "construction": {
+            "template": "two_zone_strip",
+            "orientation_swapped": false,
+            "paired_unit_rows": 249,
+            "remaining_height": 250,
+            "top_consecutive_start": 3,
+            "top_consecutive_count": 20,
+            "verified": {
+              "ok": true,
+              "count": 520,
+              "area": 250000,
+              "min_perimeter": 4,
+              "max_perimeter": 1042,
+              "perimeter_count": 520
+            }
+          },
+          "construction_verified": {
+            "ok": true,
+            "count": 520,
+            "area": 250000,
+            "min_perimeter": 4,
+            "max_perimeter": 1042,
+            "perimeter_count": 520
+          },
+          "next_min_area_sum": 251250,
+          "board_area": 250000,
+          "smallest_area_semiperimeters_sample": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        }
+      },
+      {
+        "type": "target_contract",
+        "passed": true,
+        "target_spec": {
+          "kind": "remainder",
+          "modulus": 100000,
+          "quantity_text": "K",
+          "min_value": 0,
+          "max_value": 99999,
+          "instruction": "Return ONLY the requested remainder of (K) modulo 100000. The final candidate must satisfy 0 <= answer < 100000. Do not output the modulus 100000 itself and do not output the unreduced quantity."
+        }
+      }
+    ]
+  },
+  "candidate_answer": 520,
+  "verified_answer": 520,
+  "final_solution": {
+    "candidate_id": "FAM1",
+    "interpretation": "Deterministic family engine: extremal_rectangle_partition",
+    "proof": "For the 500x500 integer rectangle board, a deterministic area-bound engine computed that 521 distinct semiperimeters would force total minimum area above 250000, hence K <= 520. A parameter-searched two-zone strip tiling was then generated and mechanically checked to cover the board with exactly 520 non-overlapping integer rectangles having pairwise distinct perimeters. Therefore K=520.",
+    "check": "Deterministic engine certificate completed and target normalization applied.",
+    "candidate_answer": 520,
+    "verified_answer": 520,
+    "final_answer": "520",
+    "self_confidence": 0.995,
+    "protocol_complete": true,
+    "answer_parse_mode": "DETERMINISTIC_FAMILY_EXACT",
+    "ambiguity_detected": false
+  },
+  "metrics": {
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "latency_sec": 0.10730231999991702,
+    "calls": [],
+    "rag_attempted": false,
+    "rag_used": false,
+    "verified_pass": true,
+    "verification_level": "FAMILY_EXACT",
+    "budget_error": null,
+    "budget_snapshot": {
+      "calls": 0,
+      "total_tokens": 0,
+      "elapsed_sec": 0.10680039199996827,
+      "max_calls": 7,
+      "max_total_tokens": 12000,
+      "max_seconds": 650.0,
+      "remaining_calls": 7,
+      "remaining_tokens": 12000,
+      "remaining_seconds": 649.893195242
+    },
+    "solver_truncations": 0,
+    "critic_used": false,
+    "critic_parse_ok": null,
+    "answer_recovery_used": false,
+    "candidate_answers": [
+      520
+    ],
+    "candidate_parse_modes": [
+      "DETERMINISTIC_FAMILY_EXACT"
+    ],
+    "candidate_target_validity": [
+      true
+    ],
+    "candidate_target_reasons": [
+      "OK"
+    ],
+    "rejected_candidate_values": [],
+    "candidate_committed_early": false,
+    "answer_commit_survived_truncation": false,
+    "proof_obligations_required": [
+      "upper_bound",
+      "construction",
+      "arithmetic_check"
+    ],
+    "proof_obligations_initial_missing": [],
+    "proof_obligations_final_missing": [],
+    "proof_micro_calls": 0,
+    "constraint_first_used": false,
+    "constraint_formalization_ok": false,
+    "semantic_compilation_ok": false,
+    "semantic_certificate_ok": false,
+    "semantic_repairs": 0,
+    "deterministic_semantic_solve": false,
+    "deterministic_family_solve": true,
+    "family_engine_name": "extremal_rectangle_partition",
+    "hard_retry_after_refutation": false
+  },
+  "status": "VERIFIED_PASS",
+  "input_fidelity": {
+    "solver_text_source": "semantic_math",
+    "layout_differs_from_solver": true,
+    "layout_problem": "A 500 × 500 square is divided into k rectangles, each having integer side lengths. Given\nthat no two of these rectangles have the same perimeter, the largest possible value of k is K. What\nis the remainder when K is divided by 105?",
+    "solver_problem": "A 500 × 500 square is divided into k rectangles, each having integer side lengths. Given that no two of these rectangles have the same perimeter, the largest possible value of k is K. What\nis the remainder when K is divided by 10^{5}?",
+    "raw_semantic_problem": "A 500 × 500 square is divided into k rectangles, each having integer side lengths. Given that no two of these rectangles have the same perimeter, the largest possible value of k is K. What\nis the remainder when K is divided by 10^{5}?",
+    "math_recovery": {
+      "text": "A 500 × 500 square is divided into k rectangles, each having integer side lengths. Given that no two of these rectangles have the same perimeter, the largest possible value of k is K. What\nis the remainder when K is divided by 10^{5}?",
+      "applied": false,
+      "rules": [],
+      "warnings": []
+    }
+  },
+  "input_metadata": {
+    "source": "/kaggle/input/competitions/ai-mathematical-olympiad-progress-prize-3/AIMO3_Reference_Problems.pdf",
+    "type": ".pdf",
+    "problem_number": 2,
+    "page_start": 4,
+    "page_end": 5,
+    "extraction_engine": "pymupdf_text",
+    "has_statement_images": false,
+    "solver_text_source": "semantic_math"
+  },
+  "aimo_answer_contract": {
+    "candidate": {
+      "valid": true,
+      "value": 520,
+      "reason": "OK"
+    },
+    "verified": {
+      "valid": true,
+      "value": 520,
+      "reason": "OK"
+    }
+  },
+  "benchmark": {
+    "expected_answer": 520,
+    "candidate_answer": 520,
+    "candidate_correct": true,
+    "verified_answer": 520,
+    "verified_correct": true,
+    "runtime_verified": true,
+    "verification_false_positive": false,
+    "candidate_correct_but_unverified": false,
+    "answer_was_not_exposed_to_model": true
+  }
+}
